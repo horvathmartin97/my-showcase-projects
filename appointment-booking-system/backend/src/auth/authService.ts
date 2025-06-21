@@ -29,9 +29,8 @@ const authService = {
         name: true,
         email: true,
         role: true,
-        createdAt: true,
-        updatedAt: true,
-        isDeleted: true,
+        appointments: true,
+        providerId: true,
       },
     });
   },

@@ -3,7 +3,6 @@ import { ApiResponse, LoginUserResponseData } from "../types/global";
 import { NextFunction, Request, Response } from "express";
 import { LoginUser, RegisterUser } from "./authSchema";
 import authService from "./authService";
-import prisma from "../utils/prisma";
 
 const authController = {
   postRegister: async (
