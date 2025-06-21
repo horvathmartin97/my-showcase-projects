@@ -36,6 +36,8 @@ model Service {
   provider     Provider    @relation(fields: [providerId], references: [id])
   providerId   String
   appointments Appointment[]
+  price       Float @default(0.0)
+  currency    String @default("HUF") 
 }
 
 model Appointment {

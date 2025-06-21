@@ -1,7 +1,7 @@
 import { NextFunction, Request, Response } from "express";
 import { createWorkHour } from "./providerSchema";
 import { ApiResponse } from "../types/global";
-import { DayOff, WorkHour } from "@prisma/client";
+import { DayOff, Service, WorkHour } from "@prisma/client";
 import providerService from "./providerService";
 
 const providerController = {
@@ -19,7 +19,7 @@ const providerController = {
       );
       res.status(201).json({
         ok: true,
-        message: "Working hours is created",
+        message: "Working hours are created",
         data: newWorkHour,
       });
     } catch (error) {
@@ -42,6 +42,29 @@ const providerController = {
       res
         .status(201)
         .json({ ok: true, message: "Day Off is addedd", data: dayOff });
+    } catch (error) {
+      next(error);
+    }
+  },
+  createService: async (
+    req: Request,
+    res: Response<ApiResponse<Service>>,
+    next: NextFunction
+  ) => {
+    try {
+      const { providerId } = req.params;
+      const { name, durationMin, currency, price } = req.body;
+      const newService = await providerService.createService(providerId, {
+        name,
+        durationMin,
+        currency,
+        price,
+      });
+      res.status(201).json({
+        ok: true,
+        message: "Service Created",
+        data: newService,
+      });
     } catch (error) {
       next(error);
     }
