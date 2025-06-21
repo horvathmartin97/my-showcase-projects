@@ -4,7 +4,7 @@ import HttpError from "../utils/HttpError";
 import bcrypt from "bcryptjs";
 import { User } from "@prisma/client";
 import jwt from "jsonwebtoken";
-import { JWT_SECRET } from "../../constants/global";
+import { JWT_SECRET } from "../constants/global";
 
 const authService = {
   register: async (register: RegisterUser) => {
