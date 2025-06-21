@@ -13,6 +13,7 @@ export const registerUserSchema = z.object({
   password: z
     .string()
     .min(4, { message: "password must be at least 4 characters" }),
+  role: z.enum(["CLIENT", "PROVIDER"]),
 });
 
 export type RegisterUser = z.infer<typeof registerUserSchema>;

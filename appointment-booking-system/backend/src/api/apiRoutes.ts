@@ -1,7 +1,10 @@
 import { Router } from "express";
+import providerRouter from "../provider/providerRoutes";
+import userController from "../user/userController";
+import userRouter from "../user/userRoutes";
 
 const router = Router();
-//router.use("/valami1");
-//router.use("/valami2");
+router.use("/provider", providerRouter);
+router.use("/user", userRouter);
 
 export default router;

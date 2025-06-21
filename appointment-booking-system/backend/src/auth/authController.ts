@@ -11,7 +11,7 @@ const authController = {
     next: NextFunction
   ) => {
     try {
-      const newUser = await authService.register(req.body);
+      const newUser = (await authService.register(req.body)) as User;
       res.json({
         ok: true,
         message: "You are successfully registered",

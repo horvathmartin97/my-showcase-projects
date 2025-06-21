@@ -18,21 +18,41 @@ const authService = {
     }
     const salt = bcrypt.genSaltSync(10);
     const hashedPassword = bcrypt.hashSync(register.password, salt);
-    return prisma.user.create({
-      data: {
-        name: register.name,
-        email: register.email,
-        password: hashedPassword,
-      },
-      select: {
-        id: true,
-        name: true,
-        email: true,
-        role: true,
-        appointments: true,
-        providerId: true,
-      },
-    });
+    if (register.role === "PROVIDER") {
+      await prisma.user.create({
+        data: {
+          name: register.name,
+          email: register.email,
+          password: hashedPassword,
+          role: register.role,
+          Provider: {
+            create: {},
+          },
+        },
+        select: {
+          id: true,
+          name: true,
+          email: true,
+          role: true,
+          Provider: true,
+        },
+      });
+    } else {
+      return await prisma.user.create({
+        data: {
+          name: register.name,
+          email: register.email,
+          password: hashedPassword,
+          role: register.role,
+        },
+        select: {
+          id: true,
+          name: true,
+          email: true,
+          role: true,
+        },
+      });
+    }
   },
   login: async (loginUser: LoginUser) => {
     const doesUserExist = await prisma.user.count({
