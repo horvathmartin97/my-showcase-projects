@@ -17,6 +17,7 @@ const userService = {
             workHours: true,
             dayOffs: true,
             services: true,
+            WeeklyDayOff: true,
           },
         },
       },
