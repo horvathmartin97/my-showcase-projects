@@ -1,0 +1,30 @@
+{
+  "name": "backend-basic-struct",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "prisma:migrate": "npx prisma migrate dev",
+    "prisma:generate": "npx prisma generate",
+    "prisma:studio": "npx prisma studio",
+    "dev": "nodemon",
+    "build": "tsc",
+    "start": "node dist/index.js"
+  },
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "@types/express": "^5.0.3",
+    "@types/node": "^24.0.3",
+    "nodemon": "^3.1.10",
+    "prisma": "^6.9.0",
+    "ts-node": "^10.9.2",
+    "typescript": "^5.8.3",
+    "zod": "^3.25.64"
+  },
+  "dependencies": {
+    "@prisma/client": "^6.9.0",
+    "dotenv": "^16.5.0",
+    "express": "^5.1.0"
+  }
+}
