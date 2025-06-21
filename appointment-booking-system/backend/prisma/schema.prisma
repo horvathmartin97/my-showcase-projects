@@ -1,4 +1,3 @@
-
 generator client {
   provider = "prisma-client-js"
 }
@@ -6,4 +5,79 @@ generator client {
 datasource db {
   provider = "postgresql"
   url      = env("DATABASE_URL")
+}
+
+model User {
+  id             String        @id @default(cuid())
+  email          String        @unique
+  password       String
+  name           String
+  role           UserRole      @default(CLIENT)
+  provider       Provider?   
+  providerId     String?
+  appointments   Appointment[] @relation("ClientAppointments")
+}
+
+model Provider {
+  id             String        @id @default(cuid())
+  user           User          @relation(fields: [userId], references: [id])
+  userId         String        @unique
+  services       Service[]
+  workHours      WorkHour[]
+  dayOffs        DayOff[]
+  appointments   Appointment[] @relation("ProviderAppointments")
+}
+
+model Service {
+  id             String        @id @default(cuid())
+  name           String
+  durationMin    Int          
+  provider       Provider      @relation(fields: [providerId], references: [id])
+  providerId     String
+  appointments   Appointment[]
+}
+
+model Appointment {
+  id             String        @id @default(cuid())
+  client         User          @relation("ClientAppointments", fields: [clientId], references: [id])
+  clientId       String
+  provider       Provider      @relation("ProviderAppointments", fields: [providerId], references: [id])
+  providerId     String
+  service        Service       @relation(fields: [serviceId], references: [id])
+  serviceId      String
+  startsAt       DateTime
+  endsAt         DateTime
+  status         AppointmentStatus @default(PENDING)
+  createdAt      DateTime      @default(now())
+}
+
+model WorkHour {
+  id             String        @id @default(cuid())
+  provider       Provider      @relation(fields: [providerId], references: [id])
+  providerId     String
+  dayOfWeek      Int           
+  startTime      String        
+  endTime        String        
+  isAvailable    Boolean       @default(true)
+}
+
+model DayOff {
+  id             String        @id @default(cuid())
+  provider       Provider      @relation(fields: [providerId], references: [id])
+  providerId     String
+  date           DateTime
+  reason         String?
+}
+
+enum UserRole {
+  PROVIDER
+  CLIENT
+}
+
+enum AppointmentStatus {
+  PENDING
+  CONFIRMED
+  REJECTED
+  CANCELLED
+  COMPLETED
 }
