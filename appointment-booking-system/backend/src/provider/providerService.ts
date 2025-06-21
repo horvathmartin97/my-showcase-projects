@@ -16,11 +16,21 @@ const providerService = {
         providerId,
         dayOfWeek: wh.dayOfWeek,
         startTime: wh.startTime,
+
         endTime: wh.endTime,
       })),
     });
 
     return prisma.workHour.findMany({ where: { providerId } });
+  },
+  addDayOff: async (providerId: string, date: Date, reason?: string) => {
+    return prisma.dayOff.create({
+      data: {
+        providerId,
+        date,
+        reason,
+      },
+    });
   },
 };
 

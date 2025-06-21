@@ -25,6 +25,8 @@ model Provider {
   workHours    WorkHour[]
   dayOffs      DayOff[]
   appointments Appointment[] @relation("ProviderAppointments")
+
+  WeeklyDayOff WeeklyDayOff[]
 }
 
 model Service {
@@ -66,7 +68,13 @@ model DayOff {
   date         DateTime
   reason       String?
 }
-
+model WeeklyDayOff {
+  id         String   @id @default(cuid())
+  provider   Provider @relation(fields: [providerId], references: [id])
+  providerId String
+  dayOfWeek  Int      // 0 = vasárnap, 1 = hétfő, ..., 6 = szombat
+  reason     String?
+}
 enum UserRole {
   PROVIDER
   CLIENT
