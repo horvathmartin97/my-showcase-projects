@@ -74,7 +74,7 @@ model WeeklyDayOff {
   id         String   @id @default(cuid())
   provider   Provider @relation(fields: [providerId], references: [id])
   providerId String
-  dayOfWeek  Int      // 0 = vasárnap, 1 = hétfő, ..., 6 = szombat
+  dayOfWeek  Int      
   reason     String?
 }
 enum UserRole {

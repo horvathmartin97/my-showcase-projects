@@ -1,3 +1,5 @@
+import { UserRole } from "@prisma/client";
+
 export type ApiResponse<T> = {
   ok: boolean;
   message: string;
@@ -11,3 +13,12 @@ export type AuthReqObject<T> = {
   email: string;
   role: string;
 };
+export type JwtUser = {
+  id: string;
+  email: string;
+  role: UserRole;
+};
+export interface AuthorizedResponse extends Request {
+  params: any;
+  user?: UserRole;
+}

@@ -1,7 +1,7 @@
 import { NextFunction, Request, Response } from "express";
 import { ApiResponse, AuthorizedResponse, JwtUser } from "../types/global";
 import jwt from "jsonwebtoken";
-import { JWT_SECRET } from "../../constants/global";
+import { JWT_SECRET } from "../constants/global";
 import { User, UserRole } from "@prisma/client";
 
 declare global {
@@ -48,17 +48,17 @@ export default function authorize(
     });
   }
 }
-export function checkUserAcces() {
+export function checkClientAcces() {
   return (req: Request, res: Response<ApiResponse<{}>>, next: NextFunction) => {
     const user = req.user;
     const reqUserId = req.params.userId;
 
-    if (user?.role === "ADMIN") {
+    if (user?.role === "PROVIDER") {
       next();
       return;
     }
 
-    if (user?.role === "USER") {
+    if (user?.role === "CLIENT") {
       if (user?.id !== reqUserId) {
         res.send({
           ok: false,
@@ -73,11 +73,11 @@ export function checkUserAcces() {
   };
 }
 
-export function onlyAdmin() {
+export function onlyProvider() {
   return (req: Request, res: Response<ApiResponse<{}>>, next: NextFunction) => {
     const user = req.user;
 
-    if (user?.role === "ADMIN") {
+    if (user?.role === "PROVIDER") {
       next();
       return;
     }
