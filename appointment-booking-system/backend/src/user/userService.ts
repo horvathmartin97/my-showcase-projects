@@ -2,8 +2,8 @@ import { User } from "@prisma/client";
 import prisma from "../utils/prisma";
 
 const userService = {
-  getAllUser: () => {
-    return prisma.user.findMany({
+  getAllUser: async () => {
+    return await prisma.user.findMany({
       select: {
         email: true,
         appointments: true,
@@ -13,11 +13,11 @@ const userService = {
         password: false,
         Provider: {
           select: {
-            id: true,
-            workHours: true,
             dayOffs: true,
             services: true,
             WeeklyDayOff: true,
+            workHours: true,
+            appointments: true,
           },
         },
       },
