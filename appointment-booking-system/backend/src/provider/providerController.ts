@@ -1,7 +1,7 @@
 import { NextFunction, Request, Response } from "express";
 import { createWorkHour } from "./providerSchema";
 import { ApiResponse } from "../types/global";
-import { DayOff, Service, WorkHour } from "@prisma/client";
+import { DayOff, Service, WeeklyDayOff, WorkHour } from "@prisma/client";
 import providerService from "./providerService";
 
 const providerController = {
@@ -17,6 +17,12 @@ const providerController = {
         providerId,
         workHours
       );
+      if (!Array.isArray(workHours)) {
+        res
+          .status(400)
+          .json({ ok: false, message: "expected array", data: [] });
+      }
+
       res.status(201).json({
         ok: true,
         message: "Working hours are created",
@@ -42,6 +48,34 @@ const providerController = {
       res
         .status(201)
         .json({ ok: true, message: "Day Off is addedd", data: dayOff });
+    } catch (error) {
+      next(error);
+    }
+  },
+  setWeeklyDayOff: async (
+    req: Request,
+    res: Response<ApiResponse<WeeklyDayOff[]>>,
+    next: NextFunction
+  ) => {
+    try {
+      const { providerId } = req.params;
+      const { days, reason } = req.body;
+      if (!Array.isArray(days)) {
+        res
+          .status(400)
+          .json({ ok: false, message: "expected array", data: [] });
+      }
+      const weeklyDayOff = await providerService.setWeeklyDayOffs(
+        providerId,
+        days,
+        reason
+      );
+
+      res.status(201).json({
+        ok: true,
+        message: "Weekly Day Offs are all set",
+        data: weeklyDayOff,
+      });
     } catch (error) {
       next(error);
     }

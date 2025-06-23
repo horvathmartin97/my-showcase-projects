@@ -1,4 +1,4 @@
-import { DayOff, Service, WorkHour } from "@prisma/client";
+import { DayOff, Service, WeeklyDayOff, WorkHour } from "@prisma/client";
 import prisma from "../utils/prisma";
 import { createWorkHour } from "./providerSchema";
 import { ServiceInput } from "./providerTypes";
@@ -18,7 +18,6 @@ const providerService = {
         providerId,
         dayOfWeek: wh.dayOfWeek,
         startTime: wh.startTime,
-
         endTime: wh.endTime,
       })),
     });
@@ -37,6 +36,22 @@ const providerService = {
         reason,
       },
     });
+  },
+  setWeeklyDayOffs: async (
+    providerId: string,
+    day: number[],
+    reason?: string
+  ): Promise<WeeklyDayOff[]> => {
+    await prisma.weeklyDayOff.deleteMany({ where: { providerId } });
+
+    await prisma.weeklyDayOff.createMany({
+      data: day.map((dayOfWeek) => ({
+        providerId,
+        dayOfWeek,
+        reason,
+      })),
+    });
+    return prisma.weeklyDayOff.findMany({ where: { providerId } });
   },
   createService: async (
     providerId: string,
