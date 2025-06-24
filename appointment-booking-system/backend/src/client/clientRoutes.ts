@@ -1,13 +1,19 @@
 import { Router } from "express";
 import clientController from "./clientController";
-import authorize from "../middlewares/authorize";
+import authorize, { checkClientAcces } from "../middlewares/authorize";
 
 const clientRouter = Router();
 
-clientRouter.get("/", authorize, clientController.getAllProviders);
+clientRouter.get(
+  "/",
+  authorize,
+  checkClientAcces(),
+  clientController.getAllProviders
+);
 clientRouter.post(
   "/:clientId/appointment",
   authorize,
+  checkClientAcces(),
   clientController.createAppointment
 );
 
