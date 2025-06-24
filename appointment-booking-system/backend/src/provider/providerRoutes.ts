@@ -32,5 +32,11 @@ providerRouter.post(
 
   providerController.setWeeklyDayOff
 );
+providerRouter.put(
+  "/:appointmentId/accept",
+  authorize,
+  onlyProvider(),
+  providerController.acceptAppointment
+);
 
 export default providerRouter;

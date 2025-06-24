@@ -1,7 +1,13 @@
 import { NextFunction, Request, Response } from "express";
 import { createWorkHour } from "./providerSchema";
 import { ApiResponse } from "../types/global";
-import { DayOff, Service, WeeklyDayOff, WorkHour } from "@prisma/client";
+import {
+  Appointment,
+  DayOff,
+  Service,
+  WeeklyDayOff,
+  WorkHour,
+} from "@prisma/client";
 import providerService from "./providerService";
 
 const providerController = {
@@ -99,6 +105,27 @@ const providerController = {
         message: "Service Created",
         data: newService,
       });
+    } catch (error) {
+      next(error);
+    }
+  },
+  acceptAppointment: async (
+    req: Request,
+    res: Response<ApiResponse<Appointment>>,
+    next: NextFunction
+  ) => {
+    try {
+      const { appointmentId } = req.params;
+      const acceptAppointment = await providerService.acceptAppointment(
+        appointmentId
+      );
+      res
+        .status(201)
+        .json({
+          ok: true,
+          message: `Appointment accepted:${appointmentId}`,
+          data: acceptAppointment,
+        });
     } catch (error) {
       next(error);
     }
