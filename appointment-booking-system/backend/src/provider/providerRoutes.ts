@@ -32,7 +32,7 @@ providerRouter.post(
 
   providerController.setWeeklyDayOff
 );
-providerRouter.put(
+providerRouter.patch(
   "/:appointmentId/accept",
   authorize,
   onlyProvider(),
