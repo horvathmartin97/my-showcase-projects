@@ -83,15 +83,27 @@ const providerService = {
     return newService;
   },
   acceptAppointment: async (appointmentId: string): Promise<Appointment> => {
+    const isExist = await prisma.appointment.findUnique({
+      where: { id: appointmentId },
+    });
+    if (!isExist) {
+      throw new HttpError(404, "Appointment not found");
+    }
     return prisma.appointment.update({
       where: { id: appointmentId },
       data: { status: "CONFIRMED" },
     });
   },
   rejectAppointmnet: async (appointmentId: string): Promise<Appointment> => {
+    const isExist = await prisma.appointment.findUnique({
+      where: { id: appointmentId },
+    });
+    if (!isExist) {
+      throw new HttpError(404, "Appointment not found");
+    }
     return prisma.appointment.update({
       where: { id: appointmentId },
-      data: { status: "REJECTED" },
+      data: { status: "CANCELLED" },
     });
   },
 };

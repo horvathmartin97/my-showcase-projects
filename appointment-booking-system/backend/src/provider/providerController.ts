@@ -119,13 +119,31 @@ const providerController = {
       const acceptAppointment = await providerService.acceptAppointment(
         appointmentId
       );
-      res
-        .status(201)
-        .json({
-          ok: true,
-          message: `Appointment accepted:${appointmentId}`,
-          data: acceptAppointment,
-        });
+      res.status(201).json({
+        ok: true,
+        message: `Appointment accepted:${appointmentId}`,
+        data: acceptAppointment,
+      });
+    } catch (error) {
+      next(error);
+    }
+  },
+  rejectAppointment: async (
+    req: Request,
+    res: Response<ApiResponse<Appointment>>,
+    next: NextFunction
+  ) => {
+    try {
+      const { appointmentId } = req.params;
+      console.log(appointmentId);
+      const rejectAppointment = await providerService.rejectAppointmnet(
+        appointmentId
+      );
+      res.status(201).json({
+        ok: true,
+        message: `Appointment rejected: ${appointmentId}`,
+        data: rejectAppointment,
+      });
     } catch (error) {
       next(error);
     }

@@ -38,5 +38,11 @@ providerRouter.patch(
   onlyProvider(),
   providerController.acceptAppointment
 );
+providerRouter.patch(
+  "/:appointmentId/reject",
+  authorize,
+  onlyProvider(),
+  providerController.rejectAppointment
+);
 
 export default providerRouter;
