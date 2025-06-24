@@ -1,4 +1,10 @@
-import { DayOff, Service, WeeklyDayOff, WorkHour } from "@prisma/client";
+import {
+  Appointment,
+  DayOff,
+  Service,
+  WeeklyDayOff,
+  WorkHour,
+} from "@prisma/client";
 import prisma from "../utils/prisma";
 import { createWorkHour } from "./providerSchema";
 import { ServiceInput } from "./providerTypes";
@@ -75,6 +81,18 @@ const providerService = {
     });
 
     return newService;
+  },
+  acceptAppointment: async (appointmentId: string): Promise<Appointment> => {
+    return prisma.appointment.update({
+      where: { id: appointmentId },
+      data: { status: "CONFIRMED" },
+    });
+  },
+  rejectAppointmnet: async (appointmentId: string): Promise<Appointment> => {
+    return prisma.appointment.update({
+      where: { id: appointmentId },
+      data: { status: "REJECTED" },
+    });
   },
 };
 
