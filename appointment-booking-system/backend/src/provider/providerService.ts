@@ -9,6 +9,7 @@ import prisma from "../utils/prisma";
 import { createWorkHour } from "./providerSchema";
 import { ServiceInput } from "./providerTypes";
 import HttpError from "../utils/HttpError";
+import { AppointmentWithClient } from "../types/global";
 
 const providerService = {
   createWorkHour: async (
@@ -104,6 +105,38 @@ const providerService = {
     return prisma.appointment.update({
       where: { id: appointmentId },
       data: { status: "CANCELLED" },
+    });
+  },
+  getBookedAppointments: async (
+    providerId: string
+  ): Promise<AppointmentWithClient[]> => {
+    const isAppointment = await prisma.provider.findUnique({
+      where: { id: providerId },
+    });
+    if (!isAppointment) {
+      throw new HttpError(404, "Provider is not found");
+    }
+    return prisma.appointment.findMany({
+      where: { providerId },
+      select: {
+        id: true,
+        clientId: true,
+        serviceId: true,
+        startsAt: true,
+        endsAt: true,
+        providerId: true,
+        status: true,
+        createdAt: true,
+        client: {
+          select: {
+            id: true,
+            name: true,
+            email: true,
+            appointments: true,
+            role: true,
+          },
+        },
+      },
     });
   },
 };

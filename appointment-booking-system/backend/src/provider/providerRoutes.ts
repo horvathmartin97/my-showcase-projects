@@ -44,5 +44,11 @@ providerRouter.patch(
   onlyProvider(),
   providerController.rejectAppointment
 );
+providerRouter.get(
+  "/:providerId/appointments",
+  authorize,
+  onlyProvider(),
+  providerController.getBookedAppointments
+);
 
 export default providerRouter;

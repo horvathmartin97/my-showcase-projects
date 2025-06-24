@@ -1,6 +1,6 @@
 import { NextFunction, Request, Response } from "express";
 import { createWorkHour } from "./providerSchema";
-import { ApiResponse } from "../types/global";
+import { ApiResponse, AppointmentWithClient } from "../types/global";
 import {
   Appointment,
   DayOff,
@@ -143,6 +143,25 @@ const providerController = {
         ok: true,
         message: `Appointment rejected: ${appointmentId}`,
         data: rejectAppointment,
+      });
+    } catch (error) {
+      next(error);
+    }
+  },
+  getBookedAppointments: async (
+    req: Request,
+    res: Response<ApiResponse<AppointmentWithClient[]>>,
+    next: NextFunction
+  ) => {
+    try {
+      const { providerId } = req.params;
+      const allAppointments = await providerService.getBookedAppointments(
+        providerId
+      );
+      res.status(201).json({
+        ok: true,
+        message: "Booked appointments readed",
+        data: allAppointments,
       });
     } catch (error) {
       next(error);
