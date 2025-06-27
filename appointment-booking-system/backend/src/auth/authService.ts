@@ -19,24 +19,23 @@ const authService = {
     const salt = bcrypt.genSaltSync(10);
     const hashedPassword = bcrypt.hashSync(register.password, salt);
     if (register.role === "PROVIDER") {
-      await prisma.user.create({
+      const newProviderUser = await prisma.user.create({
         data: {
           name: register.name,
           email: register.email,
           password: hashedPassword,
           role: register.role,
-          Provider: {
-            create: {},
-          },
+          Provider: { create: {} },
         },
         select: {
           id: true,
           name: true,
           email: true,
           role: true,
-          Provider: true,
-        },
+          Provider: { select: { id: true } },
+        }, // Provider relációt is visszaadjuk
       });
+      return newProviderUser;
     } else {
       return await prisma.user.create({
         data: {
@@ -54,6 +53,7 @@ const authService = {
       });
     }
   },
+
   login: async (loginUser: LoginUser) => {
     const doesUserExist = await prisma.user.count({
       where: {
@@ -73,10 +73,15 @@ const authService = {
     if (!isPasswordCorrect) {
       throw new HttpError(403, "invalid email/password");
     }
+    const provider = await prisma.provider.findUnique({
+      where: { userId: dbUser.id },
+    });
+
     const jwtPayload = {
       userId: dbUser.id,
       email: dbUser.email,
       role: dbUser.role,
+      provider: provider?.id || null,
     };
     const token = jwt.sign(jwtPayload, JWT_SECRET as string);
     return token;

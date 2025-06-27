@@ -36,6 +36,5 @@ export type AppointmentWithClient = {
     id: string;
     email: string;
     name: string;
-    role: string;
   };
 };

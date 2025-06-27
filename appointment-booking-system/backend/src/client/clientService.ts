@@ -7,7 +7,6 @@ const clientService = {
   getAllProvDates: async (): Promise<Provider[]> => {
     const allProviders = await prisma.provider.findMany({
       select: {
-        appointments: true,
         dayOffs: true,
         services: true,
         WeeklyDayOff: true,

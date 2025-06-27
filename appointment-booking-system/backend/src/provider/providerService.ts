@@ -132,8 +132,6 @@ const providerService = {
             id: true,
             name: true,
             email: true,
-            appointments: true,
-            role: true,
           },
         },
       },

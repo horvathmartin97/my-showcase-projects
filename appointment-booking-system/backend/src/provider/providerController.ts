@@ -19,15 +19,15 @@ const providerController = {
     try {
       const { providerId } = req.params;
       const workHours = req.body;
-      const newWorkHour = await providerService.createWorkHour(
-        providerId,
-        workHours
-      );
       if (!Array.isArray(workHours)) {
         res
           .status(400)
           .json({ ok: false, message: "expected array", data: [] });
       }
+      const newWorkHour = await providerService.createWorkHour(
+        providerId,
+        workHours
+      );
 
       res.status(201).json({
         ok: true,
@@ -100,6 +100,7 @@ const providerController = {
         currency,
         price,
       });
+      console.log(providerId);
       res.status(201).json({
         ok: true,
         message: "Service Created",
