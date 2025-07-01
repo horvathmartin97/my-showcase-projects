@@ -118,6 +118,7 @@ const providerService = {
     }
     return prisma.appointment.findMany({
       where: { providerId },
+      orderBy: { startsAt: "desc" },
       select: {
         id: true,
         clientId: true,

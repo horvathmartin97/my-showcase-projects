@@ -32,12 +32,14 @@ export default function authorize(
       userId: string;
       email: string;
       role: string;
+      providerId?: string;
     };
     console.log("Decoded JWT:", decoded);
     req.user = {
       id: decoded.userId,
       email: decoded.email,
       role: decoded.role as UserRole,
+      providerId: decoded.providerId,
     };
     next();
   } catch (error) {

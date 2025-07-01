@@ -45,7 +45,7 @@ providerRouter.patch(
   providerController.rejectAppointment
 );
 providerRouter.get(
-  "/:providerId/appointments",
+  "/appointments",
   authorize,
   onlyProvider(),
   providerController.getBookedAppointments

@@ -155,7 +155,17 @@ const providerController = {
     next: NextFunction
   ) => {
     try {
-      const { providerId } = req.params;
+      const providerId = req.user?.providerId;
+
+      if (!providerId) {
+        res.status(403).json({
+          ok: false,
+          message: "Provider not authorized or not found",
+          data: [],
+        });
+        return;
+      }
+
       const allAppointments = await providerService.getBookedAppointments(
         providerId
       );

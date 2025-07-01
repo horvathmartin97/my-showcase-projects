@@ -81,7 +81,7 @@ const authService = {
       userId: dbUser.id,
       email: dbUser.email,
       role: dbUser.role,
-      provider: provider?.id || null,
+      providerId: provider?.id || null,
     };
     const token = jwt.sign(jwtPayload, JWT_SECRET as string);
     return token;

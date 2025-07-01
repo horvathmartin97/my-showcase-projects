@@ -17,6 +17,7 @@ export type JwtUser = {
   id: string;
   email: string;
   role: UserRole;
+  providerId?: string;
 };
 export interface AuthorizedResponse extends Request {
   params: any;
