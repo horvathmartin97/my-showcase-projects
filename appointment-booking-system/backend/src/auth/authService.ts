@@ -33,7 +33,7 @@ const authService = {
           email: true,
           role: true,
           Provider: { select: { id: true } },
-        }, // Provider relációt is visszaadjuk
+        },
       });
       return newProviderUser;
     } else {
