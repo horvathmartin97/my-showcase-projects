@@ -1,7 +1,7 @@
 import { Request, Response, NextFunction } from "express";
-import { RegisterUser } from "./authSchema";
+import { LoginUser, RegisterUser } from "./authSchema";
 import { ApiResponse } from "../utils/global";
-import { UserResponse } from "./authTypes";
+import { LoginUserResponseData, UserResponse } from "./authTypes";
 import authService from "./authService";
 
 const authController = {
@@ -13,6 +13,22 @@ const authController = {
     try {
       const newUser = await authService.register(req.body);
       res.json({ ok: true, message: "User registered", data: newUser });
+    } catch (error) {
+      next(error);
+    }
+  },
+  postLogin: async (
+    req: Request<unknown, unknown, LoginUser>,
+    res: Response<ApiResponse<LoginUserResponseData>>,
+    next: NextFunction
+  ): Promise<void> => {
+    try {
+      const token = await authService.login(req.body);
+      res.json({
+        ok: true,
+        message: "Successfully logged in",
+        data: { token },
+      });
     } catch (error) {
       next(error);
     }

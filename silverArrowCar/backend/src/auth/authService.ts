@@ -1,9 +1,10 @@
 import HttpError from "../utils/HttpError";
 import prisma from "../utils/prisma";
-import { RegisterUser } from "./authSchema";
+import { LoginUser, RegisterUser } from "./authSchema";
 import bcrypt from "bcryptjs";
 import jwt from "jsonwebtoken";
 import { UserResponse } from "./authTypes";
+import { JWT_SECRET } from "../constants/global";
 
 const authService = {
   register: async (register: RegisterUser): Promise<UserResponse> => {
@@ -23,6 +24,27 @@ const authService = {
       },
       select: { id: true, name: true, email: true, role: true },
     });
+  },
+  login: async (loginUser: LoginUser): Promise<string> => {
+    const dbUserExist = await prisma.user.findUnique({
+      where: { email: loginUser.email },
+    });
+    if (!dbUserExist) throw new HttpError(403, "Invalid email/password");
+    const isPasswordCorrect = await bcrypt.compare(
+      loginUser.password,
+      dbUserExist.password
+    );
+    if (!isPasswordCorrect) {
+      throw new HttpError(403, "invalid email/password");
+    }
+    const jwtPayload = {
+      id: dbUserExist.id,
+      email: dbUserExist.email,
+      name: dbUserExist.name,
+    };
+    const token = jwt.sign(jwtPayload, JWT_SECRET as string);
+
+    return token;
   },
 };
 export default authService;

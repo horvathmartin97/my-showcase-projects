@@ -1,6 +1,6 @@
 import { Router } from "express";
 import validateRequestBody from "../middlewares/validateRequestBody";
-import { registerUserSchema } from "./authSchema";
+import { loginUserSchema, registerUserSchema } from "./authSchema";
 import authController from "./authController";
 
 const authRouter: Router = Router();
@@ -10,5 +10,9 @@ authRouter.post(
   validateRequestBody(registerUserSchema),
   authController.postRegister
 );
-
+authRouter.post(
+  "/login",
+  validateRequestBody(loginUserSchema),
+  authController.postLogin
+);
 export default authRouter;
