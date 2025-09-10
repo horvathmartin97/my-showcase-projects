@@ -11,19 +11,22 @@ datasource db {
 model User {
   id String @id @default(cuid())
   email String @unique
-  name String?
+  name String
   password String
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
   garage Garage[]
-  profileImage String?
   cars Car[]
+  role Role @default(USER)
 }
 model Car {
   id String @id @default(cuid())
   carModel String
   carBrand String
   builtYear Int
+  price Float
+  kilometersDriven Int
+  currency String
   description String?
   image String?
   createdAt DateTime @default(now())
@@ -40,4 +43,8 @@ model Garage {
   builtYear Int
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
+}
+enum Role {
+  USER
+  ADMIN
 }

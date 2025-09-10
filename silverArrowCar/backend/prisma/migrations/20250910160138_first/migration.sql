@@ -1,12 +1,15 @@
+-- CreateEnum
+CREATE TYPE "public"."Role" AS ENUM ('USER', 'ADMIN');
+
 -- CreateTable
 CREATE TABLE "public"."User" (
     "id" TEXT NOT NULL,
     "email" TEXT NOT NULL,
-    "name" TEXT,
+    "name" TEXT NOT NULL,
     "password" TEXT NOT NULL,
     "createdAt" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
     "updatedAt" TIMESTAMP(3) NOT NULL,
-    "profileImage" TEXT,
+    "role" "public"."Role" NOT NULL DEFAULT 'USER',
 
     CONSTRAINT "User_pkey" PRIMARY KEY ("id")
 );
@@ -17,6 +20,9 @@ CREATE TABLE "public"."Car" (
     "carModel" TEXT NOT NULL,
     "carBrand" TEXT NOT NULL,
     "builtYear" INTEGER NOT NULL,
+    "price" DOUBLE PRECISION NOT NULL,
+    "kilometersDriven" INTEGER NOT NULL,
+    "currency" TEXT NOT NULL,
     "description" TEXT,
     "image" TEXT,
     "createdAt" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
