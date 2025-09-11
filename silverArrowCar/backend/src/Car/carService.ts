@@ -1,4 +1,4 @@
-import { Car, Prisma } from "@prisma/client";
+import { BodyType, Car, Prisma } from "@prisma/client";
 import { PaginatedResponse } from "../types/global";
 import { addNewCarType, SearchQuerySchema } from "./carSchema";
 import prisma from "../utils/prisma";
@@ -27,6 +27,12 @@ const carService = {
               },
               {
                 carBrand: {
+                  contains: queryParameters.searchTerm,
+                  mode: Prisma.QueryMode.insensitive,
+                },
+              },
+              {
+                color: {
                   contains: queryParameters.searchTerm,
                   mode: Prisma.QueryMode.insensitive,
                 },
