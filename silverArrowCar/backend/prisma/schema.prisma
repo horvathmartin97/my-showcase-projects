@@ -1,4 +1,3 @@
-
 generator client {
   provider = "prisma-client-js"
 }
@@ -9,42 +8,116 @@ datasource db {
 }
 
 model User {
-  id String @id @default(cuid())
-  email String @unique
-  name String
-  password String
-  createdAt DateTime @default(now())
-  updatedAt DateTime @updatedAt
-  garage Garage[]
-  cars Car[]
-  role Role @default(USER)
+  id        String     @id @default(cuid())
+  email     String     @unique
+  name      String
+  password  String 
+  createdAt DateTime   @default(now())
+  updatedAt DateTime   @updatedAt
+  role      Role       @default(USER)
+  createdCars Car[]      @relation("CreatedCars")
+  savedCars   SavedCar[]
 }
+
 model Car {
-  id String @id @default(cuid())
-  carModel String
-  carBrand String
-  builtYear Int
-  price Float
-  kilometersDriven Int
-  currency String
-  description String?
-  image String?
-  createdAt DateTime @default(now())
-  updatedAt DateTime @updatedAt
-  createdBy User @relation(fields: [createdById], references: [id])
+  id               String    @id @default(cuid())
+  carModel         String    
+  builtYear        Int
+  price            Decimal   
+  currency         String
+  color           String
+  transmission     TransmissionType
+  fuelType         FuelType
+  mileage          Int
+  mileageValue    String @default("km")
+  bodyType         BodyType
+  driveType        DriveType
+  condition        Condition
+  doors            Int
+  seats            Int
+  airConditioning  AirConditioning
+  description      String?
+  engineType       engineType
+  engineDisplacement Int
+  horsePower      Int?
+  image            String[]
+  createdAt        DateTime  @default(now())
+  updatedAt        DateTime  @updatedAt
+  carBrand        String
+  createdBy   User     @relation("CreatedCars", fields: [createdById], references: [id], onDelete: Cascade)
   createdById String
+  savedByUsers SavedCar[]
+  @@index([carModel])
+  @@index([carBrand])
 }
-model Garage {
-  id String @id @default(cuid())
-  user User @relation(fields: [userId], references: [id])
+
+model SavedCar {
   userId String
-  carModel String
-  carBrand String
-  builtYear Int
-  createdAt DateTime @default(now())
-  updatedAt DateTime @updatedAt
+  carId  String
+  user   User   @relation(fields: [userId], references: [id], onDelete: Cascade)
+  car    Car    @relation(fields: [carId], references: [id], onDelete: Cascade)
+  savedAt DateTime @default(now())
+  @@id([userId, carId])
 }
+
 enum Role {
   USER
   ADMIN
+}
+
+enum TransmissionType {
+  MANUAL
+  AUTOMATIC
+  SEMI_AUTOMATIC
+  CVT
+  DUAL_CLUTCH
+}
+enum FuelType {
+  PETROL
+  DIESEL
+  ELECTRIC
+  HYBRID
+  CNG
+  LPG
+}
+enum BodyType {
+  SEDAN
+  SUV
+  HATCHBACK
+  COUPE
+  CONVERTIBLE
+  WAGON
+  VAN
+  PICKUP
+  MINIVAN
+  ROADSTER
+  LIMOUSINE
+  OFF_ROAD
+  MICROCAR
+}
+enum DriveType {
+  FWD
+  RWD
+  AWD
+  FOUR_WHEEL
+}
+enum Condition {
+  NEW
+  USED
+  CERTIFIED_PRE_OWNED
+}
+enum AirConditioning {
+  MANUAL
+  AUTOMATIC
+  DUAL_ZONE
+  MULTI_ZONE
+  NONE
+}
+enum engineType {
+  INLINE
+  V_TYPE
+  BOXER
+  ROTARY
+  ELECTRIC
+  HYBRID
 }

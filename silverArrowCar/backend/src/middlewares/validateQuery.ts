@@ -3,7 +3,7 @@ import type { Request, Response, NextFunction } from "express";
 
 import type { ApiResponse } from "../types/global";
 import HttpError from "../utils/HttpError";
-import type { SearchQuerySchema } from "../location/locationSchema";
+import type { SearchQuerySchema } from "../Car/carSchema";
 
 const validatedQuery =
   (schema: ZodSchema) =>

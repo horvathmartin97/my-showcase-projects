@@ -12,7 +12,7 @@ const authService = {
       where: { email: register.email },
     });
     if (doesUserExist) {
-      throw new HttpError(403, "User Already Exists");
+      throw new HttpError("User Already Exists", 403);
     }
     const salt = bcrypt.genSaltSync(10);
     const hashedPassword = bcrypt.hashSync(register.password, salt);
@@ -29,13 +29,13 @@ const authService = {
     const dbUserExist = await prisma.user.findUnique({
       where: { email: loginUser.email },
     });
-    if (!dbUserExist) throw new HttpError(403, "Invalid email/password");
+    if (!dbUserExist) throw new HttpError("Invalid email/password", 403);
     const isPasswordCorrect = await bcrypt.compare(
       loginUser.password,
       dbUserExist.password
     );
     if (!isPasswordCorrect) {
-      throw new HttpError(403, "invalid email/password");
+      throw new HttpError("invalid email/password", 403);
     }
     const jwtPayload = {
       id: dbUserExist.id,

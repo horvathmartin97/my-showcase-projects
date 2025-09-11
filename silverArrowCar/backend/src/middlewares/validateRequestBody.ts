@@ -11,7 +11,7 @@ export default function validateRequestBody<T>(schema: ZodSchema<T>) {
         .map((error) => `${error.path.join(" ")}:${error.message}`)
         .join(", ");
 
-      const error = new HttpError(400, errorMessage);
+      const error = new HttpError(errorMessage, 400);
 
       next(error);
       return;
