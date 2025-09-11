@@ -43,5 +43,22 @@ const carController = {
       next(error);
     }
   },
+  getById: async (
+    req: Request,
+    res: Response<ApiResponse<Car>>,
+    next: NextFunction
+  ): Promise<void> => {
+    try {
+      const carId = req.params.carId;
+      const result = await carService.getCarById(carId);
+      res.status(200).json({
+        ok: true,
+        message: "Car read succesfully",
+        data: result,
+      });
+    } catch (error) {
+      next(error);
+    }
+  },
 };
 export default carController;

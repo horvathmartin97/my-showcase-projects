@@ -3,6 +3,7 @@ import { PaginatedResponse } from "../types/global";
 import { addNewCarType, SearchQuerySchema } from "./carSchema";
 import prisma from "../utils/prisma";
 import { searchSelect } from "./carTypes";
+import HttpError from "../utils/HttpError";
 
 export type SearchedCar = Prisma.CarGetPayload<{ select: typeof searchSelect }>;
 
@@ -75,6 +76,11 @@ const carService = {
       },
     });
     return newCar;
+  },
+  getCarById: async (carId: string): Promise<Car> => {
+    const doesCarExist = await prisma.car.findUnique({ where: { id: carId } });
+    if (!doesCarExist) throw new HttpError("Car is not exists", 404);
+    return doesCarExist;
   },
 };
 export default carService;

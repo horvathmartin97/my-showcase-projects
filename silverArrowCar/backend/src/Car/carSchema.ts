@@ -55,3 +55,10 @@ export const addNewCarSchema = z.object({
   engineDisplacement: z.number().int(),
 });
 export type addNewCarType = z.infer<typeof addNewCarSchema>;
+
+export const idParamsSchema = z.object({
+  carId: z.string().cuid({
+    message: "ID must be a string",
+  }),
+});
+export type IdParamsSchema = z.infer<typeof idParamsSchema>;
