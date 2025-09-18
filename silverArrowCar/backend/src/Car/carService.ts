@@ -82,5 +82,14 @@ const carService = {
     if (!doesCarExist) throw new HttpError("Car is not exists", 404);
     return doesCarExist;
   },
+  deleteById: async (carId: string): Promise<Car> => {
+    const isCarExist = await prisma.car.findUnique({
+      where: { id: carId },
+    });
+    if (!isCarExist) {
+      throw new HttpError("Car is Not Found", 404);
+    }
+    return await prisma.car.delete({ where: { id: carId } });
+  },
 };
 export default carService;

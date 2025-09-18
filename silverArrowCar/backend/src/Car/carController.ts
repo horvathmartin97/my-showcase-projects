@@ -60,5 +60,21 @@ const carController = {
       next(error);
     }
   },
+  deleteById: async (
+    req: AuthorizedRequest,
+    res: Response<ApiResponse<Car>>,
+    next: NextFunction
+  ): Promise<void> => {
+    try {
+      if (!req.user) throw new HttpError("Unauthorized", 401);
+      const carId = req.params.carId;
+      const car = await carService.deleteById(carId);
+      res
+        .status(200)
+        .json({ ok: true, message: "Car is deleted Successfully", data: car });
+    } catch (error) {
+      next(error);
+    }
+  },
 };
 export default carController;

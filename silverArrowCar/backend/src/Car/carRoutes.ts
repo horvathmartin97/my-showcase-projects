@@ -23,4 +23,11 @@ carRouter.post(
   validateRequestBody(addNewCarSchema),
   carController.addCar
 );
+carRouter.delete(
+  "/:carId",
+  authorize,
+  validatedParams(idParamsSchema),
+  carController.deleteById
+);
+
 export default carRouter;
