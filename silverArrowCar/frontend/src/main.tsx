@@ -2,9 +2,20 @@ import { StrictMode } from "react";
 import { createRoot } from "react-dom/client";
 import "./index.css";
 import { BrowserRouter, Route, Routes } from "react-router";
+import { AuthContextProvider } from "./contexts/AuthContext";
+import MainLayout from "./layouts/MainLayout";
+import LoginPage from "./pages/LoginPage";
 
 createRoot(document.getElementById("root")!).render(
   <StrictMode>
-    <BrowserRouter></BrowserRouter>
+    <BrowserRouter>
+      <AuthContextProvider>
+        <Routes>
+          <Route path="" element={<MainLayout />}>
+            <Route path="/login" element={<LoginPage />} />
+          </Route>
+        </Routes>
+      </AuthContextProvider>
+    </BrowserRouter>
   </StrictMode>
 );
