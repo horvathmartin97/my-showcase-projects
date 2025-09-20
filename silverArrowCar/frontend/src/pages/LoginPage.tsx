@@ -26,10 +26,6 @@ export default function LoginPage() {
   const [apiError, setApiError] = useState("");
   const [loading, setLoading] = useState(false);
 
-  // A regisztrációtól érkező success üzenet kezelése (opcionális)
-  // Például: const location = useLocation();
-  // const successMessage = location.state?.successMessage;
-
   const {
     register,
     handleSubmit,
@@ -37,6 +33,7 @@ export default function LoginPage() {
   } = useForm<LoginUser>({
     resolver: zodResolver(loginSchema),
     mode: "onChange",
+    reValidateMode: "onBlur",
     defaultValues: { email: "", password: "" },
   });
 
@@ -73,8 +70,8 @@ export default function LoginPage() {
 
   return (
     <div className="flex min-h-screen w-full items-center justify-center bg-gray-700 dark:bg-gray-950 p-4">
-      <Card className="w-full max-w-4xl grid md:grid-cols-2 overflow-hidden shadow-lg animate-in fade-in-50 duration-700 ">
-        <div className="hidden md:flex flex-col items-center justify-center bg-white dark:bg-gray-900 p-10 text-center border-r dark:border-gray-800">
+      <Card className="w-full max-w-4xl grid md:grid-cols-2 overflow-hidden shadow-lg animate-in fade-in-50 duration-700 bg-gray-50 ">
+        <div className="hidden md:flex flex-col items-center justify-center bg-gray-50 dark:bg-gray-900 p-10 text-center border-r-2 dark:border-gray-800">
           <ShieldCheck className="h-16 w-16 mb-4 text-blue-600" />
           <h2 className="text-2xl font-bold tracking-tight">Üdvözlünk újra!</h2>
           <p className="mt-2 text-gray-600 dark:text-gray-400">
@@ -82,7 +79,7 @@ export default function LoginPage() {
           </p>
         </div>
 
-        <div className="p-8">
+        <div className="p-8 ">
           <CardHeader className="p-0 mb-6">
             <CardTitle className="text-2xl font-bold tracking-tight">
               Bejelentkezés
@@ -99,7 +96,11 @@ export default function LoginPage() {
               </Alert>
             )}
 
-            <form onSubmit={handleSubmit(onSubmit)} className="space-y-4">
+            <form
+              onSubmit={handleSubmit(onSubmit)}
+              className="space-y-4"
+              noValidate
+            >
               <div className="space-y-2">
                 <Label htmlFor="email">Email</Label>
                 <Input
