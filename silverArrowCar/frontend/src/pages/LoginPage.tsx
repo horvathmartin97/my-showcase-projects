@@ -33,14 +33,13 @@ export default function LoginPage() {
   } = useForm<LoginUser>({
     resolver: zodResolver(loginSchema),
     mode: "onChange",
-    reValidateMode: "onBlur",
     defaultValues: { email: "", password: "" },
   });
 
   const onSubmit: SubmitHandler<LoginUser> = useCallback(
     async (data) => {
       setLoading(true);
-      setApiError(""); // Előző hiba törlése
+      setApiError("");
 
       if (!auth) {
         setApiError(
