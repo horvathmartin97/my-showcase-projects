@@ -26,8 +26,8 @@ export default function HeaderDropdown({
     <DropdownMenu open={dropDownOpened} onOpenChange={setDropDownOpened}>
       <DropdownMenuTrigger className="flex items-center gap-2 cursor-pointer ">
         {auth?.user?.role === UserRole.ADMIN ? (
-          <span className="flex justify-center items-center gap-1">
-            {auth.user.name.split("Veő")}
+          <span className="flex justify-center items-center gap-1 ">
+            {auth.user.name}
             <Crown className="w-8 h-8 rounded-full  text-yellow-500" />
           </span>
         ) : (
