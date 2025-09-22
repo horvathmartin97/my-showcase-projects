@@ -6,6 +6,7 @@ export type AuthUser = {
   email: string;
   token: string;
   name: string;
+  role: UserRole;
 };
 
 export type AuthContextProviderProps = {
@@ -21,6 +22,7 @@ export type AuthTokenData = {
   id: string;
   email: string;
   name: string;
+  role: UserRole;
 };
 
 export type LoginResponse = {
@@ -43,3 +45,8 @@ export type RegisterResponse = {
   email: string;
   name: string;
 };
+
+export enum UserRole {
+  ADMIN = "ADMIN",
+  USER = "USER",
+}

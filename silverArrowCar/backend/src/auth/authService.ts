@@ -41,6 +41,7 @@ const authService = {
       id: dbUserExist.id,
       email: dbUserExist.email,
       name: dbUserExist.name,
+      role: dbUserExist.role,
     };
     const token = jwt.sign(jwtPayload, JWT_SECRET as string);
 

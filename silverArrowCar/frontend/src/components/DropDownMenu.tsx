@@ -1,10 +1,4 @@
-import {
-  LogOutIcon,
-  MapPinHouse,
-  Calendar1,
-  HeartPlus,
-  User2,
-} from "lucide-react";
+import { LogOutIcon, User2, ParkingSquareIcon, Crown } from "lucide-react";
 import { useContext } from "react";
 import { Link } from "react-router";
 import { AuthContext } from "../contexts/AuthContext";
@@ -14,6 +8,7 @@ import {
   DropdownMenuItem,
   DropdownMenuTrigger,
 } from "./ui/dropdown-menu";
+import { UserRole } from "@/types/authTypes";
 
 interface HeaderDropdownProps {
   dropDownOpened: boolean;
@@ -30,12 +25,11 @@ export default function HeaderDropdown({
   return (
     <DropdownMenu open={dropDownOpened} onOpenChange={setDropDownOpened}>
       <DropdownMenuTrigger className="flex items-center gap-2 cursor-pointer ">
-        {auth?.user?.name ? (
-          <img
-            src={auth.user.name}
-            alt="Profile Avatar"
-            className="w-8 h-8 rounded-full"
-          />
+        {auth?.user?.role === UserRole.ADMIN ? (
+          <span className="flex justify-center items-center gap-1">
+            {auth.user.name.split("Veő")}
+            <Crown className="w-8 h-8 rounded-full  text-yellow-500" />
+          </span>
         ) : (
           <User2 className="w-8 h-8 rounded-full bg-gray-200 text-gray-500" />
         )}
@@ -43,31 +37,14 @@ export default function HeaderDropdown({
 
       <DropdownMenuContent align="end" className="w-50">
         <DropdownMenuItem className="flex items-center gap-2">
-          {auth?.user?.name ? (
-            <img
-              src={auth.user.name}
-              alt="Profile Avatar"
-              className="w-8 h-8 rounded-full object-cover"
-            />
-          ) : (
-            <User2 className="w-8 h-8 rounded-full bg-gray-200 text-gray-500" />
-          )}
-          <Link to="/editprofile">Edit profile</Link>
+          <User2 className="w-8 h-8 rounded-full bg-gray-200 text-gray-500" />
+
+          <Link to="/editprofile">Saját Profil</Link>
         </DropdownMenuItem>
 
         <DropdownMenuItem className="flex items-center gap-2">
-          <MapPinHouse size={16} />
-          <Link to="/my-locations">My Locations</Link>
-        </DropdownMenuItem>
-
-        <DropdownMenuItem className="flex items-center gap-2">
-          <Calendar1 size={16} />
-          <Link to="/my-events">My Events</Link>
-        </DropdownMenuItem>
-
-        <DropdownMenuItem className="flex items-center gap-2">
-          <HeartPlus size={16} />
-          <Link to="/favorites">Favorites</Link>
+          <ParkingSquareIcon size={16} />
+          <Link to="/favorites">Parkoló</Link>
         </DropdownMenuItem>
 
         <DropdownMenuItem
