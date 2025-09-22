@@ -39,21 +39,21 @@ export default function MobileView({
   const auth = useContext(AuthContext);
 
   return (
-    <div className="md:hidden">
+    <div className="md:hidden ">
       <Sheet open={navigationMenuOpened} onOpenChange={setNavigationMenuOpened}>
         <SheetTrigger>
           <Menu className="mt-1" />
         </SheetTrigger>
 
-        <SheetContent className="shadow-2xl rounded-l-xl">
+        <SheetContent className=" rounded-l-4xl bg-gray-700 text-white">
           <SheetHeader>
-            <SheetTitle className="mb-4 text-lg font-bold text-black">
-              Menu
+            <SheetTitle className="mb-4 text-lg font-bold text-white">
+              Menü
             </SheetTitle>
 
-            <SheetDescription>
+            <SheetDescription className="">
               <Link
-                className="flex items-center gap-2 py-2 px-4 rounded-lg hover:bg-blue-200 transition mb-2 text-black font-medium"
+                className="flex items-center gap-2 py-2 px-4 rounded-lg hover:bg-blue-200 transition mb-2 text-white font-medium"
                 to="/"
                 onClick={() => setNavigationMenuOpened(false)}
               >
@@ -62,7 +62,7 @@ export default function MobileView({
               </Link>
 
               <Link
-                className="flex items-center gap-2 py-2 px-4 rounded-lg hover:bg-blue-200 transition mb-2 text-black font-medium"
+                className="flex items-center gap-2 py-2 px-4 rounded-lg hover:bg-blue-200 transition mb-2 text-white font-medium"
                 to="/contact"
                 onClick={() => setNavigationMenuOpened(false)}
               >
@@ -71,7 +71,7 @@ export default function MobileView({
               </Link>
 
               <Link
-                className="flex items-center gap-2 py-2 px-4 rounded-lg hover:bg-blue-200 transition mb-2 text-black font-medium"
+                className="flex items-center gap-2 py-2 px-4 rounded-lg hover:bg-blue-200 transition text-white mb-2 font-medium"
                 to="/about"
                 onClick={() => setNavigationMenuOpened(false)}
               >
@@ -82,10 +82,10 @@ export default function MobileView({
               {auth?.user?.id && (
                 <Accordion type="single" collapsible>
                   <AccordionItem value="item-1">
-                    <AccordionTrigger className="text-black font-medium">
+                    <AccordionTrigger className="text-white font-medium">
                       {auth.user.name}
                     </AccordionTrigger>
-                    <AccordionContent className="flex flex-col gap-4 text-black font-medium">
+                    <AccordionContent className="flex flex-col gap-4 text-white font-medium">
                       <Link
                         to="/editprofile"
                         className="flex items-center gap-2"
@@ -95,7 +95,7 @@ export default function MobileView({
                         ) : (
                           <User2 className="w-8 h-8 rounded-full bg-gray-200 text-gray-500" />
                         )}
-                        Edit profile
+                        Saját Profil
                       </Link>
                       <Link to="/favorites" className="flex items-center gap-2">
                         <ParkingSquareIcon className="h-8 w-8" />
@@ -124,7 +124,7 @@ export default function MobileView({
                   }}
                 >
                   <LogIn />
-                  Logout
+                  Kijelentkezés
                 </Button>
               )}
             </SheetDescription>
