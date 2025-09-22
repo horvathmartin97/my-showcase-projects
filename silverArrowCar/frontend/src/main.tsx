@@ -5,6 +5,7 @@ import { BrowserRouter, Route, Routes } from "react-router";
 import { AuthContextProvider } from "./contexts/AuthContext";
 import MainLayout from "./layouts/MainLayout";
 import LoginPage from "./pages/LoginPage";
+import HomePage from "./pages/HomePage";
 
 createRoot(document.getElementById("root")!).render(
   <StrictMode>
@@ -13,6 +14,7 @@ createRoot(document.getElementById("root")!).render(
         <Routes>
           <Route path="" element={<MainLayout />}>
             <Route path="/login" element={<LoginPage />} />
+            <Route path="/" element={<HomePage />} />
           </Route>
         </Routes>
       </AuthContextProvider>
