@@ -1,4 +1,20 @@
+import getAllCars from "@/services/carService";
+import type { Car } from "../types/carTypes";
+import { useEffect, useState } from "react";
+
 export default function HomePage() {
+  const [selectedBrand, setSelectedBrand] = useState<string>("");
+  const [cars, setCars] = useState<Car[]>([]);
+
+  useEffect(() => {
+    const fetchCars = async () => {
+      const carData = await getAllCars();
+      setCars(carData);
+    };
+    fetchCars();
+  }, []);
+
+  const uniqueBrands = [...new Set(cars.map((car) => car.carBrand))];
   return (
     <div className="bg-gray-100 dark:bg-gray-900 text-gray-800 dark:text-gray-200">
       <section className="relative h-96 bg-cover bg-center">
@@ -15,11 +31,23 @@ export default function HomePage() {
       <section className="bg-white dark:bg-gray-800 p-6 shadow-md -mt-16 mx-auto max-w-4xl rounded-lg z-10 relative">
         <h2 className="text-2xl font-bold mb-4 text-center">Gyorskeresés</h2>
         <form className="grid grid-cols-1 md:grid-cols-3 gap-4">
-          <select className="p-3 border rounded-md dark:bg-gray-700 dark:border-gray-600">
-            <option>Márka</option>
+          <select
+            value={selectedBrand}
+            onChange={(e) => setSelectedBrand(e.target.value)}
+          >
+            <option value="" disabled>
+              Válasszon márkát...
+            </option>
+
+            {uniqueBrands.map((brand) => (
+              <option key={brand} value={brand}>
+                {brand}
+              </option>
+            ))}
           </select>
+
           <select className="p-3 border rounded-md dark:bg-gray-700 dark:border-gray-600">
-            <option>Modell</option>
+            <option></option>
           </select>
           <button
             type="submit"
