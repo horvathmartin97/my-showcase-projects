@@ -1,26 +1,59 @@
-import getAllCars from "@/services/carService";
+import getCars from "../services/carService";
 import type { Car } from "../types/carTypes";
-import { useEffect, useState } from "react";
+import { useCallback, useEffect, useState } from "react";
+import SearchBar from "@/components/SearchBar";
+import { useSearchParams } from "react-router";
 
 export default function HomePage() {
-  const [selectedBrand, setSelectedBrand] = useState<string>("");
   const [cars, setCars] = useState<Car[]>([]);
+  const [searchParams, setSearchParams] = useSearchParams();
+
+  const [loading, setLoading] = useState(false);
+
+  const [page, setPage] = useState(1);
+  const [currentQuery, setCurrentQuery] = useState(
+    searchParams.get("query") || ""
+  );
+  const [currentOrder, setCurrentOrder] = useState(
+    searchParams.get("order") || "createdAt_desc"
+  );
 
   useEffect(() => {
     const fetchCars = async () => {
-      const carData = await getAllCars();
-      setCars(carData);
+      setLoading(true);
+      try {
+        const response = await getCars(page, currentOrder, currentQuery);
+        setCars(response);
+      } catch (error) {
+        console.error("Hiba az autók betöltésekor:", error);
+      } finally {
+        setLoading(false);
+      }
     };
     fetchCars();
-  }, []);
+  }, [currentOrder, currentQuery, page]);
 
-  const uniqueBrands = [...new Set(cars.map((car) => car.carBrand))];
+  const handleSearch = useCallback(
+    ({ order, query }: { order: string; query: string }) => {
+      setSearchParams({ query, order });
+      setLoading(true);
+      setPage(1);
+      setCurrentQuery(query);
+      setCurrentOrder(order);
+      setTimeout(() => {
+        setLoading(false);
+      }, 1000);
+    },
+    [setSearchParams]
+  );
+
   return (
-    <div className="bg-gray-100 dark:bg-gray-900 text-gray-800 dark:text-gray-200">
+    <div className="bg-gray-300 dark:bg-gray-900 text-gray-800 dark:text-gray-200">
       <section className="relative h-96 bg-cover bg-center">
-        <div className="absolute inset-0 bg-black bg-opacity-50 flex flex-col justify-center items-center text-center p-4">
+        <div className="absolute inset-0 bg-gray-700 bg-opacity-50 flex flex-col justify-center items-center text-center p-4">
           <h1 className="text-white font-extrabold text-4xl md:text-6xl mb-4">
-            Üdvözöljük a Silver Arrow Car oldalán!
+            Üdvözöljük a {""}
+            <span className="text-red-500">Silver Arrow Car oldalán!</span>
           </h1>
           <p className="text-white text-lg md:text-xl">
             Találja meg álmai autóját megbízható forrásból.
@@ -30,72 +63,65 @@ export default function HomePage() {
 
       <section className="bg-white dark:bg-gray-800 p-6 shadow-md -mt-16 mx-auto max-w-4xl rounded-lg z-10 relative">
         <h2 className="text-2xl font-bold mb-4 text-center">Gyorskeresés</h2>
-        <form className="grid grid-cols-1 md:grid-cols-3 gap-4">
-          <select
-            value={selectedBrand}
-            onChange={(e) => setSelectedBrand(e.target.value)}
-          >
-            <option value="" disabled>
-              Válasszon márkát...
-            </option>
-
-            {uniqueBrands.map((brand) => (
-              <option key={brand} value={brand}>
-                {brand}
-              </option>
-            ))}
-          </select>
-
-          <select className="p-3 border rounded-md dark:bg-gray-700 dark:border-gray-600">
-            <option></option>
-          </select>
-          <button
-            type="submit"
-            className="bg-blue-600 hover:bg-blue-700 text-white font-bold p-3 rounded-md transition-colors"
-          >
-            Keresés
-          </button>
-        </form>
+        <SearchBar
+          onSearch={handleSearch}
+          initialQuery={currentQuery}
+          initialOrder={currentOrder}
+        />
       </section>
 
       <section className="py-16">
         <div className="container mx-auto px-4">
           <h2 className="text-3xl font-bold text-center mb-10">
-            Kiemelt Ajánlataink
+            Elérhető járművek
           </h2>
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-            <div className="bg-white dark:bg-gray-800 rounded-lg shadow-lg overflow-hidden">
-              <img
-                src="https://source.unsplash.com/random/800x600/?car"
-                alt="Autó kép"
-                className="w-full h-48 object-cover"
-              />
-              <div className="p-6">
-                <h3 className="text-xl font-bold mb-2">
-                  Mercedes-Benz C-osztály
-                </h3>
-                <p className="text-gray-600 dark:text-gray-400 mb-4">
-                  2022 | 35,000 km | Dízel
-                </p>
-                <div className="flex justify-between items-center">
-                  <span className="text-2xl font-bold text-blue-600">
-                    15.500.000 Ft
-                  </span>
-                  <a href="#" className="text-blue-500 hover:underline">
-                    Részletek
-                  </a>
-                </div>
-              </div>
+
+          {loading ? (
+            <div className="text-center">
+              <p className="text-lg">Betöltés...</p>
             </div>
-          </div>
-          <div className="text-center mt-12">
-            <a
-              href="/autok"
-              className="bg-gray-800 dark:bg-gray-200 text-white dark:text-black font-bold py-3 px-8 rounded-full hover:bg-gray-700 dark:hover:bg-gray-300 transition-colors"
-            >
-              Összes jármű megtekintése
-            </a>
-          </div>
+          ) : cars.length > 0 ? (
+            <>
+              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                {cars.map((car) => (
+                  <div
+                    key={car.id}
+                    className="bg-white dark:bg-gray-800 rounded-lg shadow-lg overflow-hidden transform hover:scale-105 transition-transform duration-300"
+                  >
+                    <img
+                      src={car.image[0]}
+                      alt={`${car.carBrand} ${car.carModel}`}
+                      className="w-full h-48 object-cover"
+                    />
+                    <div className="p-6">
+                      <h3 className="text-xl font-bold mb-2 truncate">
+                        {car.carBrand} {car.carModel}
+                      </h3>
+                      <p className="text-gray-600 dark:text-gray-400 mb-4">
+                        {car.builtYear} | {car.mileage} {car.mileageValue} |
+                        {car.fuelType}
+                      </p>
+                      <div className="flex justify-between items-center">
+                        <span className="text-2xl font-bold text-blue-600 dark:text-blue-400">
+                          {new Intl.NumberFormat("hu-HU").format(
+                            Number(car.price)
+                          )}
+                          {car.currency}
+                        </span>
+                      </div>
+                    </div>
+                  </div>
+                ))}
+              </div>
+            </>
+          ) : (
+            <div className="text-center py-10">
+              <p className="text-xl text-gray-500">
+                A keresés nem hozott eredményt. Próbálj meg más kulcsszót vagy
+                szűrőt!
+              </p>
+            </div>
+          )}
         </div>
       </section>
 

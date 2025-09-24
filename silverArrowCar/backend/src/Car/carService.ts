@@ -13,7 +13,7 @@ const carService = {
   ): Promise<PaginatedResponse<SearchedCar[]>> => {
     const currentPage = queryParameters.page > 0 ? queryParameters.page : 1;
     const pageSize =
-      queryParameters.pageSize > 0 ? queryParameters.pageSize : 5;
+      queryParameters.pageSize > 0 ? queryParameters.pageSize : 8;
     const skip = (currentPage - 1) * pageSize;
 
     const whereClause: Prisma.CarWhereInput = {
@@ -42,11 +42,15 @@ const carService = {
           }
         : {}),
     };
+    const orderBy = {
+      [queryParameters.sortBy]: queryParameters.order,
+    };
+
     const totalCars = await prisma.car.count({ where: whereClause });
     const totalPages = Math.ceil(totalCars / pageSize);
     const cars = await prisma.car.findMany({
       where: whereClause,
-      orderBy: [{ [queryParameters.sortBy]: queryParameters.order }],
+      orderBy: [orderBy],
       skip,
       take: pageSize,
       select: searchSelect,
