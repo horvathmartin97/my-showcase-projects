@@ -3,7 +3,6 @@ import type { Car, PaginatedCarResponse } from "../types/carTypes";
 import { useEffect, useState } from "react";
 import { useSearchParams } from "react-router";
 
-// Ez a komponens a "csontváz" animációt jeleníti meg betöltés közben
 const CarCardSkeleton = () => (
   <div className="bg-gray-800 rounded-lg shadow-lg overflow-hidden animate-pulse">
     <div className="w-full h-48 bg-gray-700"></div>
@@ -108,7 +107,6 @@ export default function CarsPage() {
               ))}
         </div>
 
-        {/* Lapozó gombok */}
         {pagination && pagination.totalPages > 1 && !loading && (
           <div className="flex justify-center mt-12 space-x-4">
             <button
