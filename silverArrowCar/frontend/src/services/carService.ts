@@ -1,5 +1,5 @@
 import { API_URL } from "@/constants/enviroment";
-import type { Car } from "@/types/carTypes";
+import type { Car, PaginatedCarResponse } from "@/types/carTypes";
 
 export default async function getCars(
   page: number,
@@ -24,16 +24,6 @@ export default async function getCars(
     console.error("Failed to fetch cars:", error);
     return [];
   }
-}
-
-export interface PaginatedCarResponse {
-  ok: boolean;
-  message: string;
-  currentPage: number;
-  pageSize: number;
-  totalItems: number;
-  totalPages: number;
-  data: Car[];
 }
 
 export async function getAllCars(

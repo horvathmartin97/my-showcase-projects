@@ -64,3 +64,12 @@ export interface Car {
   engineType: EngineType;
   engineDisplacement: number;
 }
+export interface PaginatedCarResponse {
+  ok: boolean;
+  message: string;
+  currentPage: number;
+  pageSize: number;
+  totalItems: number;
+  totalPages: number;
+  data: Car[];
+}
