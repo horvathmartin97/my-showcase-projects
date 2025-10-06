@@ -128,6 +128,7 @@ export default function RegistrationPage() {
                   id="password"
                   {...register("password")}
                   className="mt-1"
+                  placeholder="...."
                 />
                 {errors.password && (
                   <p className="text-sm text-red-600 mt-1">
