@@ -7,6 +7,7 @@ import MainLayout from "./layouts/MainLayout";
 import LoginPage from "./pages/LoginPage";
 import HomePage from "./pages/HomePage";
 import CarsPage from "./pages/CarsPage";
+import RegistrationPage from "./pages/RegistrationPage";
 
 createRoot(document.getElementById("root")!).render(
   <StrictMode>
@@ -17,6 +18,7 @@ createRoot(document.getElementById("root")!).render(
             <Route path="/login" element={<LoginPage />} />
             <Route path="/" element={<HomePage />} />
             <Route path="/cars" element={<CarsPage />} />
+            <Route path="/registration" element={<RegistrationPage />} />
           </Route>
         </Routes>
       </AuthContextProvider>
