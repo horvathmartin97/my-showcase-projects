@@ -2,7 +2,7 @@ import getCars from "../services/carService";
 import type { Car } from "../types/carTypes";
 import { useCallback, useEffect, useState } from "react";
 import SearchBar from "@/components/SearchBar";
-import { useSearchParams } from "react-router";
+import { Link, useSearchParams } from "react-router";
 
 export default function HomePage() {
   const [cars, setCars] = useState<Car[]>([]);
@@ -58,6 +58,21 @@ export default function HomePage() {
           <p className="text-white text-lg md:text-xl">
             Találja meg álmai autóját megbízható forrásból.
           </p>
+          <div className="my-3 w-100 flex justify-between">
+            <Link
+              className="text-red-500  hover:underline font-bold text-lg md:text-xl"
+              to="/login"
+            >
+              Jelentkezz be
+            </Link>
+
+            <Link
+              className="text-white hover:underline font-bold text-lg md:text-xl"
+              to="/registration"
+            >
+              Regsiztrálj itt
+            </Link>
+          </div>
         </div>
       </section>
 
@@ -167,10 +182,10 @@ export default function HomePage() {
           </p>
           <div className="flex justify-center items-center space-x-8 text-lg">
             <p>
-              <strong>Telefon:</strong> +36 30 123 4567
+              <strong>Telefon:</strong> +36 70 930 9668 / +36 70 930 9669
             </p>
             <p>
-              <strong>Email:</strong> info@silverarrow.hu
+              <strong>Email:</strong> veooliver@gmail.com
             </p>
           </div>
         </div>

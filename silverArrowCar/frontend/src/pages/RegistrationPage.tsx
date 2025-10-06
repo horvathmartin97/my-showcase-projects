@@ -15,6 +15,7 @@ import { Alert, AlertDescription } from "../components/ui/alert";
 import { Label } from "../components/ui/label";
 import { Input } from "../components/ui/input";
 import { Button } from "../components/ui/button";
+import { motion } from "framer-motion";
 import { Loader2Icon } from "lucide-react";
 
 export default function RegistrationPage() {
@@ -56,25 +57,29 @@ export default function RegistrationPage() {
     },
     [auth, navigate]
   );
+
   useEffect(() => {
     if (auth?.user) {
       navigate("/");
     }
   }, [auth?.user, navigate]);
+
   return (
-    <div>
-      <Card>
-        <div>
-          <h2>Regisztrálj és add hozzá kedvenceidet digitális parkolódhoz.</h2>
-        </div>
-        <div>
-          <CardHeader>
-            <CardTitle>Regisztráció</CardTitle>
+    <div className="flex items-center justify-center  my-30 mx-auto dark:bg-neutral-950 p-4">
+      <motion.div
+        className="w-full max-w-md"
+        initial={{ opacity: 0, y: -20 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.5 }}
+      >
+        <Card className="shadow-lg">
+          <CardHeader className="text-center">
+            <CardTitle className="text-2xl">Regisztráció</CardTitle>
             <CardDescription>
-              Add meg adataidat a regisztrációhoz
+              Regisztrálj és add hozzá kedvenceidet digitális parkolódhoz.
             </CardDescription>
           </CardHeader>
-          <CardContent className="p-0">
+          <CardContent>
             {apiError && (
               <Alert variant="destructive" className="mb-4">
                 <AlertDescription>{apiError}</AlertDescription>
@@ -83,7 +88,7 @@ export default function RegistrationPage() {
             <form
               onSubmit={handleSubmit(onSubmit)}
               noValidate
-              className="space-y-5"
+              className="space-y-4"
             >
               <div>
                 <Label htmlFor="email">Email</Label>
@@ -92,9 +97,12 @@ export default function RegistrationPage() {
                   type="email"
                   placeholder="pelda@email.com"
                   {...register("email")}
+                  className="mt-1"
                 />
                 {errors.email && (
-                  <p className="text-sm text-red-600">{errors.email.message}</p>
+                  <p className="text-sm text-red-600 mt-1">
+                    {errors.email.message}
+                  </p>
                 )}
               </div>
 
@@ -105,9 +113,12 @@ export default function RegistrationPage() {
                   type="text"
                   placeholder="Keresztnév Vezetéknév"
                   {...register("name")}
+                  className="mt-1"
                 />
                 {errors.name && (
-                  <p className="text-sm text-red-600">{errors.name.message}</p>
+                  <p className="text-sm text-red-600 mt-1">
+                    {errors.name.message}
+                  </p>
                 )}
               </div>
               <div>
@@ -116,9 +127,10 @@ export default function RegistrationPage() {
                   type="password"
                   id="password"
                   {...register("password")}
+                  className="mt-1"
                 />
                 {errors.password && (
-                  <p className="text-sm text-red-600">
+                  <p className="text-sm text-red-600 mt-1">
                     {errors.password.message}
                   </p>
                 )}
@@ -127,16 +139,16 @@ export default function RegistrationPage() {
                 {loading ? (
                   <>
                     <Loader2Icon className="mr-2 h-4 w-4 animate-spin" />
-                    Belépés...
+                    Folyamatban...
                   </>
                 ) : (
-                  "Bejelentkezés"
+                  "Regisztráció"
                 )}
               </Button>
             </form>
           </CardContent>
-        </div>
-      </Card>
+        </Card>
+      </motion.div>
     </div>
   );
 }
