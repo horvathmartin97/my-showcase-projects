@@ -1,10 +1,12 @@
 import getCars from "../services/carService";
 import type { Car } from "../types/carTypes";
-import { useCallback, useEffect, useState } from "react";
+import { useCallback, useContext, useEffect, useState } from "react";
 import SearchBar from "@/components/SearchBar";
 import { Link, useSearchParams } from "react-router";
+import { AuthContext } from "@/contexts/AuthContext";
 
 export default function HomePage() {
+  const auth = useContext(AuthContext);
   const [cars, setCars] = useState<Car[]>([]);
   const [searchParams, setSearchParams] = useSearchParams();
 
@@ -58,21 +60,24 @@ export default function HomePage() {
           <p className="text-white text-lg md:text-xl">
             Találja meg álmai autóját megbízható forrásból.
           </p>
-          <div className="my-3 w-100 flex justify-between">
-            <Link
-              className="text-red-500  hover:underline font-bold text-lg md:text-xl"
-              to="/login"
-            >
-              Jelentkezz be
-            </Link>
 
-            <Link
-              className="text-white hover:underline font-bold text-lg md:text-xl"
-              to="/registration"
-            >
-              Regsiztrálj itt
-            </Link>
-          </div>
+          {!auth?.user && (
+            <div className="my-3 w-100 flex justify-between">
+              <Link
+                className="text-red-500  hover:underline font-bold text-lg md:text-xl"
+                to="/login"
+              >
+                Jelentkezz be
+              </Link>
+
+              <Link
+                className="text-white hover:underline font-bold text-lg md:text-xl"
+                to="/registration"
+              >
+                Regisztrálj itt
+              </Link>
+            </div>
+          )}
         </div>
       </section>
 
@@ -153,6 +158,7 @@ export default function HomePage() {
                 segítünk a régiből kiszállni.
               </p>
             </div>
+
             <div className="p-6">
               <h3 className="text-xl font-bold mb-3">Finanszírozás</h3>
               <p>
@@ -160,6 +166,7 @@ export default function HomePage() {
                 autóvásárlást.
               </p>
             </div>
+
             <div className="p-6">
               <h3 className="text-xl font-bold mb-3">Garancia és Szerviz</h3>
               <p>
