@@ -105,28 +105,22 @@ export default function DetailedCarPage() {
                 <span className="font-medium">{carData.builtYear}</span>
               </p>
               <p className="text-gray-700 mb-1">
-                Ár:{" "}
+                Ár:
                 <span className="font-medium">
                   {carData.price} {carData.currency}
                 </span>
               </p>
               <p className="text-gray-700 mb-1">
                 Állapot:{" "}
-                <span className="font-medium">
-                  {Condition[carData.condition]}
-                </span>
+                <span className="font-medium">{carData.condition}</span>
               </p>
               <p className="text-gray-700 mb-1">
                 Üzemanyag:{" "}
-                <span className="font-medium">
-                  {FuelType[carData.fuelType]}
-                </span>
+                <span className="font-medium">{carData.fuelType}</span>
               </p>
               <p className="text-gray-700 mb-1">
                 Sebességváltó:{" "}
-                <span className="font-medium">
-                  {TransmissionType[carData.transmission]}
-                </span>
+                <span className="font-medium">{carData.transmission}</span>
               </p>
               <p className="text-gray-700 mb-4">
                 Kilométer:{" "}
