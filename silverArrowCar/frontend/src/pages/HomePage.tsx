@@ -62,9 +62,9 @@ export default function HomePage() {
           </p>
 
           {!auth?.user && (
-            <div className="my-3 w-100 flex justify-between">
+            <div className="my-3 w-100 flex justify-around">
               <Link
-                className="text-red-500  hover:underline font-bold text-lg md:text-xl"
+                className="text-red-500  hover:underline font-bold text-lg md:text-xl "
                 to="/login"
               >
                 Jelentkezz be
