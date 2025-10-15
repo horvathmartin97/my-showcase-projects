@@ -122,11 +122,15 @@ export default function DetailedCarPage() {
                 Sebességváltó:{" "}
                 <span className="font-medium">{carData.transmission}</span>
               </p>
-              <p className="text-gray-700 mb-4">
+              <p className="text-gray-700 mb-1">
                 Kilométer:{" "}
                 <span className="font-medium">
                   {carData.mileage} {carData.mileageValue}
                 </span>
+              </p>
+              <p className="text-gray-700 mb-1">
+                Ajtók száma:{" "}
+                <span className="font-medium">{carData.doors}</span>
               </p>
 
               {carData.description && (
