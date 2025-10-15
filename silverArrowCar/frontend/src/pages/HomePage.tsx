@@ -114,9 +114,12 @@ export default function HomePage() {
                       className="w-full h-48 object-cover"
                     />
                     <div className="p-6">
-                      <h3 className="text-xl font-bold mb-2 truncate">
+                      <Link
+                        to={`/car/${car.id}`}
+                        className="text-xl font-bold mb-2 truncate"
+                      >
                         {car.carBrand} {car.carModel}
-                      </h3>
+                      </Link>
                       <p className="text-gray-600 dark:text-gray-400 mb-4">
                         {car.builtYear} | {car.mileage} {car.mileageValue} |
                         {car.fuelType}

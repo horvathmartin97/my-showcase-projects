@@ -9,6 +9,7 @@ import HomePage from "./pages/HomePage";
 import CarsPage from "./pages/CarsPage";
 import RegistrationPage from "./pages/RegistrationPage";
 import ContactPage from "./pages/ContactPage";
+import DetailedCarPage from "./pages/DetailedCarPage";
 
 createRoot(document.getElementById("root")!).render(
   <StrictMode>
@@ -18,9 +19,10 @@ createRoot(document.getElementById("root")!).render(
           <Route path="" element={<MainLayout />}>
             <Route path="/login" element={<LoginPage />} />
             <Route path="/" element={<HomePage />} />
-            <Route path="/cars" element={<CarsPage />} />
+            <Route path="/car" element={<CarsPage />} />
             <Route path="/registration" element={<RegistrationPage />} />
             <Route path="/contact" element={<ContactPage />} />
+            <Route path="/car/:carId" element={<DetailedCarPage />} />
           </Route>
         </Routes>
       </AuthContextProvider>

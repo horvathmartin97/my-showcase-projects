@@ -29,7 +29,7 @@ export default function Header() {
         </Link>
 
         <nav className="hidden md:flex gap-8 items-center font-bold">
-          <Link className="hover:text-red-500 transition-colors" to="/cars">
+          <Link className="hover:text-red-500 transition-colors" to="/car">
             Autóink
           </Link>
 

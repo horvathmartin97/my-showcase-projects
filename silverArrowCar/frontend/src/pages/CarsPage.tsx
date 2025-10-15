@@ -1,7 +1,7 @@
 import { getAllCars } from "../services/carService";
 import type { Car, PaginatedCarResponse } from "../types/carTypes";
 import { useEffect, useState } from "react";
-import { useSearchParams } from "react-router";
+import { Link, useSearchParams } from "react-router";
 
 const CarCardSkeleton = () => (
   <div className="bg-gray-800 rounded-lg shadow-lg overflow-hidden animate-pulse">
@@ -86,9 +86,12 @@ export default function CarsPage() {
                     className="w-full h-48 object-cover"
                   />
                   <div className="p-6">
-                    <h3 className="text-xl font-bold mb-2 truncate">
+                    <Link
+                      to={car.id}
+                      className="text-xl font-bold mb-2 truncate"
+                    >
                       {car.carBrand} {car.carModel}
-                    </h3>
+                    </Link>
                     <p className="text-gray-400 mb-4">
                       {car.builtYear} |{" "}
                       {new Intl.NumberFormat("hu-HU").format(car.mileage)}{" "}
