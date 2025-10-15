@@ -32,9 +32,7 @@ export default function Header() {
           <Link className="hover:text-red-500 transition-colors" to="/cars">
             Autóink
           </Link>
-          <Link className="hover:text-red-500 transition-colors" to="/about">
-            Rólunk
-          </Link>
+
           <Link className="hover:text-red-500 transition-colors" to="/contact">
             Elérhetőség
           </Link>
