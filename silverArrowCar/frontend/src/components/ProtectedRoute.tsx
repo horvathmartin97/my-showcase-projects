@@ -11,7 +11,7 @@ export default function ProtectedRoute({ children }: ProtectedRouteProps) {
   const [isHydrated, setIsHydrated] = useState(false);
 
   useEffect(() => {
-    if (auth?.user?.role !== "ADMIN") {
+    if (auth?.user?.role === "ADMIN") {
       setIsHydrated(true);
     }
   }, [auth]);
