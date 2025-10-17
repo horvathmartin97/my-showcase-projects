@@ -64,7 +64,9 @@ export default function DetailedCarPage() {
 
   return (
     <div className="max-w-6xl mx-auto p-6 space-y-6">
-      <h1 className="text-3xl font-bold text-center mb-4">Autó részletei</h1>
+      <h1 className="text-3xl font-bold text-white text-center mb-4">
+        Autó részletei
+      </h1>
 
       {loading && (
         <p className="text-center text-blue-600 animate-pulse">Betöltés...</p>

@@ -10,6 +10,8 @@ import CarsPage from "./pages/CarsPage";
 import RegistrationPage from "./pages/RegistrationPage";
 import ContactPage from "./pages/ContactPage";
 import DetailedCarPage from "./pages/DetailedCarPage";
+import ProtectedRoute from "./components/ProtectedRoute";
+import AddNewCarPage from "./pages/AddNewCarPage";
 
 createRoot(document.getElementById("root")!).render(
   <StrictMode>
@@ -23,6 +25,14 @@ createRoot(document.getElementById("root")!).render(
             <Route path="/registration" element={<RegistrationPage />} />
             <Route path="/contact" element={<ContactPage />} />
             <Route path="/car/:carId" element={<DetailedCarPage />} />
+            <Route
+              path="/addNewCar"
+              element={
+                <ProtectedRoute>
+                  <AddNewCarPage />
+                </ProtectedRoute>
+              }
+            />
           </Route>
         </Routes>
       </AuthContextProvider>
