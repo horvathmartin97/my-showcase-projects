@@ -30,6 +30,8 @@ export type Car = {
   engineDisplacement: number;
   horsePower: number;
   image: string[];
+  indoorExtras: string[];
+  outDoorExtras: string[];
 
   carBrand: string;
 };

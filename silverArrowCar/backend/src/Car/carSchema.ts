@@ -53,6 +53,8 @@ export const addNewCarSchema = z.object({
   horsePower: z.number().int(),
   engineType: z.nativeEnum(engineType),
   engineDisplacement: z.number().int(),
+  outDoorExtras: z.string().array(),
+  indoorExtras: z.string().array(),
 });
 export type addNewCarType = z.infer<typeof addNewCarSchema>;
 

@@ -7,8 +7,8 @@ import {
   FuelType,
   TransmissionType,
   type Car,
-} from "@/constants/types";
-import getOneCar from "@/services/getOneCar";
+} from "../constants/types";
+import getOneCar from "../services/getOneCar";
 import { useEffect, useState } from "react";
 import { useParams } from "react-router";
 
@@ -35,111 +35,166 @@ const carPlaceHolder: Car = {
   image: [],
   driveType: DriveType.FWD,
   carBrand: "",
+  indoorExtras: [],
+  outDoorExtras: [],
 };
 
 export default function DetailedCarPage() {
   const { carId } = useParams<{ carId: string }>();
-
   const [carData, setCarData] = useState<Car>(carPlaceHolder);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
 
   useEffect(() => {
-    console.log("carId:", carId);
     if (!carId) return;
-
     const fetchCar = async () => {
       setLoading(true);
       setError(null);
       try {
         const response = await getOneCar(carId);
-        console.log("Lekért autó adat:", response);
         setCarData(response.data);
       } catch (error) {
-        console.error("Error fetching car:", error);
-        setError("Hiba történt az adatlekérés során");
+        setError(`Hiba történt az adatlekérés során,${error}`);
       } finally {
         setLoading(false);
       }
     };
-
     fetchCar();
   }, [carId]);
 
   return (
-    <div className="max-w-4xl mx-auto p-4">
-      <h1 className="text-3xl font-bold mb-6 text-center">Autó részletei</h1>
+    <div className="max-w-6xl mx-auto p-6 space-y-6">
+      <h1 className="text-3xl font-bold text-center mb-4">Autó részletei</h1>
 
       {loading && (
         <p className="text-center text-blue-600 animate-pulse">Betöltés...</p>
       )}
-
       {error && (
         <p className="text-center text-red-600 font-semibold">{error}</p>
       )}
 
       {!loading && !error && (
-        <div className="bg-white shadow-md rounded-lg p-6">
-          <div className="flex flex-col md:flex-row md:space-x-6">
-            <div className="md:w-1/2 mb-4 md:mb-0">
+        <div className="bg-white shadow-md rounded-lg p-6 space-y-6">
+          <div className="flex flex-col md:flex-row gap-6">
+            <div className="md:w-1/2">
               {carData.image && carData.image.length > 0 ? (
                 <img
                   src={carData.image[0]}
                   alt={`${carData.carBrand} ${carData.carModel}`}
-                  className="w-full h-auto rounded-md object-cover"
+                  className="w-full h-80 object-cover rounded-lg shadow"
                 />
               ) : (
-                <div className="w-full h-48 bg-gray-200 rounded-md flex items-center justify-center text-gray-500">
+                <div className="w-full h-80 bg-gray-200 flex items-center justify-center text-gray-500 rounded">
                   Nincs kép
                 </div>
               )}
             </div>
 
-            <div className="md:w-1/2 flex flex-col justify-between">
-              <h2 className="text-2xl font-semibold mb-2">
+            <div className="md:w-1/2 flex flex-col justify-between space-y-2">
+              <h2 className="text-2xl font-semibold">
                 {carData.carBrand} {carData.carModel}
               </h2>
 
-              <p className="text-gray-700 mb-1">
-                Évjárat:{" "}
-                <span className="font-medium">{carData.builtYear}</span>
+              <p className="text-3xl font-bold text-green-700">
+                {new Intl.NumberFormat("hu-HU").format(Number(carData.price))}{" "}
+                {carData.currency}
               </p>
-              <p className="text-gray-700 mb-1">
-                Ár:
-                <span className="font-medium">
-                  {carData.price} {carData.currency}
-                </span>
-              </p>
-              <p className="text-gray-700 mb-1">
-                Állapot:{" "}
-                <span className="font-medium">{carData.condition}</span>
-              </p>
-              <p className="text-gray-700 mb-1">
-                Üzemanyag:{" "}
-                <span className="font-medium">{carData.fuelType}</span>
-              </p>
-              <p className="text-gray-700 mb-1">
-                Sebességváltó:{" "}
-                <span className="font-medium">{carData.transmission}</span>
-              </p>
-              <p className="text-gray-700 mb-1">
-                Kilométer:{" "}
-                <span className="font-medium">
-                  {carData.mileage} {carData.mileageValue}
-                </span>
-              </p>
-              <p className="text-gray-700 mb-1">
-                Ajtók száma:{" "}
-                <span className="font-medium">{carData.doors}</span>
-              </p>
+              <p className="text-gray-500">({carData.condition})</p>
 
               {carData.description && (
-                <p className="text-gray-600 whitespace-pre-line">
+                <p className="text-gray-700 mt-4 whitespace-pre-line">
                   {carData.description}
                 </p>
               )}
             </div>
           </div>
+
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+            <div>
+              <h3 className="text-lg font-semibold mb-2">Alapadatok</h3>
+              <ul className="space-y-1 text-gray-700">
+                <li>
+                  Szín: <span className="font-medium">{carData.color}</span>
+                </li>
+                <li>
+                  Évjárat:{" "}
+                  <span className="font-medium">{carData.builtYear}</span>
+                </li>
+                <li>
+                  Ajtók: <span className="font-medium">{carData.doors}</span>
+                </li>
+                <li>
+                  Ülések: <span className="font-medium">{carData.seats}</span>
+                </li>
+                <li>
+                  Karosszéria:{" "}
+                  <span className="font-medium">{carData.bodyType}</span>
+                </li>
+              </ul>
+            </div>
+
+            <div>
+              <h3 className="text-lg font-semibold mb-2">Műszaki adatok</h3>
+              <ul className="space-y-1 text-gray-700">
+                <li>
+                  Motor típus:{" "}
+                  <span className="font-medium">{carData.engineType}</span>
+                </li>
+                <li>
+                  Teljesítmény:{" "}
+                  <span className="font-medium">{carData.horsePower} LE</span>
+                </li>
+                <li>
+                  Hengerűrtartalom:{" "}
+                  <span className="font-medium">
+                    {carData.engineDisplacement} cm³
+                  </span>
+                </li>
+                <li>
+                  Üzemanyag:{" "}
+                  <span className="font-medium">{carData.fuelType}</span>
+                </li>
+                <li>
+                  Hajtás:{" "}
+                  <span className="font-medium">{carData.driveType}</span>
+                </li>
+                <li>
+                  Váltó:{" "}
+                  <span className="font-medium">{carData.transmission}</span>
+                </li>
+              </ul>
+            </div>
+            {carData.outDoorExtras && carData.outDoorExtras.length > 0 && (
+              <div>
+                <h3 className="text-lg font-semibold mb-2">Külső extrák</h3>
+                <div className="flex flex-wrap gap-2">
+                  {carData.outDoorExtras.map((extra, i) => (
+                    <span
+                      key={i}
+                      className="bg-blue-100 text-blue-800 px-3 py-1 rounded-full text-sm"
+                    >
+                      {extra}
+                    </span>
+                  ))}
+                </div>
+              </div>
+            )}
+          </div>
+          {carData.indoorExtras && carData.indoorExtras.length > 0 && (
+            <div>
+              <h3 className="text-lg font-semibold mb-2">Belső extrák</h3>
+              <div className="flex flex-wrap gap-2">
+                {carData.indoorExtras.map((extra, i) => (
+                  <span
+                    key={i}
+                    className="bg-yellow-100 text-yellow-800 px-3 py-1 rounded-full text-sm"
+                  >
+                    {extra}
+                  </span>
+                ))}
+              </div>
+            </div>
+          )}
         </div>
       )}
     </div>

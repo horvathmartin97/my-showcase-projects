@@ -47,6 +47,8 @@ model Car {
   createdBy   User     @relation("CreatedCars", fields: [createdById], references: [id], onDelete: Cascade)
   createdById String
   savedByUsers SavedCar[]
+  outDoorExtras String[]
+  indoorExtras String[]
   @@index([carModel])
   @@index([carBrand])
 }
