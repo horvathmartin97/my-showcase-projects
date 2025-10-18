@@ -1,12 +1,18 @@
-type TransmissonType =
+export type TransmissonType =
   | "MANUAL"
   | "AUTOMATIC"
   | "SEMI_AUTOMATIC"
   | "CVT"
   | "DUAL_CLUCTH";
 
-type FuelType = "PETROL" | "DIESEL" | "ELECTRIC" | "HYBRID" | "CNG" | "LPG";
-type BodyType =
+export type FuelType =
+  | "PETROL"
+  | "DIESEL"
+  | "ELECTRIC"
+  | "HYBRID"
+  | "CNG"
+  | "LPG";
+export type BodyType =
   | "SEDAN"
   | "SUV"
   | "HATCHBACK"
@@ -21,16 +27,16 @@ type BodyType =
   | "OFF_ROAD"
   | "MICROCAR";
 
-type DriveType = "FWD" | "RWD" | "AWD" | "FOUR_WHEEL";
-type Condition = "NEW" | "USED" | "CERTIFIED_PRE_OWNED";
-type AirConditioning =
+export type DriveType = "FWD" | "RWD" | "AWD" | "FOUR_WHEEL";
+export type Condition = "NEW" | "USED" | "CERTIFIED_PRE_OWNED";
+export type AirConditioning =
   | "MANUAL"
   | "AUTOMATIC"
   | "DUAL_ZONE"
   | "MULTI_ZONE"
   | "NONE";
 
-type EngineType =
+export type EngineType =
   | "INLINE"
   | "V_TYPE"
   | "BOXER"

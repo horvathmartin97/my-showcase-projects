@@ -59,3 +59,20 @@ export async function getAllCars(
     };
   }
 }
+export async function addNewCar(payload: any, token: string) {
+  const res = await fetch(`${API_URL}/api/car`, {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+      Authorization: `Bearer ${token}`,
+    },
+    body: JSON.stringify(payload),
+  });
+
+  if (!res.ok) {
+    const errorText = await res.text();
+    throw new Error(`Backend error: ${errorText}`);
+  }
+
+  return res.json();
+}
