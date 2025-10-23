@@ -4,7 +4,6 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { useNavigate } from "react-router";
 import { addNewCarSchema, type addNewCarType } from "@/schemas/carSchema";
 import { AuthContext } from "@/contexts/AuthContext";
-
 import uploadImagesToCloudinary, {
   deleteImagesByDeleteToken,
   type CloudinaryUploadResponse,
@@ -137,6 +136,8 @@ export default function AddNewCar() {
     },
     [token, reset, navigate]
   );
+  const selectedTransmission = watch("transmission");
+  const selectedFuelType = watch("fuelType");
   return (
     <div>
       <h1>Autó Hozzáadása</h1>
@@ -171,14 +172,71 @@ export default function AddNewCar() {
             <Input
               id="builtYear"
               type="number"
-              {...register("builtYear")}
+              {...register("builtYear", { valueAsNumber: true })}
               className={`${
                 errors.builtYear ? "border-red-500" : "border-gray-300"
               }`}
             />
             <p className="text-sm text-red-500 ">{errors.builtYear?.message}</p>
           </div>
-
+          <div>
+            <Label htmlFor="price">ÁR:</Label>
+            <Input
+              id="price"
+              type="number"
+              {...register("price", { valueAsNumber: true })}
+              className={`${errors.price ? "border-red-500" : "border-gray-300"}`}
+            />
+            <p className="text-sm text-red-500">{errors.price?.message}</p>
+          </div>
+          <div>
+            <Label htmlFor="color">Szín:</Label>
+            <Input
+              id="color"
+              type="text"
+              {...register("color")}
+              className={`${
+                errors.color ? "border-red-500" : "border-gray-300"
+              }`}
+            />
+            <p className="text-sm text-red-500">{errors.color?.message}</p>
+          </div>
+          <div>
+            <Label htmlFor="transmission">Váltó típusa:</Label>
+            <select {...register("transmission")}>
+              <option value="MANUAL">Manuális</option>
+              <option value="AUTOMATIC">Autómata</option>
+              <option value="SEMI_AUTOMATIC">Fél-Autómata</option>
+              <option value="CVT">CVT</option>
+              <option value="DUAL_CLUTCH">Fokozat mentes autómata</option>
+            </select>
+            <p>Selected: {selectedTransmission}</p>
+            <p className="text-sm text-red-500">
+              {errors.transmission?.message}
+            </p>
+          </div>
+          <div>
+            <Label htmlFor="fuelType">Üzemanyag:</Label>
+            <select {...register("fuelType")}>
+              <option value="PETROL">Benzin</option>
+              <option value="DIESEL">Dízel</option>
+              <option value="ELECTRIC">Elektromos</option>
+              <option value="HYBRID">HYBRID</option>
+              <option value="CNG">CNG</option>
+              <option value="LPG">LPG</option>
+            </select>
+            <p>Selected: {selectedFuelType}</p>
+            <p className="text-sm text-red-500">{errors.fuelType?.message}</p>
+          </div>
+          <div>
+            <Label htmlFor="mileage">Futásteljesítmény:</Label>
+            <Input
+              id="mileage"
+              type="number"
+              {...register("mileage", { valueAsNumber: true })}
+            />
+            <p className="text-sm text-red-500">{errors.mileage?.message}</p>
+          </div>
           <div>
             <Label className="block mb-2 font-medium">Upload Images</Label>
             <ImageUploader
@@ -190,10 +248,10 @@ export default function AddNewCar() {
               {imageUploadError || errors.image?.message}
             </p>
           </div>
-          <Button type="submit" disabled={isSubmitting}>
-            {isSubmitting ? "Creating..." : "Create Car"}
-          </Button>
           <div className="w-full space-y-2">
+            <Button type="submit" disabled={isSubmitting}>
+              {isSubmitting ? "Creating..." : "Create Car"}
+            </Button>
             <div className="min-h-[1.25rem]">
               {submissionError && (
                 <p className="text-sm text-red-500">{submissionError}</p>

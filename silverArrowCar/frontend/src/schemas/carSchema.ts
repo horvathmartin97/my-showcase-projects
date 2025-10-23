@@ -9,7 +9,7 @@ export const addNewCarSchema = z.object({
   ),
   price: z.number().positive("Price must be a positive number"),
   currency: z.string().min(3, "Currency must be 3 chars long"),
-  mileage: z.number().int().min(0),
+  mileage: z.number().int().min(0, "Milage must be a positive number"),
   description: z.string().optional(),
   image: z
     .array(z.instanceof(File))
