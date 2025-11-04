@@ -1,3 +1,4 @@
+import ImageCarousel from "@/components/imageCarosuel";
 import {
   AirConditioning,
   BodyType,
@@ -11,6 +12,11 @@ import {
 import getOneCar from "../services/getOneCar";
 import { useEffect, useState } from "react";
 import { useParams } from "react-router";
+import {
+  Carousel,
+  CarouselContent,
+  CarouselItem,
+} from "@/components/ui/carousel";
 
 const carPlaceHolder: Car = {
   id: "",
@@ -44,6 +50,8 @@ export default function DetailedCarPage() {
   const [carData, setCarData] = useState<Car>(carPlaceHolder);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
+  const [isModalOpen, setIsModalOpen] = useState(false);
+  const [modalPreviews, setModalPreviews] = useState<string[]>([]);
 
   useEffect(() => {
     if (!carId) return;
@@ -61,6 +69,18 @@ export default function DetailedCarPage() {
     };
     fetchCar();
   }, [carId]);
+  const handleImageClick = (clickedIndex: number) => {
+    const { image } = carData;
+    const reordered = [
+      ...image.slice(clickedIndex),
+      ...image.slice(0, clickedIndex),
+    ];
+    setModalPreviews(reordered);
+    setIsModalOpen(true);
+  };
+  if (loading) {
+    return null;
+  }
 
   return (
     <div className="max-w-6xl mx-auto p-6 space-y-6">
@@ -79,17 +99,32 @@ export default function DetailedCarPage() {
         <div className="bg-white shadow-md rounded-lg p-6 space-y-6">
           <div className="flex flex-col md:flex-row gap-6">
             <div className="md:w-1/2">
-              {carData.image && carData.image.length > 0 ? (
-                <img
-                  src={carData.image[0]}
-                  alt={`${carData.carBrand} ${carData.carModel}`}
-                  className="w-full h-80 object-cover rounded-lg shadow"
-                />
-              ) : (
-                <div className="w-full h-80 bg-gray-200 flex items-center justify-center text-gray-500 rounded">
-                  Nincs kép
-                </div>
-              )}
+              <Carousel className="w-full m-0">
+                <CarouselContent>
+                  {carData.image.map((url, index) => (
+                    <CarouselItem key={url}>
+                      <div
+                        className="relative aspect-video overflow-hidden rounded-lg cursor-pointer"
+                        onClick={() => handleImageClick(index)}
+                      >
+                        <img
+                          src={url}
+                          alt={carData.carModel}
+                          className="absolute inset-0 h-full w-full object-cover"
+                          loading="lazy"
+                        />
+                      </div>
+                    </CarouselItem>
+                  ))}
+                </CarouselContent>
+              </Carousel>
+
+              <ImageCarousel
+                key={carData.id}
+                previews={modalPreviews}
+                modalOpen={isModalOpen}
+                setModalOpen={setIsModalOpen}
+              />
             </div>
 
             <div className="md:w-1/2 flex flex-col justify-between space-y-2">

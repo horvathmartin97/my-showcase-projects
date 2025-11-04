@@ -11,15 +11,49 @@ import uploadImagesToCloudinary, {
 import { addNewCar } from "@/services/carService";
 import { Label } from "@/components/ui/label";
 import { Input } from "@/components/ui/input";
-import { Button } from "@/components/ui/button";
 import ImageUploader from "@/components/imageUpload";
+import { Textarea } from "@/components/ui/textarea";
 
-const indoorOptions = ["Klíma", "Légkondi", "Fűtött Ülés", "Bluetooth"];
+const indoorOptions = [
+  "Fűtött Ülés",
+  "Bluetooth",
+  "Navigáció",
+  "Könyöklő",
+  "Elektromos ablak elől",
+  "Elektromos ablak hátul",
+  "Fényre sötétedő belső tükör",
+  "4 hangszóró",
+  "6 hangszóró",
+  "8 hangszóró",
+  "12 hangszóró",
+  "Hűthető ülés",
+  "Hangulat világítás",
+  "Elektromosan állítható vezető ülés",
+  "Elektromosan állítható utas ülés",
+  "Digitális műszerfal",
+  "Hátsó ülésfűtés",
+  "Masszázs ülés",
+  "Multikormány",
+  "Sáv elhagyó asszisztens",
+  "Sáv tartó asszisztens",
+];
 const outdoorOptions = [
   "Napfénytető",
   "Tetőcsomagtartó",
-  "Alloy Wheels",
-  "Tolatássegítő",
+  "Könnyűfém felni",
+  "Panoráma tető",
+  "Park radar elől",
+  "Park radar hátul",
+  "Tempomat",
+  "Távolság tartó tempomat",
+  "360 fokos kamera",
+  "Tolató kamera",
+  "Elektromos visszapillantó tükör",
+  "Behajló visszapillantó tükör",
+  "Sötétedő visszapillantó tükör",
+  "Led világítás",
+  "Xenon világítás",
+  "Menetfény",
 ];
 
 export default function AddNewCar() {
@@ -36,7 +70,6 @@ export default function AddNewCar() {
     handleSubmit,
     formState: { errors },
     setValue,
-    watch,
     reset,
   } = useForm({
     resolver: zodResolver(addNewCarSchema),
@@ -119,7 +152,6 @@ export default function AddNewCar() {
           engineDisplacement: data.engineDisplacement,
           horsePower: data.horsePower,
           image: urls,
-          carBrand: data.carBrand,
           outDoorExtras: data.outDoorExtras,
           indoorExtras: data.indoorExtras,
         };
@@ -144,8 +176,7 @@ export default function AddNewCar() {
     },
     [token, reset, navigate]
   );
-  const selectedTransmission = watch("transmission");
-  const selectedFuelType = watch("fuelType");
+
   return (
     <div className="max-w-4xl mx-auto p-6 bg-white rounded-md shadow-md my-8">
       <h1 className="text-3xl font-semibold mb-6 text-center">
@@ -153,7 +184,6 @@ export default function AddNewCar() {
       </h1>
       <form onSubmit={handleSubmit(onSubmit)} noValidate className="space-y-6">
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-          {/* carBrand */}
           <div>
             <Label
               htmlFor="carBrand"
@@ -174,7 +204,6 @@ export default function AddNewCar() {
             </p>
           </div>
 
-          {/* carModel */}
           <div>
             <Label
               htmlFor="carModel"
@@ -195,7 +224,6 @@ export default function AddNewCar() {
             </p>
           </div>
 
-          {/* builtYear */}
           <div>
             <Label
               htmlFor="builtYear"
@@ -216,7 +244,6 @@ export default function AddNewCar() {
             </p>
           </div>
 
-          {/* price */}
           <div>
             <Label
               htmlFor="price"
@@ -244,7 +271,6 @@ export default function AddNewCar() {
             <Input type="text" {...register("currency")} />
           </div>
 
-          {/* color */}
           <div>
             <Label
               htmlFor="color"
@@ -263,7 +289,6 @@ export default function AddNewCar() {
             <p className="mt-1 text-sm text-red-500">{errors.color?.message}</p>
           </div>
 
-          {/* transmission */}
           <div>
             <Label
               htmlFor="transmission"
@@ -286,9 +311,6 @@ export default function AddNewCar() {
             </select>
             <p className="mt-1 text-sm text-red-500">
               {errors.transmission?.message}
-            </p>
-            <p className="mt-1 text-sm text-gray-600">
-              Selected: {selectedTransmission}
             </p>
           </div>
           <div>
@@ -328,7 +350,7 @@ export default function AddNewCar() {
               </p>
             )}
           </div>
-          {/* fuelType */}
+
           <div>
             <Label
               htmlFor="fuelType"
@@ -353,12 +375,8 @@ export default function AddNewCar() {
             <p className="mt-1 text-sm text-red-500">
               {errors.fuelType?.message}
             </p>
-            <p className="mt-1 text-sm text-gray-600">
-              Selected: {selectedFuelType}
-            </p>
           </div>
 
-          {/* mileage */}
           <div>
             <Label
               htmlFor="mileage"
@@ -379,7 +397,6 @@ export default function AddNewCar() {
             </p>
           </div>
 
-          {/* bodyType */}
           <div>
             <Label
               htmlFor="bodyType"
@@ -409,7 +426,6 @@ export default function AddNewCar() {
             <p>{errors.bodyType?.message}</p>
           </div>
 
-          {/* driveType */}
           <div>
             <Label
               htmlFor="driveType"
@@ -430,7 +446,6 @@ export default function AddNewCar() {
             </select>
           </div>
 
-          {/* condition */}
           <div>
             <Label
               htmlFor="condition"
@@ -453,7 +468,11 @@ export default function AddNewCar() {
           </div>
           <div>
             <Label htmlFor="airConditioning">Légkondi:</Label>
-            <select {...register("airConditioning")} id="airConditioning">
+            <select
+              className="w-full rounded border px-3 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500"
+              {...register("airConditioning")}
+              id="airConditioning"
+            >
               <option value="MANUAL">Manuális</option>
               <option value="AUTOMATIC">Autómata</option>
               <option value="DUAL_ZONE">Két Zónás autómata</option>
@@ -463,7 +482,11 @@ export default function AddNewCar() {
           </div>
           <div>
             <Label htmlFor="engineType">Motor Típus:</Label>
-            <select {...register("engineType")} id="engineType">
+            <select
+              className="w-full rounded border px-3 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500"
+              {...register("engineType")}
+              id="engineType"
+            >
               <option value="INLINE">Soros</option>
               <option value="V_TYPE">V tipusú</option>
               <option value="BOXER">BOXER</option>
@@ -473,9 +496,7 @@ export default function AddNewCar() {
             </select>
           </div>
           <div>
-            <Label className="block mb-2 font-medium">
-              Belső extrák (Indoor Extras):
-            </Label>
+            <Label className="block mb-2 font-medium">Belső extrák :</Label>
             {indoorOptions.map((option) => (
               <label key={option} className="inline-flex items-center mr-4">
                 <input
@@ -490,9 +511,7 @@ export default function AddNewCar() {
           </div>
 
           <div>
-            <Label className="block mb-2 font-medium">
-              Külső extrák (Outdoor Extras):
-            </Label>
+            <Label className="block mb-2 font-medium">Külső extrák :</Label>
             {outdoorOptions.map((option) => (
               <label key={option} className="inline-flex items-center mr-4">
                 <input
@@ -506,8 +525,11 @@ export default function AddNewCar() {
             ))}
           </div>
         </div>
+        <div>
+          <Label htmlFor="description">Leírás:</Label>
+          <Textarea {...register("description")} />
+        </div>
 
-        {/* Image uploader section */}
         <div>
           <Label className="block mb-2 font-medium text-gray-700">
             Képek feltöltése
@@ -522,7 +544,6 @@ export default function AddNewCar() {
           </p>
         </div>
 
-        {/* Submit section */}
         <div className="mt-6">
           <button
             type="submit"

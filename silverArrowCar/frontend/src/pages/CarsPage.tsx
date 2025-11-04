@@ -23,13 +23,11 @@ export default function CarsPage() {
     null
   );
   const [loading, setLoading] = useState(true);
-  const [searchParams, setSearchParams] = useSearchParams();
+  const [searchParams] = useSearchParams();
 
   const [page, setPage] = useState(Number(searchParams.get("page")) || 1);
-  const [currentQuery, setCurrentQuery] = useState(
-    searchParams.get("query") || ""
-  );
-  const [currentOrder, setCurrentOrder] = useState(
+  const [currentQuery] = useState(searchParams.get("query") || "");
+  const [currentOrder] = useState(
     searchParams.get("order") || "createdAt_desc"
   );
 
