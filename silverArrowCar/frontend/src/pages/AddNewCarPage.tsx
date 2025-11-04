@@ -14,6 +14,14 @@ import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
 import ImageUploader from "@/components/imageUpload";
 
+const indoorOptions = ["Klíma", "Légkondi", "Fűtött Ülés", "Bluetooth"];
+const outdoorOptions = [
+  "Napfénytető",
+  "Tetőcsomagtartó",
+  "Alloy Wheels",
+  "Tolatássegítő",
+];
+
 export default function AddNewCar() {
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [imageUploadError, setImageUploadError] = useState<string | null>(null);
@@ -43,7 +51,7 @@ export default function AddNewCar() {
       condition: "",
       currency: "",
       description: "",
-      doors: 0,
+      doors: 2,
       driveType: "",
       engineDisplacement: 0,
       engineType: "",
@@ -53,11 +61,12 @@ export default function AddNewCar() {
       indoorExtras: [],
       mileage: 0,
       outDoorExtras: [],
-      price: 0,
+      price: 1,
       seats: 0,
       transmission: "",
     },
   });
+
   const onUploadComplete = useCallback(
     (_: string[], files: File[]) => {
       if (files && files.length > 0) {
@@ -69,7 +78,6 @@ export default function AddNewCar() {
     },
     [setValue]
   );
-
   const onSubmit = useCallback(
     async (data: addNewCarType) => {
       console.log(data);
@@ -90,8 +98,8 @@ export default function AddNewCar() {
 
         const payload = {
           contentType: "CAR",
-          brand: data.carBrand,
-          model: data.carModel,
+          carBrand: data.carBrand,
+          carModel: data.carModel,
           builtYear: data.builtYear,
           price: data.price,
           currency: data.currency,
@@ -139,85 +147,202 @@ export default function AddNewCar() {
   const selectedTransmission = watch("transmission");
   const selectedFuelType = watch("fuelType");
   return (
-    <div>
-      <h1>Autó Hozzáadása</h1>
-      <div>
-        <form onSubmit={handleSubmit(onSubmit)} noValidate>
+    <div className="max-w-4xl mx-auto p-6 bg-white rounded-md shadow-md my-8">
+      <h1 className="text-3xl font-semibold mb-6 text-center">
+        Autó Hozzáadása
+      </h1>
+      <form onSubmit={handleSubmit(onSubmit)} noValidate className="space-y-6">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+          {/* carBrand */}
           <div>
-            <Label htmlFor="carBrand">Autó Márka:</Label>
+            <Label
+              htmlFor="carBrand"
+              className="block mb-1 font-medium text-gray-700"
+            >
+              Autó Márka:
+            </Label>
             <Input
-              type="text"
               id="carBrand"
+              type="text"
               {...register("carBrand")}
-              className={`${
+              className={`w-full rounded border px-3 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500 ${
                 errors.carBrand ? "border-red-500" : "border-gray-300"
               }`}
             />
-            <p className="text-sm text-red-500 ">{errors.carBrand?.message}</p>
+            <p className="mt-1 text-sm text-red-500">
+              {errors.carBrand?.message}
+            </p>
           </div>
+
+          {/* carModel */}
           <div>
-            <Label htmlFor="carModel">Autó típus:</Label>
+            <Label
+              htmlFor="carModel"
+              className="block mb-1 font-medium text-gray-700"
+            >
+              Autó típus:
+            </Label>
             <Input
-              type="text"
               id="carModel"
+              type="text"
               {...register("carModel")}
-              className={`${
+              className={`w-full rounded border px-3 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500 ${
                 errors.carModel ? "border-red-500" : "border-gray-300"
               }`}
             />
-            <p className="text-sm text-red-500 ">{errors.carModel?.message}</p>
+            <p className="mt-1 text-sm text-red-500">
+              {errors.carModel?.message}
+            </p>
           </div>
+
+          {/* builtYear */}
           <div>
-            <Label htmlFor="builtYear">Gyártási Év:</Label>
+            <Label
+              htmlFor="builtYear"
+              className="block mb-1 font-medium text-gray-700"
+            >
+              Gyártási Év:
+            </Label>
             <Input
               id="builtYear"
               type="number"
               {...register("builtYear", { valueAsNumber: true })}
-              className={`${
+              className={`w-full rounded border px-3 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500 ${
                 errors.builtYear ? "border-red-500" : "border-gray-300"
               }`}
             />
-            <p className="text-sm text-red-500 ">{errors.builtYear?.message}</p>
+            <p className="mt-1 text-sm text-red-500">
+              {errors.builtYear?.message}
+            </p>
           </div>
+
+          {/* price */}
           <div>
-            <Label htmlFor="price">ÁR:</Label>
+            <Label
+              htmlFor="price"
+              className="block mb-1 font-medium text-gray-700"
+            >
+              Ár:
+            </Label>
             <Input
               id="price"
               type="number"
               {...register("price", { valueAsNumber: true })}
-              className={`${errors.price ? "border-red-500" : "border-gray-300"}`}
+              className={`w-full rounded border px-3 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500 ${
+                errors.price ? "border-red-500" : "border-gray-300"
+              }`}
             />
-            <p className="text-sm text-red-500">{errors.price?.message}</p>
+            <p className="mt-1 text-sm text-red-500">{errors.price?.message}</p>
           </div>
           <div>
-            <Label htmlFor="color">Szín:</Label>
+            <Label
+              htmlFor="currency"
+              className="block mb-1 font-medium text-gray-700"
+            >
+              Currency
+            </Label>
+            <Input type="text" {...register("currency")} />
+          </div>
+
+          {/* color */}
+          <div>
+            <Label
+              htmlFor="color"
+              className="block mb-1 font-medium text-gray-700"
+            >
+              Szín:
+            </Label>
             <Input
               id="color"
               type="text"
               {...register("color")}
-              className={`${
+              className={`w-full rounded border px-3 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500 ${
                 errors.color ? "border-red-500" : "border-gray-300"
               }`}
             />
-            <p className="text-sm text-red-500">{errors.color?.message}</p>
+            <p className="mt-1 text-sm text-red-500">{errors.color?.message}</p>
           </div>
+
+          {/* transmission */}
           <div>
-            <Label htmlFor="transmission">Váltó típusa:</Label>
-            <select {...register("transmission")}>
+            <Label
+              htmlFor="transmission"
+              className="block mb-1 font-medium text-gray-700"
+            >
+              Váltó típusa:
+            </Label>
+            <select
+              id="transmission"
+              {...register("transmission")}
+              className={`w-full rounded border px-3 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500 ${
+                errors.transmission ? "border-red-500" : "border-gray-300"
+              }`}
+            >
               <option value="MANUAL">Manuális</option>
               <option value="AUTOMATIC">Autómata</option>
               <option value="SEMI_AUTOMATIC">Fél-Autómata</option>
               <option value="CVT">CVT</option>
               <option value="DUAL_CLUTCH">Fokozat mentes autómata</option>
             </select>
-            <p>Selected: {selectedTransmission}</p>
-            <p className="text-sm text-red-500">
+            <p className="mt-1 text-sm text-red-500">
               {errors.transmission?.message}
+            </p>
+            <p className="mt-1 text-sm text-gray-600">
+              Selected: {selectedTransmission}
             </p>
           </div>
           <div>
-            <Label htmlFor="fuelType">Üzemanyag:</Label>
-            <select {...register("fuelType")}>
+            <Label
+              htmlFor="seats"
+              className="block mb-1 font-medium text-gray-700"
+            >
+              Ülések száma:
+            </Label>
+            <Input
+              type="number"
+              id="seats"
+              {...register("seats", { valueAsNumber: true })}
+              className={`w-full rounded border px-3 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500 ${
+                errors.seats ? "border-red-500" : "border-gray-300"
+              }`}
+            />
+            {errors.seats && (
+              <p className="mt-1 text-sm text-red-500">
+                {errors.seats.message}
+              </p>
+            )}
+          </div>
+          <div>
+            <Label htmlFor="horsePower">Teljesítmény</Label>
+            <Input
+              type="number"
+              id="horsePower"
+              {...register("horsePower", { valueAsNumber: true })}
+              className={`w-full rounded border px-3 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500 ${
+                errors.horsePower ? "border-red-500" : "border-gray-300"
+              }`}
+            />
+            {errors.horsePower && (
+              <p className="mt-1 text-sm text-red-500">
+                {errors.horsePower.message}
+              </p>
+            )}
+          </div>
+          {/* fuelType */}
+          <div>
+            <Label
+              htmlFor="fuelType"
+              className="block mb-1 font-medium text-gray-700"
+            >
+              Üzemanyag:
+            </Label>
+            <select
+              id="fuelType"
+              {...register("fuelType")}
+              className={`w-full rounded border px-3 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500 ${
+                errors.fuelType ? "border-red-500" : "border-gray-300"
+              }`}
+            >
               <option value="PETROL">Benzin</option>
               <option value="DIESEL">Dízel</option>
               <option value="ELECTRIC">Elektromos</option>
@@ -225,21 +350,48 @@ export default function AddNewCar() {
               <option value="CNG">CNG</option>
               <option value="LPG">LPG</option>
             </select>
-            <p>Selected: {selectedFuelType}</p>
-            <p className="text-sm text-red-500">{errors.fuelType?.message}</p>
+            <p className="mt-1 text-sm text-red-500">
+              {errors.fuelType?.message}
+            </p>
+            <p className="mt-1 text-sm text-gray-600">
+              Selected: {selectedFuelType}
+            </p>
           </div>
+
+          {/* mileage */}
           <div>
-            <Label htmlFor="mileage">Futásteljesítmény:</Label>
+            <Label
+              htmlFor="mileage"
+              className="block mb-1 font-medium text-gray-700"
+            >
+              Futásteljesítmény:
+            </Label>
             <Input
               id="mileage"
               type="number"
               {...register("mileage", { valueAsNumber: true })}
+              className={`w-full rounded border px-3 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500 ${
+                errors.mileage ? "border-red-500" : "border-gray-300"
+              }`}
             />
-            <p className="text-sm text-red-500">{errors.mileage?.message}</p>
+            <p className="mt-1 text-sm text-red-500">
+              {errors.mileage?.message}
+            </p>
           </div>
+
+          {/* bodyType */}
           <div>
-            <Label htmlFor="bodyType">Karosszéria:</Label>
-            <select {...register("bodyType")}>
+            <Label
+              htmlFor="bodyType"
+              className="block mb-1 font-medium text-gray-700"
+            >
+              Karosszéria:
+            </Label>
+            <select
+              id="bodyType"
+              {...register("bodyType")}
+              className="w-full rounded border px-3 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500"
+            >
               <option value="SEDAN">Szedán</option>
               <option value="SUV">Suv</option>
               <option value="HATCHBACK">Hatchback</option>
@@ -254,33 +406,141 @@ export default function AddNewCar() {
               <option value="OFF_ROAD">OFF Road</option>
               <option value="MICROCAR">Micro Car</option>
             </select>
+            <p>{errors.bodyType?.message}</p>
+          </div>
+
+          {/* driveType */}
+          <div>
+            <Label
+              htmlFor="driveType"
+              className="block mb-1 font-medium text-gray-700"
+            >
+              Hajtás:
+            </Label>
+            <select
+              id="driveType"
+              {...register("driveType")}
+              className="w-full rounded border px-3 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500"
+            >
+              <option>Válassz</option>
+              <option value="FWD">Elsőkerék hajtás</option>
+              <option value="RWD">Hátsókerék hajtás</option>
+              <option value="AWD">Összkerék meghajtás</option>
+              <option value="FOUR_WHEEL">4 kerék meghajtás</option>
+            </select>
+          </div>
+
+          {/* condition */}
+          <div>
+            <Label
+              htmlFor="condition"
+              className="block mb-1 font-medium text-gray-700"
+            >
+              Állapot:
+            </Label>
+            <select
+              id="condition"
+              {...register("condition")}
+              className="w-full rounded border px-3 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500"
+            >
+              <option>Válassz</option>
+              <option value="NEW">Új</option>
+              <option value="USED">Használt</option>
+              <option value="CERTIFIED_PRE_OWNED">
+                Hivatalosan bevizsgált
+              </option>
+            </select>
           </div>
           <div>
-            <Label className="block mb-2 font-medium">Upload Images</Label>
-            <ImageUploader
-              onUploadComplete={onUploadComplete}
-              onError={setImageUploadError}
-              MAX_IMAGES={5}
-            />
-            <p className="text-red-500 text-sm mt-1 min-h-[1.25rem]">
-              {imageUploadError || errors.image?.message}
-            </p>
+            <Label htmlFor="airConditioning">Légkondi:</Label>
+            <select {...register("airConditioning")} id="airConditioning">
+              <option value="MANUAL">Manuális</option>
+              <option value="AUTOMATIC">Autómata</option>
+              <option value="DUAL_ZONE">Két Zónás autómata</option>
+              <option value="MULTI ZONE">Több zónás autómata</option>
+              <option value="NONE">Nincs</option>
+            </select>
           </div>
-          <div className="w-full space-y-2">
-            <Button type="submit" disabled={isSubmitting}>
-              {isSubmitting ? "Creating..." : "Create Car"}
-            </Button>
-            <div className="min-h-[1.25rem]">
-              {submissionError && (
-                <p className="text-sm text-red-500">{submissionError}</p>
-              )}
-              {successMessage && (
-                <p className="text-sm text-green-600">{successMessage}</p>
-              )}
-            </div>
+          <div>
+            <Label htmlFor="engineType">Motor Típus:</Label>
+            <select {...register("engineType")} id="engineType">
+              <option value="INLINE">Soros</option>
+              <option value="V_TYPE">V tipusú</option>
+              <option value="BOXER">BOXER</option>
+              <option value="ROTARY">ROTARY</option>
+              <option value="ELECTRIC">Elektromos</option>
+              <option value="HYBRID">Hibrid</option>
+            </select>
           </div>
-        </form>
-      </div>
+          <div>
+            <Label className="block mb-2 font-medium">
+              Belső extrák (Indoor Extras):
+            </Label>
+            {indoorOptions.map((option) => (
+              <label key={option} className="inline-flex items-center mr-4">
+                <input
+                  type="checkbox"
+                  value={option}
+                  {...register("indoorExtras")}
+                  className="form-checkbox"
+                />
+                <span className="ml-2">{option}</span>
+              </label>
+            ))}
+          </div>
+
+          <div>
+            <Label className="block mb-2 font-medium">
+              Külső extrák (Outdoor Extras):
+            </Label>
+            {outdoorOptions.map((option) => (
+              <label key={option} className="inline-flex items-center mr-4">
+                <input
+                  type="checkbox"
+                  value={option}
+                  {...register("outDoorExtras")}
+                  className="form-checkbox"
+                />
+                <span className="ml-2">{option}</span>
+              </label>
+            ))}
+          </div>
+        </div>
+
+        {/* Image uploader section */}
+        <div>
+          <Label className="block mb-2 font-medium text-gray-700">
+            Képek feltöltése
+          </Label>
+          <ImageUploader
+            onUploadComplete={onUploadComplete}
+            onError={setImageUploadError}
+            MAX_IMAGES={5}
+          />
+          <p className="mt-1 text-sm text-red-500 min-h-[1.25rem]">
+            {imageUploadError || errors.image?.message}
+          </p>
+        </div>
+
+        {/* Submit section */}
+        <div className="mt-6">
+          <button
+            type="submit"
+            disabled={isSubmitting}
+            className="w-full py-3 bg-blue-600 text-white rounded-md hover:bg-blue-700 disabled:bg-blue-400"
+          >
+            {isSubmitting ? "Létrehozás..." : "Autó létrehozása"}
+          </button>
+          <div className="min-h-[1.25rem] mt-2">
+            {submissionError && (
+              <p className="text-red-500 text-sm">{submissionError}</p>
+            )}
+            {successMessage && (
+              <p className="text-green-600 text-sm">{successMessage}</p>
+            )}
+          </div>
+        </div>
+      </form>
     </div>
   );
 }
