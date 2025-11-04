@@ -136,7 +136,6 @@ export default function DetailedCarPage() {
                 {new Intl.NumberFormat("hu-HU").format(Number(carData.price))}{" "}
                 {carData.currency}
               </p>
-              <p className="text-gray-500">({carData.condition})</p>
 
               {carData.description && (
                 <p className="text-gray-700 mt-4 whitespace-pre-line">

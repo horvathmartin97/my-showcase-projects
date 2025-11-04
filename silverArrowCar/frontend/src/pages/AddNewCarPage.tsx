@@ -36,6 +36,9 @@ const indoorOptions = [
   "Multikormány",
   "Sáv elhagyó asszisztens",
   "Sáv tartó asszisztens",
+  "Légzsák",
+  "ISOfix",
+  "Fűthető kormánykerék",
 ];
 const outdoorOptions = [
   "Napfénytető",
@@ -54,6 +57,8 @@ const outdoorOptions = [
   "Led világítás",
   "Xenon világítás",
   "Menetfény",
+  "Eső érzékelő",
+  "Autómata fényszoró kapcsolás",
 ];
 
 export default function AddNewCar() {
@@ -537,11 +542,19 @@ export default function AddNewCar() {
           <ImageUploader
             onUploadComplete={onUploadComplete}
             onError={setImageUploadError}
-            MAX_IMAGES={5}
+            MAX_IMAGES={10}
           />
           <p className="mt-1 text-sm text-red-500 min-h-[1.25rem]">
             {imageUploadError || errors.image?.message}
           </p>
+        </div>
+        <div>
+          <Label htmlFor="engineDisplacement">Hengerűrtartalom:</Label>
+          <Input
+            type="number"
+            id="engineDisplacement"
+            {...register("engineDisplacement", { valueAsNumber: true })}
+          />
         </div>
 
         <div className="mt-6">
