@@ -531,6 +531,15 @@ export default function AddNewCar() {
           </div>
         </div>
         <div>
+          <Label htmlFor="engineDisplacement">Hengerűrtartalom:</Label>
+          <Input
+            type="number"
+            id="engineDisplacement"
+            {...register("engineDisplacement", { valueAsNumber: true })}
+          />
+        </div>
+
+        <div>
           <Label htmlFor="description">Leírás:</Label>
           <Textarea {...register("description")} />
         </div>
