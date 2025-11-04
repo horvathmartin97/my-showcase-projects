@@ -238,6 +238,24 @@ export default function AddNewCar() {
             <p className="text-sm text-red-500">{errors.mileage?.message}</p>
           </div>
           <div>
+            <Label htmlFor="bodyType">Karosszéria:</Label>
+            <select {...register("bodyType")}>
+              <option value="SEDAN">Szedán</option>
+              <option value="SUV">Suv</option>
+              <option value="HATCHBACK">Hatchback</option>
+              <option value="COUPE">Coupé</option>
+              <option value="CONVERTIBLE">Kabrió</option>
+              <option value="WAGON">Wagon</option>
+              <option value="VAN">Busz</option>
+              <option value="Pickup">Pickup</option>
+              <option value="MINIVAN">Kisbusz</option>
+              <option value="ROADSTER">Roadster</option>
+              <option value="LIMOUSINE">Limuzin</option>
+              <option value="OFF_ROAD">OFF Road</option>
+              <option value="MICROCAR">Micro Car</option>
+            </select>
+          </div>
+          <div>
             <Label className="block mb-2 font-medium">Upload Images</Label>
             <ImageUploader
               onUploadComplete={onUploadComplete}
