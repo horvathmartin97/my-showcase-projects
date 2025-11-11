@@ -79,11 +79,10 @@ text
 ## 🤝 Contributing
 
 Pull requests are welcome! For major changes, open an issue first to discuss what you would like to change.
+-- email: horvathmartinn@icloud.com
 
 ## 📄 License
 
 This project is licensed under the MIT License.
 
 ---
-
-> Replace `Project Title` and links with your actual project name and repo URL for best results.
