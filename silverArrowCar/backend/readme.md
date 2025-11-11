@@ -27,7 +27,7 @@ This backend project supports the digital showroom platform for Silver Arrow Car
 ## 📦 Installation
 
 1. Clone the repository:
-   git clone https://github.com/your-username/backend.git
+   git clone https://github.com/horvathmartin97/my-showcase-projects/tree/main/silverArrowCar/backend
    cd backend
 
 text
