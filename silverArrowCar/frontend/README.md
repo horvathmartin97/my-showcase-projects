@@ -65,21 +65,10 @@ text
 - `preview` – Preview production build locally
 - `lint` – Run ESLint
 
-## 📝 Folder Structure
-
-src/
-components/
-pages/
-hooks/
-utils/
-...
-
-text
-
 ## 🤝 Contributing
 
 Pull requests are welcome! For major changes, open an issue first to discuss what you would like to change.
--- email: horvathmartinn@icloud.com
+email: horvathmartinn@icloud.com
 
 ## 📄 License
 
