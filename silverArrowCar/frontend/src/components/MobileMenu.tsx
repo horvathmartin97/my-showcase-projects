@@ -9,6 +9,8 @@ import {
   ParkingSquareIcon,
   Menu,
   User2,
+  CarFrontIcon,
+  Car,
 } from "lucide-react";
 import { Button } from "./ui/button";
 import {
@@ -70,15 +72,6 @@ export default function MobileView({
                 Elérhetőség
               </Link>
 
-              <Link
-                className="flex items-center gap-2 py-2 px-4 rounded-lg hover:bg-blue-200 transition text-white mb-2 font-medium"
-                to="/about"
-                onClick={() => setNavigationMenuOpened(false)}
-              >
-                <Info />
-                Rólunk
-              </Link>
-
               {auth?.user?.id && (
                 <Accordion type="single" collapsible>
                   <AccordionItem value="item-1">
@@ -97,6 +90,20 @@ export default function MobileView({
                         )}
                         Saját Profil
                       </Link>
+
+                      <Link
+                        to="/carActions"
+                        className="flex gap-2 items-center"
+                      >
+                        <CarFrontIcon className="  w-8 h-8" />
+                        Autók kezelése
+                      </Link>
+
+                      <Link to="/addNewCar" className="flex items-center gap-2">
+                        <Car className="w-8 h-8" />
+                        Új autó
+                      </Link>
+
                       <Link to="/favorites" className="flex items-center gap-2">
                         <ParkingSquareIcon className="h-8 w-8" />
                         Parkoló
