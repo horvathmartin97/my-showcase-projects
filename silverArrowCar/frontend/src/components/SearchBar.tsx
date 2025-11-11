@@ -65,7 +65,7 @@ export default function SearchBar(props: SearchBarProps) {
         className="my-2"
         id="searchInput"
         type="search"
-        placeholder="Keresés"
+        placeholder="Autó keresés..."
         value={formState.query}
         onChange={handleQueryChange}
       />

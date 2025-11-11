@@ -1,4 +1,11 @@
-import { LogOutIcon, User2, ParkingSquareIcon, Crown, Car } from "lucide-react";
+import {
+  LogOutIcon,
+  User2,
+  ParkingSquareIcon,
+  Crown,
+  Car,
+  CarFrontIcon,
+} from "lucide-react";
 import { useContext } from "react";
 import { Link } from "react-router";
 import { AuthContext } from "../contexts/AuthContext";
@@ -50,6 +57,12 @@ export default function HeaderDropdown({
           <DropdownMenuItem className="flex items-center gap-2">
             <Car className="w-8 h-8" />
             <Link to={"/addNewCar"}>Új autó</Link>
+          </DropdownMenuItem>
+        )}
+        {auth?.user?.role === "ADMIN" && (
+          <DropdownMenuItem className="flex items-center gap-2">
+            <CarFrontIcon className="w-8 h-8" />
+            <Link to="/carActions">Autók kezelése</Link>
           </DropdownMenuItem>
         )}
 

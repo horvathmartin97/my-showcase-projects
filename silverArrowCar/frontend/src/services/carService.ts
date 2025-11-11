@@ -59,7 +59,7 @@ export async function getAllCars(
     };
   }
 }
-export async function addNewCar(payload: any, token: string) {
+export async function addNewCar(payload: any, token: string): Promise<Car> {
   const res = await fetch(`${API_URL}/api/car`, {
     method: "POST",
     headers: {
@@ -74,5 +74,15 @@ export async function addNewCar(payload: any, token: string) {
     throw new Error(`Backend error: ${errorText}`);
   }
 
+  return res.json();
+}
+export async function deleteCar(carId: string, token: string) {
+  const res = await fetch(`${API_URL}/api/car/${carId}`, {
+    method: "DELETE",
+    headers: {
+      "Content-Type": "application/json",
+      Authorization: `Bearer ${token}`,
+    },
+  });
   return res.json();
 }

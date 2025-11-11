@@ -557,14 +557,6 @@ export default function AddNewCar() {
             {imageUploadError || errors.image?.message}
           </p>
         </div>
-        <div>
-          <Label htmlFor="engineDisplacement">Hengerűrtartalom:</Label>
-          <Input
-            type="number"
-            id="engineDisplacement"
-            {...register("engineDisplacement", { valueAsNumber: true })}
-          />
-        </div>
 
         <div className="mt-6">
           <button

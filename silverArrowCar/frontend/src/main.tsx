@@ -12,6 +12,7 @@ import ContactPage from "./pages/ContactPage";
 import DetailedCarPage from "./pages/DetailedCarPage";
 import ProtectedRoute from "./components/ProtectedRoute";
 import AddNewCarPage from "./pages/AddNewCarPage";
+import CarsActionsPage from "./pages/CarsActionsPage";
 
 createRoot(document.getElementById("root")!).render(
   <StrictMode>
@@ -30,6 +31,14 @@ createRoot(document.getElementById("root")!).render(
               element={
                 <ProtectedRoute>
                   <AddNewCarPage />
+                </ProtectedRoute>
+              }
+            />
+            <Route
+              path="/carActions"
+              element={
+                <ProtectedRoute>
+                  <CarsActionsPage />
                 </ProtectedRoute>
               }
             />
