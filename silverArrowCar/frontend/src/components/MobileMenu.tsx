@@ -4,7 +4,6 @@ import {
   Contact,
   Crown,
   Home,
-  Info,
   LogIn,
   ParkingSquareIcon,
   Menu,
