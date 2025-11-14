@@ -4,6 +4,7 @@ import { ApiResponse, PaginatedResponse } from "../types/global";
 import { Car, Prisma } from "@prisma/client";
 import HttpError from "../utils/HttpError";
 import carService, { SearchedCar } from "./carService";
+import { NetConnectOpts } from "net";
 export interface AuthorizedRequest extends Request {
   user?: {
     id: string;
@@ -72,6 +73,23 @@ const carController = {
       res
         .status(200)
         .json({ ok: true, message: "Car is deleted Successfully", data: car });
+    } catch (error) {
+      next(error);
+    }
+  },
+  updateCar: async (
+    req: AuthorizedRequest,
+    res: Response<ApiResponse<Car>>,
+    next: NextFunction
+  ): Promise<void> => {
+    try {
+      const carId = req.params.carId;
+      const newData = req.body;
+
+      const updatedCar = await carService.updateCarById(carId, newData);
+      res
+        .status(200)
+        .json({ ok: true, message: "car is updated", data: updatedCar });
     } catch (error) {
       next(error);
     }

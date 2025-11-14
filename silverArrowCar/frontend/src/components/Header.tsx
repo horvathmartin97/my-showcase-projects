@@ -22,10 +22,10 @@ export default function Header() {
 
   return (
     <header className="bg-gray-800 text-white shadow-md">
-      <div className="container mx-auto flex justify-between items-center p-4">
-        <Link className="text-3xl flex gap-2 items-center" to="/">
-          <span className="text-white font-bold">Silver</span>
-          <span className="text-red-600 font-bold">Car</span>
+      <div className="container mx-auto flex justify-between items-center  p-4">
+        <Link className="text-3xl flex gap-2" to="/">
+          <span className="text-white font-bold x">Silver</span>
+          <span className="text-red-600 font-bold ">Car</span>
         </Link>
 
         <nav className="hidden md:flex gap-8 items-center font-bold">

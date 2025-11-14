@@ -3,6 +3,7 @@ import validatedQuery from "../middlewares/validateQuery";
 import searchQuerySchema, {
   addNewCarSchema,
   idParamsSchema,
+  UpdateCar,
 } from "./carSchema";
 import carController from "./carController";
 import authorize from "../middlewares/authorize";
@@ -29,5 +30,10 @@ carRouter.delete(
   validatedParams(idParamsSchema),
   carController.deleteById
 );
-
+carRouter.patch(
+  "/:carId",
+  authorize,
+  validateRequestBody(UpdateCar),
+  carController.updateCar
+);
 export default carRouter;

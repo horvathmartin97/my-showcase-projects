@@ -64,3 +64,7 @@ export const idParamsSchema = z.object({
   }),
 });
 export type IdParamsSchema = z.infer<typeof idParamsSchema>;
+
+export const UpdateCar = addNewCarSchema.partial();
+
+export type UpdateCarType = z.infer<typeof UpdateCar>;

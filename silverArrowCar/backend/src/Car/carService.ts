@@ -1,6 +1,11 @@
-import { BodyType, Car, Prisma } from "@prisma/client";
+import { Car, Prisma } from "@prisma/client";
 import { PaginatedResponse } from "../types/global";
-import { addNewCarType, SearchQuerySchema } from "./carSchema";
+import {
+  addNewCarType,
+  SearchQuerySchema,
+  UpdateCar,
+  UpdateCarType,
+} from "./carSchema";
 import prisma from "../utils/prisma";
 import { searchSelect } from "./carTypes";
 import HttpError from "../utils/HttpError";
@@ -94,6 +99,20 @@ const carService = {
       throw new HttpError("Car is Not Found", 404);
     }
     return await prisma.car.delete({ where: { id: carId } });
+  },
+  updateCarById: async (
+    carId: string,
+    newCarData: UpdateCarType
+  ): Promise<Car> => {
+    const isCarExist = await prisma.car.findUnique({ where: { id: carId } });
+    if (!isCarExist) {
+      throw new HttpError("Car is not found", 404);
+    }
+    const parsedData = UpdateCar.safeParse(newCarData);
+    if (!parsedData.success) {
+      throw new HttpError("Must provide at least one data");
+    }
+    return prisma.car.update({ where: { id: carId }, data: parsedData.data });
   },
 };
 export default carService;
