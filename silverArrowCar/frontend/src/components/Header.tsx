@@ -1,9 +1,9 @@
 import { AuthContext } from "../contexts/AuthContext";
 import { useContext, useState } from "react";
-import { Link } from "react-router"; // Győződj meg róla, hogy a react-router-dom-ot használod
+import { Link } from "react-router";
 import MobileView from "./MobileMenu";
 import HeaderDropdown from "./DropDownMenu";
-import { User2, Crown } from "lucide-react"; // Importáljuk a szükséges ikonokat
+import { User2, Crown } from "lucide-react";
 
 export default function Header() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
