@@ -20,7 +20,7 @@ export default function AboutMe() {
   return (
     <section
       id="about_me"
-      className="py-16 sm:py-20 lg:py-24 px-4 sm:px-6 lg:px-8 bg-linear-to-br from-slate-900 via-slate-800 to-slate-900"
+      className="py-16 sm:py-20 lg:py-24 px-4 sm:px-6 lg:px-8 bg-linear-to-br from-slate-900 via-slate-800 to-slate-900 "
     >
       <div className="max-w-6xl mx-auto">
         <div className="grid lg:grid-cols-2 gap-12 items-center">
