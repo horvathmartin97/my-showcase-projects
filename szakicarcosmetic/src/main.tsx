@@ -6,6 +6,7 @@ import "../i18n";
 import AboutMe from "./components/AboutMe";
 import Services from "./components/Services";
 import MyJobs from "./components/MyJobs";
+import Contact from "./components/Contact";
 createRoot(document.getElementById("root")!).render(
   <StrictMode>
     <Header />
@@ -13,6 +14,7 @@ createRoot(document.getElementById("root")!).render(
       <AboutMe />
       <Services />
       <MyJobs />
+      <Contact />
     </main>
   </StrictMode>
 );

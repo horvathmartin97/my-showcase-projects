@@ -34,5 +34,13 @@
     "carSelector": "Auto auswählen",
     "jobs": "Meine Arbeiten",
     "previousJobs": "Einige meiner bisherigen Projekte, auf die ich stolz bin"
+  },
+  "contact": {
+    "contact": "Kontakt",
+    "subTitle": "Haben Sie Fragen? Rufen Sie mich an oder besuchen Sie mich!",
+    "contactUs": "Kontaktieren Sie mich!",
+    "paragraph": "Werktags von 8:00 bis 17:00 Uhr stehe ich Ihnen zur Verfügung. Am Wochenende nehme ich Aufträge nach vorheriger Absprache an.",
+    "openingTimes": "Öffnungszeiten",
+    "openDays": "Montag - Freitag:"
   }
 }

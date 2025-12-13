@@ -34,5 +34,13 @@
     "carSelector": "Válasszon autót",
     "jobs": "Munkáim",
     "previousJobs": " Néhány korábbi munkám, amelyekre büszke vagyok"
+  },
+  "contact": {
+    "contact": "Kapcsolat",
+    "subTitle": "Kérdése van? Hívjon bizalommal vagy látogasson el hozzánk!",
+    "contactUs": "Lépjen kapcsolatba velem!",
+    "paragraph": " Hétköznap 8:00-17:00 között állok rendelkezésére. Hétvégén előzetes egyeztetés alapján is vállalok munkákat.",
+    "openingTimes": "Nyitvatartás",
+    "openDays": "Hétfő - Péntek:"
   }
 }
