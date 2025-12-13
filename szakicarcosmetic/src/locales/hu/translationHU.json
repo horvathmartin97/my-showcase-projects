@@ -29,5 +29,10 @@
     "waxing": "Waxolás után prémium wax réteg védi autója fényezését az időjárás viszontagságai ellen. Hosszan tartó fényhatás és vízlepergető felület.",
     "wheelCleaning": "Keréktárcsák részletes tisztítása és ápolása csúcskategóriás termékekkel. A korrozív fékpor és fémpor lerakódások hatékony semlegesítése, felnije eredeti ragyogásának visszaadása és felületük védelme.",
     "qualityDescription": "Nem ismerek kompromisszumot: minden munkánál csak prémium kategóriás termékeket használok, amelyek garantálják a tökéletes eredményt."
+  },
+  "my_jobs": {
+    "carSelector": "Válasszon autót",
+    "jobs": "Munkáim",
+    "previousJobs": " Néhány korábbi munkám, amelyekre büszke vagyok"
   }
 }

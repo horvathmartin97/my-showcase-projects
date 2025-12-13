@@ -29,5 +29,10 @@
     "waxing": "Nach dem Wachsen schützt eine Premium-Wachsschicht den Lack Ihres Fahrzeugs vor den Launen des Wetters. Langanhaltender Glanzeffekt und wasserabweisende Oberfläche.",
     "wheelCleaning": "Detaillierte Reinigung und Pflege der Felgen mit erstklassigen Produkten. Effektive Neutralisierung korrosiver Bremsstaub- und Metallstaubablagerungen, Wiederherstellung des ursprünglichen Glanzes Ihrer Felgen und Schutz ihrer Oberfläche.",
     "qualityDescription": "Ich kenne keine Kompromisse: Bei jeder Arbeit verwende ich nur Premium-Produkte, die das perfekte Ergebnis garantieren."
+  },
+  "my_jobs": {
+    "carSelector": "Auto auswählen",
+    "jobs": "Meine Arbeiten",
+    "previousJobs": "Einige meiner bisherigen Projekte, auf die ich stolz bin"
   }
 }

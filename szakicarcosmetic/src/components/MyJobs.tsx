@@ -27,6 +27,7 @@ import fordFiestaInterior1 from "../assets/fordFiesta/interior1.jpeg";
 import fordFiestaInterior2 from "../assets/fordFiesta/interior2.jpeg";
 import fordFiestaInterior3 from "../assets/fordFiesta/interior3.jpeg";
 import fordFiestaInterior4 from "../assets/fordFiesta/interior4.jpeg";
+import { useTranslation } from "react-i18next";
 
 interface CarGallery {
   carName: string;
@@ -34,6 +35,7 @@ interface CarGallery {
 }
 
 export default function MyJobs() {
+  const { t } = useTranslation();
   const [selectedCar, setSelectedCar] = useState(0);
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
   const [isLightboxOpen, setIsLightboxOpen] = useState(false);
@@ -106,6 +108,10 @@ export default function MyJobs() {
     setCurrentImageIndex(0);
   };
 
+  const carSelector = t("my_jobs.carSelector");
+  const jobs = t("my_jobs.jobs");
+  const previousJobs = t("my_jobs.previousJobs");
+
   return (
     <section
       id="my_jobs"
@@ -119,10 +125,10 @@ export default function MyJobs() {
           className="text-center mb-12"
         >
           <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-slate-900 mb-4">
-            Munkáim
+            {jobs}
           </h2>
           <p className="text-lg text-slate-600 max-w-2xl mx-auto">
-            Néhány korábbi munkám, amelyekre büszke vagyok
+            {previousJobs}
           </p>
           <div className="flex justify-center mt-6">
             <div className="h-1 w-24 bg-linear-to-r from-cyan-500 to-blue-600 rounded-full" />
@@ -136,7 +142,7 @@ export default function MyJobs() {
           className="mb-8 max-w-md mx-auto"
         >
           <label className="block text-sm font-semibold text-slate-700 mb-2">
-            Válassz autót
+            {carSelector}
           </label>
           <select
             value={selectedCar}
