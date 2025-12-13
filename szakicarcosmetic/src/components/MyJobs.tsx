@@ -105,7 +105,7 @@ export default function MyJobs() {
             Munkáim
           </h2>
           <p className="text-lg text-slate-600 max-w-2xl mx-auto">
-            Néhány korábbi projektünk, amelyekre büszkék vagyunk
+            Néhány korábbi munkám, amelyekre büszke vagyok
           </p>
           <div className="flex justify-center mt-6">
             <div className="h-1 w-24 bg-linear-to-r from-cyan-500 to-blue-600 rounded-full" />
@@ -119,7 +119,7 @@ export default function MyJobs() {
           className="mb-8 max-w-md mx-auto"
         >
           <label className="block text-sm font-semibold text-slate-700 mb-2">
-            Válassz projektet
+            Válassz autót
           </label>
           <select
             value={selectedCar}
