@@ -21,6 +21,12 @@ import toyotaRav4Interior2 from "../assets/toyotaRav4/interior2.jpeg";
 import toyotaRav4Interior3 from "../assets/toyotaRav4/interior3.jpeg";
 import toyotaRav4Interior4 from "../assets/toyotaRav4/interior4.jpeg";
 import toyotaRav4Interior5 from "../assets/toyotaRav4/interior5.jpeg";
+import fordFiestaFront1 from "../assets/fordFiesta/front.jpeg";
+import fordFiestaFront2 from "../assets/fordFiesta/front2.jpeg";
+import fordFiestaInterior1 from "../assets/fordFiesta/interior1.jpeg";
+import fordFiestaInterior2 from "../assets/fordFiesta/interior2.jpeg";
+import fordFiestaInterior3 from "../assets/fordFiesta/interior3.jpeg";
+import fordFiestaInterior4 from "../assets/fordFiesta/interior4.jpeg";
 
 interface CarGallery {
   carName: string;
@@ -66,6 +72,17 @@ export default function MyJobs() {
         toyotaRav4Interior3,
         toyotaRav4Interior4,
         toyotaRav4Interior5,
+      ],
+    },
+    {
+      carName: "Ford Fiesta",
+      images: [
+        fordFiestaFront1,
+        fordFiestaFront2,
+        fordFiestaInterior1,
+        fordFiestaInterior2,
+        fordFiestaInterior3,
+        fordFiestaInterior4,
       ],
     },
   ];
