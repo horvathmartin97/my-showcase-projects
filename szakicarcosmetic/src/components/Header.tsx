@@ -20,7 +20,7 @@ export default function Header() {
       <div className="mx-auto flex max-w-6xl items-center justify-between px-4 sm:px-6 py-3">
         <a
           href="tel:+3630/3419693"
-          className="flex items-center transition-transform hover:scale-105"
+          className="flex items-center transition-transform hover:scale-105 h-15"
         >
           <motion.img
             initial={{ x: -100, opacity: 0 }}
@@ -28,12 +28,12 @@ export default function Header() {
             transition={{ type: "spring", stiffness: 100, damping: 15 }}
             src={logo}
             alt="Szaki Autókozmetika"
-            className="h-12 sm:h-16 md:h-20 w-auto"
+            className="sm:h-16 md:h-20 w-auto"
           />
         </a>
 
         <div className="hidden md:flex items-center gap-6">
-          <nav className="flex gap-6 lg:gap-8 text-sm font-semibold text-slate-200">
+          <nav className="flex gap-6 lg:gap-8 text-md font-semibold text-slate-200">
             {navLinks.map((link) => (
               <a
                 key={link.href}
