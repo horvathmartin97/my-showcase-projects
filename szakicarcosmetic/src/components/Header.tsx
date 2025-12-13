@@ -41,7 +41,7 @@ export default function Header() {
             ))}
           </nav>
 
-          <div className="pl-4 border-l border-slate-600">
+          <div className="pl-4 border-l border-slate-500">
             <LanguageSwitcher />
           </div>
         </div>

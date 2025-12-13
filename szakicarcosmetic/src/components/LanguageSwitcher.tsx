@@ -5,7 +5,6 @@ export default function LanguageSwitcher() {
 
   const languages = [
     { code: "hu", name: "Magyar", label: "🇭🇺" },
-
     { code: "de", name: "Deutsch", label: "🇩🇪" },
   ];
 
