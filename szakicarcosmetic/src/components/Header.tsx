@@ -18,7 +18,7 @@ export default function Header() {
     <header className="sticky top-0 z-50 bg-slate-600/95 backdrop-blur-md border-b border-slate-700/50 shadow-lg">
       <div className="mx-auto flex max-w-6xl items-center justify-between px-4 sm:px-6 py-3">
         <a
-          href="#hero"
+          href="tel:+3630/3419693"
           className="flex items-center transition-transform hover:scale-105"
         >
           <img
