@@ -5,12 +5,14 @@ import Header from "./components/Header";
 import "../i18n";
 import AboutMe from "./components/AboutMe";
 import Services from "./components/Services";
+import MyJobs from "./components/MyJobs";
 createRoot(document.getElementById("root")!).render(
   <StrictMode>
     <Header />
     <main className="">
       <AboutMe />
       <Services />
+      <MyJobs />
     </main>
   </StrictMode>
 );
