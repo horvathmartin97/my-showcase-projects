@@ -6,11 +6,17 @@ export default function AboutMe() {
   const { t } = useTranslation();
 
   const features = [
-    { icon: <Award className="w-5 h-5" />, text: "7 év tapasztalat" },
-    { icon: <Star className="w-5 h-5" />, text: "Prémium minőség" },
-    { icon: <CheckCircle className="w-5 h-5" />, text: "Garantált eredmény" },
+    {
+      icon: <Award className="w-5 h-5" />,
+      experienceText: t("aboutMe.experienceText"),
+    },
+    {
+      icon: <Star className="w-5 h-5" />,
+      premiumText: t("aboutMe.premiumText"),
+    },
+    { icon: <CheckCircle className="w-5 h-5" />, text: t("aboutMe.text") },
   ];
-
+  const booking = t("aboutMe.booking");
   return (
     <section
       id="about_me"
@@ -92,6 +98,8 @@ export default function AboutMe() {
                 >
                   <div className="text-cyan-400">{feature.icon}</div>
                   <span className="text-slate-200 font-medium text-sm">
+                    {feature.experienceText}
+                    {feature.premiumText}
                     {feature.text}
                   </span>
                 </div>
@@ -109,7 +117,7 @@ export default function AboutMe() {
                 href="#contact"
                 className="inline-flex items-center gap-2 px-8 py-4 bg-linear-to-r from-cyan-500 to-blue-600 text-white font-bold rounded-xl hover:from-cyan-600 hover:to-blue-700 transition-all duration-300 shadow-lg hover:shadow-cyan-500/50 hover:scale-105"
               >
-                Időpontfoglalás
+                {booking}
                 <svg
                   className="w-5 h-5"
                   fill="none"
