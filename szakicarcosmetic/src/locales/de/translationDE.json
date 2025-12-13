@@ -1,3 +1,29 @@
 {
-  "header": {}
+  "header": {
+    "about_me": "Über Mich",
+    "my_jobs": "Meine Arbeiten",
+    "contact": "Kontakt",
+    "services": "Service"
+  },
+  "aboutMe": {
+    "title": "Seit 7 Jahren im Dienste der Qualität!",
+    "subTitle": "Premium Fahrzeugpflege. Professionelle Reinigung und Pflege, nur mit den besten Materialien.",
+    "mainSection": "Seit sieben Jahren widme ich mich der Aufgabe, Ihr Fahrzeug wie neu erstrahlen zu lassen. Meine Philosophie ist einfach: Kompromisslose Qualität bei jeder einzelnen Arbeit. Ich arbeite ausschließlich mit Premium-Produkten, die dauerhaften Schutz und perfekte Ergebnisse gewährleisten. Meine Fachkompetenz und Erfahrung garantieren, dass Ihr Fahrzeug in den besten Händen ist."
+  },
+  "services": {
+    "mainTitle": "Dienstleistungen",
+    "subTitle": "Qualitätsarbeit zu erschwinglichen Preisen",
+    "cleaningTitle": "Fahrzeugreinigung und -pflege",
+    "polishingTitle": "Hochglanz- oder mehrstufige Politur",
+    "headlightPolishingTitle": "Scheinwerfer-Politur",
+    "waxingTitle": "Wachsversiegelung",
+    "qualityTitle": "Qualität ist mir am wichtigsten",
+    "wheelCleaningTitle": "Alufelgen-Reinigung",
+    "carCleaning": "Komplette Außen- und Innenreinigung mit professioneller Ausrüstung. Entfernung hartnäckiger Verschmutzungen, Auffrischung des Innenraums, damit Ihr Fahrzeug in neuwertigem Zustand glänzt.",
+    "polishing": "Mehrstufige Poliertechnologie zur Entfernung kleiner Kratzer und Oxidation des Lacks. Das Ergebnis: spiegelglatte, tief strahlende Oberfläche, die Ihr Fahrzeug um Jahre verjüngt.",
+    "headlightPolishing": "Vergilbte, matte Scheinwerfer wieder kristallklar. Durch spezielle Politur erhalten Ihre Leuchten ihre ursprüngliche Transparenz zurück, was das Aussehen und die Verkehrssicherheit verbessert.",
+    "waxing": "Nach dem Wachsen schützt eine Premium-Wachsschicht den Lack Ihres Fahrzeugs vor den Launen des Wetters. Langanhaltender Glanzeffekt und wasserabweisende Oberfläche.",
+    "wheelCleaning": "Detaillierte Reinigung und Pflege der Felgen mit erstklassigen Produkten. Effektive Neutralisierung korrosiver Bremsstaub- und Metallstaubablagerungen, Wiederherstellung des ursprünglichen Glanzes Ihrer Felgen und Schutz ihrer Oberfläche.",
+    "qualityDescription": "Ich kenne keine Kompromisse: Bei jeder Arbeit verwende ich nur Premium-Produkte, die das perfekte Ergebnis garantieren."
+  }
 }

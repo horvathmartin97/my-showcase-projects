@@ -4,8 +4,8 @@ export default function LanguageSwitcher() {
   const { i18n } = useTranslation();
 
   const languages = [
-    { code: "hu", name: "Magyar", label: "🇭🇺" },
-    { code: "de", name: "Deutsch", label: "🇩🇪" },
+    { code: "HU", name: "Magyar", label: "🇭🇺" },
+    { code: "DE", name: "Deutsch", label: "🇩🇪" },
   ];
 
   const handleLanguageChange = (lang: string) => {

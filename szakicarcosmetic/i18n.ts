@@ -4,13 +4,13 @@ import translationDE from "./src/locales/de/translationDE.json";
 import translationHU from "./src/locales/hu/translationHU.json";
 
 const resources = {
-  de: { translation: translationDE },
-  hu: { translation: translationHU },
+  DE: { translation: translationDE },
+  HU: { translation: translationHU },
 };
 i18n.use(initReactI18next).init({
   resources,
-  lng: "hu",
-  fallbackLng: "de",
+  lng: "HU",
+  fallbackLng: "DE",
 
   interpolation: {
     escapeValue: false,

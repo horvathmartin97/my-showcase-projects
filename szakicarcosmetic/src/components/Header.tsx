@@ -2,6 +2,7 @@ import { useTranslation } from "react-i18next";
 import { useState } from "react";
 import logo from "../assets/logo-removebg-preview.png";
 import LanguageSwitcher from "./LanguageSwitcher";
+import { motion } from "motion/react";
 
 export default function Header() {
   const { t } = useTranslation();
@@ -21,7 +22,10 @@ export default function Header() {
           href="tel:+3630/3419693"
           className="flex items-center transition-transform hover:scale-105"
         >
-          <img
+          <motion.img
+            initial={{ x: -100, opacity: 0 }}
+            animate={{ x: 0, opacity: 1 }}
+            transition={{ type: "spring", stiffness: 100, damping: 15 }}
             src={logo}
             alt="Szaki Autókozmetika"
             className="h-12 sm:h-16 md:h-20 w-auto"
