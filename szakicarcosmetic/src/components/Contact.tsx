@@ -1,6 +1,6 @@
 import { motion } from "framer-motion";
 import { useTranslation } from "react-i18next";
-import { Mail, Phone, MapPin, FacebookIcon } from "lucide-react";
+import { Phone, MapPin, FacebookIcon } from "lucide-react";
 
 export default function Contact() {
   const { t } = useTranslation();

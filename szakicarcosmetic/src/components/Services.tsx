@@ -6,7 +6,6 @@ import {
   Shield,
   Disc,
   SprayCan,
-  StarIcon,
   Award,
 } from "lucide-react";
 
