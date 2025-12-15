@@ -1,6 +1,7 @@
 import { useTranslation } from "react-i18next";
 import { motion } from "framer-motion";
 import { CheckCircle, Award, Star } from "lucide-react";
+import achievment from "../assets/acsi.jpeg";
 
 export default function AboutMe() {
   const { t } = useTranslation();
@@ -31,13 +32,10 @@ export default function AboutMe() {
             transition={{ duration: 0.6 }}
             className="relative"
           >
-            <div className="aspect-square rounded-2xl bg-linear-to-br from-cyan-500 to-blue-600 p-1 shadow-2xl">
-              <div className="w-full h-full rounded-xl bg-slate-800 flex items-center justify-center overflow-hidden">
+            <div className="aspect-square rounded-2xl bg-linear-to-br from-cyan-500 to-blue-600 p-1 shadow-2xl ">
+              <div className=" w-full rounded-xl bg-slate-800 flex items-center justify-center overflow-hidden">
                 <div className="text-center p-8">
-                  <div className="text-6xl sm:text-8xl mb-4">🚗</div>
-                  <p className="text-cyan-400 font-bold text-xl">
-                    Szaki Autókozmetika
-                  </p>
+                  <img className="rounded-lg " src={achievment} alt="" />
                 </div>
               </div>
             </div>

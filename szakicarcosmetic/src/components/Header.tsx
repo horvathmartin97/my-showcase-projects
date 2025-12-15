@@ -1,6 +1,6 @@
 import { useTranslation } from "react-i18next";
 import { useState } from "react";
-import logo from "../assets/logo-removebg-preview.png";
+import logo from "../assets/logo.png";
 import LanguageSwitcher from "./LanguageSwitcher";
 import { motion } from "motion/react";
 
