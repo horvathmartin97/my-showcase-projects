@@ -4,7 +4,7 @@ export default function Footer() {
       <p>
         © {new Date().getFullYear()} Szaki Autókozmetika | Developed by{" "}
         <a
-          href="https://www.linkedin.com/in/martin-horváth-069487363"
+          href="https://martin-horvath-portfolio.netlify.app/"
           target="_blank"
           rel="noopener noreferrer"
           className="text-cyan-500 hover:underline"
