@@ -18,6 +18,8 @@ A premium car detailing service showcase website featuring a single-page applica
 - ⚡ **Fast Loading** - Optimized with Vite build tool
 - 🎯 **Smooth Scroll** - Animated navigation between sections
 
+**🚀 [LIVE DEMO](https://szakiautokozmetika.hu)**
+
 ## 🛠️ Tech Stack
 
 - **Frontend Framework:** React 18+
