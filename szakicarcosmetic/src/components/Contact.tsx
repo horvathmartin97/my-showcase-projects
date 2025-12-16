@@ -1,9 +1,15 @@
 import { motion } from "framer-motion";
 import { useTranslation } from "react-i18next";
+import { useState, useEffect } from "react";
 import { Phone, MapPin, FacebookIcon } from "lucide-react";
 
 export default function Contact() {
   const { t } = useTranslation();
+  const [isMobile, setIsMobile] = useState(false);
+
+  useEffect(() => {
+    setIsMobile(window.innerWidth < 768);
+  }, []);
 
   const contactInfo = [
     {
@@ -36,13 +42,14 @@ export default function Contact() {
   return (
     <section
       id="contact"
-      className="py-16 sm:py-20 lg:py-24 px-4 sm:px-6 lg:px-8 bg-linear-to-b bg-gray-200 to-slate-50"
+      className="py-16 sm:py-20 lg:py-24 px-4 sm:px-6 lg:px-8 bg-linear-to-b from-gray-200 to-slate-50"
     >
       <div className="max-w-7xl mx-auto">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
+          viewport={{ once: true, amount: 0.3 }}
+          transition={{ duration: 0.5 }}
           className="text-center mb-12 sm:mb-16"
         >
           <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-slate-900 mb-4">
@@ -58,7 +65,8 @@ export default function Contact() {
           <motion.div
             initial={{ opacity: 0, x: -50 }}
             whileInView={{ opacity: 1, x: 0 }}
-            viewport={{ once: true }}
+            viewport={{ once: true, amount: 0.2 }}
+            transition={{ duration: 0.6 }}
             className="space-y-8"
           >
             <div>
@@ -81,11 +89,14 @@ export default function Contact() {
                   }
                   initial={{ opacity: 0, y: 20 }}
                   whileInView={{ opacity: 1, y: 0 }}
-                  viewport={{ once: true }}
-                  transition={{ delay: index * 0.1 }}
-                  className="flex items-center gap-4 p-4 bg-white rounded-xl border-2 border-slate-200 hover:border-cyan-500 transition-all duration-300 hover:shadow-lg group"
+                  viewport={{ once: true, amount: 0.3 }}
+                  transition={{
+                    delay: isMobile ? 0 : index * 0.1,
+                    duration: 0.4,
+                  }}
+                  className="flex items-center gap-4 p-4 bg-white rounded-xl border-2 border-slate-200 md:hover:border-cyan-500 transition-all duration-300 md:hover:shadow-lg"
                 >
-                  <div className="shrink-0 p-3 bg-linear-to-br from-cyan-500 to-blue-600 text-white rounded-lg group-hover:scale-110 transition-transform">
+                  <div className="shrink-0 p-3 bg-linear-to-br from-cyan-500 to-blue-600 text-white rounded-lg transition-transform">
                     {info.icon}
                   </div>
                   <div>
@@ -101,7 +112,8 @@ export default function Contact() {
             <motion.div
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
+              viewport={{ once: true, amount: 0.3 }}
+              transition={{ duration: 0.5 }}
               className="p-6 bg-linear-to-br from-cyan-50 to-blue-50 rounded-xl border border-cyan-200"
             >
               <h4 className="font-bold text-slate-900 mb-3 flex items-center gap-2">
@@ -121,7 +133,8 @@ export default function Contact() {
           <motion.div
             initial={{ opacity: 0, x: 50 }}
             whileInView={{ opacity: 1, x: 0 }}
-            viewport={{ once: true }}
+            viewport={{ once: true, amount: 0.2 }}
+            transition={{ duration: 0.6 }}
             className="h-full min-h-[500px] lg:min-h-[600px]"
           >
             <div className="bg-white rounded-2xl shadow-2xl overflow-hidden border border-slate-200 h-full">

@@ -10,7 +10,7 @@ import Contact from "./components/Contact";
 createRoot(document.getElementById("root")!).render(
   <StrictMode>
     <Header />
-    <main className="">
+    <main className="overflow-x-hidden">
       <AboutMe />
       <Services />
       <MyJobs />

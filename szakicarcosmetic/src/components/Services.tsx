@@ -1,5 +1,6 @@
 import { useTranslation } from "react-i18next";
 import { motion } from "framer-motion";
+import { useState, useEffect } from "react";
 import {
   Sparkles,
   Lightbulb,
@@ -11,6 +12,12 @@ import {
 
 export default function Services() {
   const { t } = useTranslation();
+  const [isMobile, setIsMobile] = useState(false);
+
+  useEffect(() => {
+    setIsMobile(window.innerWidth < 768);
+  }, []);
+
   const titles = {
     mainTitle: t("services.mainTitle"),
     subTitle: t("services.subTitle"),
@@ -25,39 +32,39 @@ export default function Services() {
   const servicesData = [
     {
       icon: <SprayCan className="w-8 h-8" />,
-      title: t(titles.cleaningTitle),
+      title: titles.cleaningTitle,
       description: t("services.carCleaning"),
       color: "from-blue-500 to-cyan-500",
     },
     {
       icon: <Sparkles className="w-8 h-8" />,
-      title: t(titles.polishingTitle),
+      title: titles.polishingTitle,
       description: t("services.polishing"),
       color: "from-purple-500 to-pink-500",
     },
     {
       icon: <Lightbulb className="w-8 h-8" />,
-      title: t(titles.headlightPolishingTitle),
+      title: titles.headlightPolishingTitle,
       description: t("services.headlightPolishing"),
       color: "from-yellow-500 to-orange-500",
     },
     {
       icon: <Shield className="w-8 h-8" />,
-      title: t(titles.waxingTitle),
+      title: titles.waxingTitle,
       description: t("services.waxing"),
       color: "from-green-500 to-emerald-500",
     },
     {
       icon: <Disc className="w-8 h-8" />,
-      title: t(titles.wheelCleaningTitle),
+      title: titles.wheelCleaningTitle,
       description: t("services.wheelCleaning"),
       color: "from-red-500 to-rose-500",
     },
     {
       icon: <Award className="w-8 h-8" />,
-      title: t(titles.qualityTitle),
+      title: titles.qualityTitle,
       description: t("services.qualityDescription"),
-      color: " from-white to-purple-500",
+      color: "from-white to-purple-500",
     },
   ];
 
@@ -70,7 +77,8 @@ export default function Services() {
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
+          viewport={{ once: true, amount: 0.3 }}
+          transition={{ duration: 0.5 }}
           className="text-center mb-12 sm:mb-16"
         >
           <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-slate-900 mb-4">
@@ -89,12 +97,19 @@ export default function Services() {
           {servicesData.map((service, index) => (
             <motion.div
               key={index}
-              initial={{ opacity: 0, y: 30 }}
+              initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ delay: index * 0.1 }}
-              whileHover={{ y: -8, transition: { duration: 0.2 } }}
-              className="group relative bg-white rounded-2xl shadow-lg hover:shadow-2xl transition-all duration-300 overflow-hidden border border-slate-200 hover:border-cyan-500/50"
+              viewport={{ once: true, amount: 0.2 }}
+              transition={{
+                duration: 0.4,
+                delay: isMobile ? 0 : index * 0.08,
+                ease: "easeOut",
+              }}
+              className="relative bg-white rounded-2xl shadow-lg transition-shadow duration-300 overflow-hidden border border-slate-200"
+              style={{
+                willChange: "transform",
+                transform: "translateZ(0)",
+              }}
             >
               <div
                 className={`absolute top-0 left-0 right-0 h-2 bg-linear-to-r ${service.color}`}
@@ -102,7 +117,7 @@ export default function Services() {
 
               <div className="p-6 sm:p-8">
                 <div
-                  className={`inline-flex p-4 rounded-xl bg-linear-to-br ${service.color} text-white mb-4 group-hover:scale-110 transition-transform duration-300 shadow-md`}
+                  className={`inline-flex p-4 rounded-xl bg-linear-to-br ${service.color} text-white mb-4 shadow-md`}
                 >
                   {service.icon}
                 </div>
@@ -115,8 +130,6 @@ export default function Services() {
                   {service.description}
                 </p>
               </div>
-
-              <div className="absolute inset-0 bg-linear-to-br from-cyan-500/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none" />
             </motion.div>
           ))}
         </div>
