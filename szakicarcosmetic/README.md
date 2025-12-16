@@ -6,7 +6,7 @@ Modern, multilingual car detailing service website built with React and TypeScri
 
 ## 🚗 About The Project
 
-A premium car detailing service showcase website featuring a single-page application with three language support (Hungarian, German, English), responsive design, and smooth animations.
+A premium car detailing service showcase website featuring a single-page application with three language support (Hungarian, German), responsive design, and smooth animations.
 
 ## ✨ Features
 
