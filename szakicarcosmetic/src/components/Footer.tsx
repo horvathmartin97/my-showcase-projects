@@ -4,7 +4,9 @@ export default function Footer() {
       <p>
         © {new Date().getFullYear()} Szaki Autókozmetika | Developed by{" "}
         <a
-          href="www.linkedin.com/in/martin-horváth-069487363"
+          href="https://www.linkedin.com/in/martin-horváth-069487363"
+          target="_blank"
+          rel="noopener noreferrer"
           className="text-cyan-500 hover:underline"
         >
           Martin Horváth
