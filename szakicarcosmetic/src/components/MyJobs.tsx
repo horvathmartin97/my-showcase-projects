@@ -34,7 +34,7 @@ import toyotaYarisBack2 from "../assets/toyotaYaris/toyotaYarisBack2.jpeg";
 import toyotaYarisInterior1 from "../assets/toyotaYaris/toyotaYarisInterior1.jpeg";
 import toyotaYarisInterior2 from "../assets/toyotaYaris/toyotaYarisInterior2.jpeg";
 import toyotaYarisBackDoor from "../assets/toyotaYaris/toyotaYarisBackDoor.jpeg";
-import glcBack from "../assets/mercedesGLC/mercedesGlcback.jpeg";
+import glcBack from "../assets/mercedesGLC/mercedesGlcBack.jpeg";
 import glcFront from "../assets/mercedesGLC/mercedesGlcFront.jpeg";
 import glcFront2 from "../assets/mercedesGLC/mercedesGlcFront2.jpeg";
 import glcTrunk from "../assets/mercedesGLC/mercedesGlcTrunk.jpeg";
