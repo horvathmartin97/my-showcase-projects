@@ -34,18 +34,17 @@ import toyotaYarisBack2 from "../assets/toyotaYaris/toyotaYarisBack2.jpeg";
 import toyotaYarisInterior1 from "../assets/toyotaYaris/toyotaYarisInterior1.jpeg";
 import toyotaYarisInterior2 from "../assets/toyotaYaris/toyotaYarisInterior2.jpeg";
 import toyotaYarisBackDoor from "../assets/toyotaYaris/toyotaYarisBackDoor.jpeg";
-import mercedesGlcFront from "../assets/mercedesGlc/mercedesGlcFront.jpeg";
-import mercedesGlcFront2 from "../assets/mercedesGlc/mercedesGlcFront2.jpeg";
-import mercedesGlcTrunk from "../assets/mercedesGlc/mercedesGlcTrunk.jpeg";
-import mercedesGlcInterior1 from "../assets/mercedesGlc/mercedesGlcInterior1.jpeg";
-import mercedesGlcInterior2 from "../assets/mercedesGlc/mercedesGlcInterior2.jpeg";
-import mercedesGlcInterior3 from "../assets/mercedesGlc/mercedesGlcInterior3.jpeg";
-import mercedesGlcInterior4 from "../assets/mercedesGlc/mercedesGlcInterior4.jpeg";
 import passatInterior1 from "../assets/vwPassatVIII/passatInterior1.jpeg";
 import passatInterior2 from "../assets/vwPassatVIII/passatInterior2.jpeg";
 import passatInterior3 from "../assets/vwPassatVIII/passatInterior3.jpeg";
 import passatInterior4 from "../assets/vwPassatVIII/passatInterior4.jpeg";
 import passatTrunk from "../assets/vwPassatVIII/passatTrunk.jpeg";
+import mercedes1 from "../assets/mercedesGLC/0EBD41E8-8A22-4FE8-A86E-230F213B1043_1_105_c.jpeg";
+import mercedes2 from "../assets/mercedesGLC/14BC9ADF-6A13-4AA0-BD8E-582938EDAEB3_1_105_c.jpeg";
+import mercedes3 from "../assets/mercedesGLC/16F5A986-3AE1-477B-AE9D-4A7E2A80857E_1_105_c.jpeg";
+import mercedes4 from "../assets/mercedesGLC/31720155-1DB3-44B2-8351-D244CCE22713_1_105_c.jpeg";
+import mercedes5 from "../assets/mercedesGLC/62DE7196-7CCD-40F7-B1AA-B57F2D8C6390_1_105_c.jpeg";
+import mercedes6 from "../assets/mercedesGLC/D8C09AB2-F8A3-4011-ACA6-CADEF5C9454E_1_105_c.jpeg";
 import { useTranslation } from "react-i18next";
 
 interface CarGallery {
@@ -119,18 +118,6 @@ export default function MyJobs() {
       ],
     },
     {
-      carName: "Mercedes Glc",
-      images: [
-        mercedesGlcFront,
-        mercedesGlcFront2,
-        mercedesGlcInterior1,
-        mercedesGlcInterior3,
-        mercedesGlcInterior2,
-        mercedesGlcInterior4,
-        mercedesGlcTrunk,
-      ],
-    },
-    {
       carName: "VolksWagen Passat VIII",
       images: [
         passatInterior1,
@@ -138,6 +125,17 @@ export default function MyJobs() {
         passatInterior3,
         passatInterior4,
         passatTrunk,
+      ],
+    },
+    {
+      carName: "Mercedes-Benz GLC",
+      images: [
+        mercedes1,
+        mercedes2,
+        mercedes3,
+        mercedes4,
+        mercedes5,
+        mercedes6,
       ],
     },
   ];
