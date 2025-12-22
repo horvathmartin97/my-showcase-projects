@@ -34,7 +34,7 @@ import toyotaYarisBack2 from "../assets/toyotaYaris/toyotaYarisBack2.jpeg";
 import toyotaYarisInterior1 from "../assets/toyotaYaris/toyotaYarisInterior1.jpeg";
 import toyotaYarisInterior2 from "../assets/toyotaYaris/toyotaYarisInterior2.jpeg";
 import toyotaYarisBackDoor from "../assets/toyotaYaris/toyotaYarisBackDoor.jpeg";
-import glcFront from "../assets/mercedesGlc/mercedesGlcFront.jpeg";
+import mercedesGlcFront from "../assets/mercedesGlc/mercedesGlcFront.jpeg";
 import glcFront2 from "../assets/mercedesGlc/mercedesGlcFront2.jpeg";
 import glcTrunk from "../assets/mercedesGlc/mercedesGlcTrunk.jpeg";
 import glcInterior1 from "../assets/mercedesGlc/mercedesGlcInterior1.jpeg";
@@ -121,7 +121,7 @@ export default function MyJobs() {
     {
       carName: "Merced-Benz GLC",
       images: [
-        glcFront,
+        mercedesGlcFront,
         glcFront2,
         glcInterior1,
         glcInterior2,
