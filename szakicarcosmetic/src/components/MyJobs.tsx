@@ -119,7 +119,7 @@ export default function MyJobs() {
       ],
     },
     {
-      carName: "Merced-Benz GLC",
+      carName: "Mercedes Glc",
       images: [
         mercedesGlcFront,
         mercedesGlcFront2,
