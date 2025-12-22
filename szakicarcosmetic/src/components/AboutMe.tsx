@@ -1,7 +1,7 @@
 import { useTranslation } from "react-i18next";
 import { motion } from "framer-motion";
 import { CheckCircle, Award, Star } from "lucide-react";
-import achievment from "../assets/acsi.jpeg";
+import achievment from "../assets/mainHero.jpeg";
 
 export default function AboutMe() {
   const { t } = useTranslation();

@@ -27,6 +27,26 @@ import fordFiestaInterior1 from "../assets/fordFiesta/interior1.jpeg";
 import fordFiestaInterior2 from "../assets/fordFiesta/interior2.jpeg";
 import fordFiestaInterior3 from "../assets/fordFiesta/interior3.jpeg";
 import fordFiestaInterior4 from "../assets/fordFiesta/interior4.jpeg";
+import toyotaYarisFront from "../assets/toyotaYaris/toyotaYarisFront.jpeg";
+import toyotaYarisFront3 from "../assets/toyotaYaris/toyotaYarisFront3.jpeg";
+import toyotaYarisBack from "../assets/toyotaYaris/toyotaYarisBack.jpeg";
+import toyotaYarisBack2 from "../assets/toyotaYaris/toyotaYarisBack2.jpeg";
+import toyotaYarisInterior1 from "../assets/toyotaYaris/toyotaYarisInterior1.jpeg";
+import toyotaYarisInterior2 from "../assets/toyotaYaris/toyotaYarisInterior2.jpeg";
+import toyotaYarisBackDoor from "../assets/toyotaYaris/toyotaYarisBackDoor.jpeg";
+import glcBack from "../assets/mercedesGLC/mercedesGlcback.jpeg";
+import glcFront from "../assets/mercedesGLC/mercedesGlcFront.jpeg";
+import glcFront2 from "../assets/mercedesGLC/mercedesGlcFront2.jpeg";
+import glcTrunk from "../assets/mercedesGLC/mercedesGlcTrunk.jpeg";
+import glcInterior1 from "../assets/mercedesGLC/mercedesGlcInterior1.jpeg";
+import glcInterior2 from "../assets/mercedesGLC/mercedesGlcInterior2.jpeg";
+import glcInterior3 from "../assets/mercedesGLC/mercedesGlcInterior3.jpeg";
+import glcInterior4 from "../assets/mercedesGLC/mercedesGlcInterior4.jpeg";
+import passatInterior1 from "../assets/vwPassatVIII/passatInterior1.jpeg";
+import passatInterior2 from "../assets/vwPassatVIII/passatInterior2.jpeg";
+import passatInterior3 from "../assets/vwPassatVIII/passatInterior3.jpeg";
+import passatInterior4 from "../assets/vwPassatVIII/passatInterior4.jpeg";
+import passatTrunk from "../assets/vwPassatVIII/passatTrunk.jpeg";
 import { useTranslation } from "react-i18next";
 
 interface CarGallery {
@@ -85,6 +105,41 @@ export default function MyJobs() {
         fordFiestaInterior2,
         fordFiestaInterior3,
         fordFiestaInterior4,
+      ],
+    },
+    {
+      carName: "Toyota Yaris",
+      images: [
+        toyotaYarisFront,
+        toyotaYarisFront3,
+        toyotaYarisBack,
+        toyotaYarisBack2,
+        toyotaYarisBackDoor,
+        toyotaYarisInterior1,
+        toyotaYarisInterior2,
+      ],
+    },
+    {
+      carName: "Merced-Benz GLC",
+      images: [
+        glcFront,
+        glcFront2,
+        glcBack,
+        glcInterior1,
+        glcInterior2,
+        glcInterior3,
+        glcInterior4,
+        glcTrunk,
+      ],
+    },
+    {
+      carName: "VolksWagen Passat VIII",
+      images: [
+        passatInterior1,
+        passatInterior2,
+        passatInterior3,
+        passatInterior4,
+        passatTrunk,
       ],
     },
   ];
