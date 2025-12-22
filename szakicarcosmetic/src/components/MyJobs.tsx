@@ -28,7 +28,7 @@ import fordFiestaInterior2 from "../assets/fordFiesta/interior2.jpeg";
 import fordFiestaInterior3 from "../assets/fordFiesta/interior3.jpeg";
 import fordFiestaInterior4 from "../assets/fordFiesta/interior4.jpeg";
 import toyotaYarisFront from "../assets/toyotaYaris/toyotaYarisFront.jpeg";
-import toyotaYarisFront3 from "../assets/toyotaYaris/toyotaYarisFront3.jpeg";
+import toyotaYarisFront2 from "../assets/toyotaYaris/toyotaYarisFront2.jpeg";
 import toyotaYarisBack from "../assets/toyotaYaris/toyotaYarisBack.jpeg";
 import toyotaYarisBack2 from "../assets/toyotaYaris/toyotaYarisBack2.jpeg";
 import toyotaYarisInterior1 from "../assets/toyotaYaris/toyotaYarisInterior1.jpeg";
@@ -111,7 +111,7 @@ export default function MyJobs() {
       carName: "Toyota Yaris",
       images: [
         toyotaYarisFront,
-        toyotaYarisFront3,
+        toyotaYarisFront2,
         toyotaYarisBack,
         toyotaYarisBack2,
         toyotaYarisBackDoor,
