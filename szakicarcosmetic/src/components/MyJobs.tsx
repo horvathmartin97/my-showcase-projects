@@ -35,12 +35,12 @@ import toyotaYarisInterior1 from "../assets/toyotaYaris/toyotaYarisInterior1.jpe
 import toyotaYarisInterior2 from "../assets/toyotaYaris/toyotaYarisInterior2.jpeg";
 import toyotaYarisBackDoor from "../assets/toyotaYaris/toyotaYarisBackDoor.jpeg";
 import mercedesGlcFront from "../assets/mercedesGlc/mercedesGlcFront.jpeg";
-import glcFront2 from "../assets/mercedesGlc/mercedesGlcFront2.jpeg";
-import glcTrunk from "../assets/mercedesGlc/mercedesGlcTrunk.jpeg";
-import glcInterior1 from "../assets/mercedesGlc/mercedesGlcInterior1.jpeg";
-import glcInterior2 from "../assets/mercedesGlc/mercedesGlcInterior2.jpeg";
-import glcInterior3 from "../assets/mercedesGlc/mercedesGlcInterior3.jpeg";
-import glcInterior4 from "../assets/mercedesGlc/mercedesGlcInterior4.jpeg";
+import mercedesGlcFront2 from "../assets/mercedesGlc/mercedesGlcFront2.jpeg";
+import mercedesGlcTrunk from "../assets/mercedesGlc/mercedesGlcTrunk.jpeg";
+import mercedesGlcInterior1 from "../assets/mercedesGlc/mercedesGlcInterior1.jpeg";
+import mercedesGlcInterior2 from "../assets/mercedesGlc/mercedesGlcInterior2.jpeg";
+import mercedesGlcInterior3 from "../assets/mercedesGlc/mercedesGlcInterior3.jpeg";
+import mercedesGlcInterior4 from "../assets/mercedesGlc/mercedesGlcInterior4.jpeg";
 import passatInterior1 from "../assets/vwPassatVIII/passatInterior1.jpeg";
 import passatInterior2 from "../assets/vwPassatVIII/passatInterior2.jpeg";
 import passatInterior3 from "../assets/vwPassatVIII/passatInterior3.jpeg";
@@ -122,12 +122,12 @@ export default function MyJobs() {
       carName: "Merced-Benz GLC",
       images: [
         mercedesGlcFront,
-        glcFront2,
-        glcInterior1,
-        glcInterior2,
-        glcInterior3,
-        glcInterior4,
-        glcTrunk,
+        mercedesGlcFront2,
+        mercedesGlcInterior1,
+        mercedesGlcInterior3,
+        mercedesGlcInterior2,
+        mercedesGlcInterior4,
+        mercedesGlcTrunk,
       ],
     },
     {
