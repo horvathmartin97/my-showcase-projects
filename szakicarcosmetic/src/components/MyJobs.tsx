@@ -34,7 +34,6 @@ import toyotaYarisBack2 from "../assets/toyotaYaris/toyotaYarisBack2.jpeg";
 import toyotaYarisInterior1 from "../assets/toyotaYaris/toyotaYarisInterior1.jpeg";
 import toyotaYarisInterior2 from "../assets/toyotaYaris/toyotaYarisInterior2.jpeg";
 import toyotaYarisBackDoor from "../assets/toyotaYaris/toyotaYarisBackDoor.jpeg";
-import glcBack from "../assets/mercedesGlc/mercedesGlc-Back.jpeg";
 import glcFront from "../assets/mercedesGlc/mercedesGlcFront.jpeg";
 import glcFront2 from "../assets/mercedesGlc/mercedesGlcFront2.jpeg";
 import glcTrunk from "../assets/mercedesGlc/mercedesGlcTrunk.jpeg";
@@ -124,7 +123,6 @@ export default function MyJobs() {
       images: [
         glcFront,
         glcFront2,
-        glcBack,
         glcInterior1,
         glcInterior2,
         glcInterior3,
