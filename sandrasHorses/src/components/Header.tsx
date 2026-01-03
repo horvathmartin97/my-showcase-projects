@@ -24,24 +24,6 @@ export default function Header() {
             </div>
           </div>
 
-          <nav className="hidden md:flex items-center gap-6 font-semibold text-amber-900">
-            <a href="#about" className="hover:text-amber-600 transition-colors">
-              Rólam
-            </a>
-            <a
-              href="#services"
-              className="hover:text-amber-600 transition-colors"
-            >
-              Szolgáltatások
-            </a>
-            <a
-              href="#gallery"
-              className="hover:text-amber-600 transition-colors"
-            >
-              Galéria
-            </a>
-          </nav>
-
           <a
             href="#contact"
             className="hidden md:block bg-amber-600 hover:bg-amber-700 text-white font-semibold px-6 py-3 rounded-lg transition-colors duration-300 shadow-md"
