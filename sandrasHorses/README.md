@@ -1,73 +1,41 @@
-# React + TypeScript + Vite
+# 🐴 Equestrian Academy - Horse Riding Instructor Website
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+A modern, single-page web application built for horse riding instructors to showcase their services, display photo galleries, and manage appointment bookings through an integrated contact form.
 
-Currently, two official plugins are available:
+## 📋 Table of Contents
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) (or [oxc](https://oxc.rs) when used in [rolldown-vite](https://vite.dev/guide/rolldown)) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+- [Features](#features)
+- [Tech Stack](#tech-stack)
+- [Installation](#installation)
+- [Configuration](#configuration)
+- [Project Structure](#project-structure)
+- [Usage](#usage)
+- [EmailJS Setup](#emailjs-setup)
+- [Customization](#customization)
+- [Deployment](#deployment)
+- [License](#license)
 
-## React Compiler
+## ✨ Features
 
-The React Compiler is currently not compatible with SWC. See [this issue](https://github.com/vitejs/vite-plugin-react/issues/428) for tracking the progress.
+- **Responsive Design**: Mobile-first approach with hamburger menu for mobile devices
+- **Hero Section**: Eye-catching header with gradient backgrounds and modern styling
+- **About Section**: Image gallery with lightbox functionality for viewing full-size photos
+- **Services Section**: Card-based layout showcasing different riding programs and pricing
+- **Contact Form**: Integrated with EmailJS for serverless email notifications
+- **Modern UI/UX**: Built with Tailwind CSS featuring smooth animations and hover effects
+- **No Backend Required**: Completely static site that can be hosted anywhere
 
-## Expanding the ESLint configuration
+## 🛠 Tech Stack
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
+- **Frontend Framework**: React 18+ with TypeScript
+- **Styling**: Tailwind CSS
+- **Email Service**: EmailJS
+- **Build Tool**: Vite (or your build tool)
+- **Package Manager**: npm
 
-```js
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
+## 📦 Installation
 
-      // Remove tseslint.configs.recommended and replace with this
-      tseslint.configs.recommendedTypeChecked,
-      // Alternatively, use this for stricter rules
-      tseslint.configs.strictTypeChecked,
-      // Optionally, add this for stylistic rules
-      tseslint.configs.stylisticTypeChecked,
+### Prerequisites
 
-      // Other configs...
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
-```
-
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
-
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
-
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-      // Enable lint rules for React
-      reactX.configs['recommended-typescript'],
-      // Enable lint rules for React DOM
-      reactDom.configs.recommended,
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
-```
+- Node.js (v16 or higher)
+- npm or yarn
