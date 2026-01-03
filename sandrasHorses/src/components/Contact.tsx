@@ -8,9 +8,6 @@ export default function Contact() {
     "idle" | "success" | "error"
   >("idle");
 
-  // Inicializáld az EmailJS-t (ezt csak egyszer kell, akár App.tsx-ben is)
-  // emailjs.init("YOUR_PUBLIC_KEY");
-
   const handleSubmit = async (e: FormEvent) => {
     e.preventDefault();
     setIsSubmitting(true);
@@ -19,16 +16,15 @@ export default function Contact() {
     if (form.current) {
       try {
         await emailjs.sendForm(
-          "YOUR_SERVICE_ID", // EmailJS Service ID
-          "YOUR_TEMPLATE_ID", // EmailJS Template ID
+          "service_wt8hqha",
+          "template_as74g0b",
           form.current,
-          "YOUR_PUBLIC_KEY" // EmailJS Public Key
+          "YI32jiBYW8Va7qcXX"
         );
 
         setSubmitStatus("success");
         form.current.reset();
 
-        // 5 másodperc után eltűnik a success üzenet
         setTimeout(() => setSubmitStatus("idle"), 5000);
       } catch (error) {
         console.error("EmailJS hiba:", error);
@@ -42,14 +38,12 @@ export default function Contact() {
   return (
     <section
       id="contact"
-      className="relative py-20 bg-gradient-to-b from-white to-amber-50 overflow-hidden"
+      className="relative py-20 bg-linear-to-b from-white to-amber-50 overflow-hidden"
     >
-      {/* Dekoratív elemek */}
       <div className="absolute top-20 right-0 w-96 h-96 bg-amber-200 rounded-full filter blur-3xl opacity-20 translate-x-1/2"></div>
       <div className="absolute bottom-0 left-0 w-80 h-80 bg-orange-200 rounded-full filter blur-3xl opacity-20 -translate-x-1/2"></div>
 
       <div className="relative container mx-auto px-4 z-10">
-        {/* Fejléc */}
         <div className="text-center mb-16">
           <span className="text-amber-600 font-semibold text-lg mb-2 block">
             LÉPJ KAPCSOLATBA
@@ -65,7 +59,6 @@ export default function Contact() {
         </div>
 
         <div className="max-w-6xl mx-auto grid md:grid-cols-2 gap-12">
-          {/* Bal oldal - Kapcsolati információk */}
           <div className="space-y-8">
             <div className="bg-white rounded-2xl shadow-xl p-8">
               <h3 className="text-2xl font-bold text-amber-900 mb-6">
@@ -73,7 +66,6 @@ export default function Contact() {
               </h3>
 
               <div className="space-y-6">
-                {/* Telefon */}
                 <div className="flex items-start gap-4">
                   <div className="w-12 h-12 bg-amber-100 rounded-full flex items-center justify-center flex-shrink-0">
                     <span className="text-2xl">📞</span>
@@ -89,7 +81,6 @@ export default function Contact() {
                   </div>
                 </div>
 
-                {/* Email */}
                 <div className="flex items-start gap-4">
                   <div className="w-12 h-12 bg-amber-100 rounded-full flex items-center justify-center flex-shrink-0">
                     <span className="text-2xl">✉️</span>
@@ -105,7 +96,6 @@ export default function Contact() {
                   </div>
                 </div>
 
-                {/* Cím */}
                 <div className="flex items-start gap-4">
                   <div className="w-12 h-12 bg-amber-100 rounded-full flex items-center justify-center flex-shrink-0">
                     <span className="text-2xl">📍</span>
@@ -120,7 +110,6 @@ export default function Contact() {
                   </div>
                 </div>
 
-                {/* Nyitvatartás */}
                 <div className="flex items-start gap-4">
                   <div className="w-12 h-12 bg-amber-100 rounded-full flex items-center justify-center flex-shrink-0">
                     <span className="text-2xl">🕒</span>
@@ -141,14 +130,13 @@ export default function Contact() {
               </div>
             </div>
 
-            {/* Gyors infó kártyák */}
             <div className="grid grid-cols-2 gap-4">
-              <div className="bg-gradient-to-br from-amber-400 to-amber-500 rounded-xl p-6 text-white">
+              <div className="bg-linear-to-br from-amber-400 to-amber-500 rounded-xl p-6 text-white">
                 <div className="text-3xl mb-2">⚡</div>
                 <div className="text-2xl font-bold">24h</div>
                 <div className="text-sm opacity-90">Válaszidő</div>
               </div>
-              <div className="bg-gradient-to-br from-orange-400 to-orange-500 rounded-xl p-6 text-white">
+              <div className="bg-linear-to-br from-orange-400 to-orange-500 rounded-xl p-6 text-white">
                 <div className="text-3xl mb-2">🎁</div>
                 <div className="text-2xl font-bold">Ingyenes</div>
                 <div className="text-sm opacity-90">Próbaóra</div>
@@ -156,14 +144,12 @@ export default function Contact() {
             </div>
           </div>
 
-          {/* Jobb oldal - Űrlap */}
           <div className="bg-white rounded-2xl shadow-xl p-8 md:p-10">
             <h3 className="text-2xl font-bold text-amber-900 mb-6">
               Kérj visszahívást
             </h3>
 
             <form ref={form} onSubmit={handleSubmit} className="space-y-6">
-              {/* Név */}
               <div>
                 <label
                   htmlFor="user_name"
@@ -181,7 +167,6 @@ export default function Contact() {
                 />
               </div>
 
-              {/* Email */}
               <div>
                 <label
                   htmlFor="user_email"
@@ -199,7 +184,6 @@ export default function Contact() {
                 />
               </div>
 
-              {/* Telefonszám */}
               <div>
                 <label
                   htmlFor="user_phone"
@@ -217,7 +201,6 @@ export default function Contact() {
                 />
               </div>
 
-              {/* Szolgáltatás választás */}
               <div>
                 <label
                   htmlFor="service_type"
@@ -238,7 +221,6 @@ export default function Contact() {
                 </select>
               </div>
 
-              {/* Üzenet */}
               <div>
                 <label
                   htmlFor="message"
@@ -255,7 +237,6 @@ export default function Contact() {
                 ></textarea>
               </div>
 
-              {/* Submit gomb */}
               <button
                 type="submit"
                 disabled={isSubmitting}
@@ -290,7 +271,6 @@ export default function Contact() {
                 )}
               </button>
 
-              {/* Success üzenet */}
               {submitStatus === "success" && (
                 <div className="bg-green-50 border-2 border-green-500 rounded-lg p-4 text-center animate-fadeIn">
                   <div className="text-3xl mb-2">✅</div>
@@ -303,7 +283,6 @@ export default function Contact() {
                 </div>
               )}
 
-              {/* Error üzenet */}
               {submitStatus === "error" && (
                 <div className="bg-red-50 border-2 border-red-500 rounded-lg p-4 text-center animate-fadeIn">
                   <div className="text-3xl mb-2">❌</div>
