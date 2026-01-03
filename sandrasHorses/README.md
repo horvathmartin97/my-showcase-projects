@@ -45,7 +45,7 @@ A modern, single-page web application built for horse riding instructors to show
 1. Clone the repository:
 
 ```bash
-git clone https://github.com/yourusername/equestrian-academy.git
+git clone https://github.com/horvathmartin97/my-showcase-projects/tree/main/sandrasHorses
 cd equestrian-academy
 Install dependencies:
 
