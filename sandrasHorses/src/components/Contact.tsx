@@ -67,7 +67,7 @@ export default function Contact() {
 
               <div className="space-y-6">
                 <div className="flex items-start gap-4">
-                  <div className="w-12 h-12 bg-amber-100 rounded-full flex items-center justify-center flex-shrink-0">
+                  <div className="w-12 h-12 bg-amber-100 rounded-full flex items-center justify-center shrink-0">
                     <span className="text-2xl">📞</span>
                   </div>
                   <div>
@@ -82,7 +82,7 @@ export default function Contact() {
                 </div>
 
                 <div className="flex items-start gap-4">
-                  <div className="w-12 h-12 bg-amber-100 rounded-full flex items-center justify-center flex-shrink-0">
+                  <div className="w-12 h-12 bg-amber-100 rounded-full flex items-center justify-center shrink-0">
                     <span className="text-2xl">✉️</span>
                   </div>
                   <div>
@@ -97,7 +97,7 @@ export default function Contact() {
                 </div>
 
                 <div className="flex items-start gap-4">
-                  <div className="w-12 h-12 bg-amber-100 rounded-full flex items-center justify-center flex-shrink-0">
+                  <div className="w-12 h-12 bg-amber-100 rounded-full flex items-center justify-center shrink-0">
                     <span className="text-2xl">📍</span>
                   </div>
                   <div>
@@ -111,7 +111,7 @@ export default function Contact() {
                 </div>
 
                 <div className="flex items-start gap-4">
-                  <div className="w-12 h-12 bg-amber-100 rounded-full flex items-center justify-center flex-shrink-0">
+                  <div className="w-12 h-12 bg-amber-100 rounded-full flex items-center justify-center shrink-0">
                     <span className="text-2xl">🕒</span>
                   </div>
                   <div>
