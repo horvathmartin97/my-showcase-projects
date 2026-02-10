@@ -2,7 +2,7 @@ export default function Footer() {
   return (
     <footer className="bg-slate-900 text-slate-600 py-4 text-center text-xs">
       <p>
-        © {new Date().getFullYear()} Szaki Autókozmetika | Developed by{" "}
+        © 2025 Szaki Autókozmetika | Developed by{" "}
         <a
           href="https://martin-horvath-portfolio.netlify.app/"
           target="_blank"
