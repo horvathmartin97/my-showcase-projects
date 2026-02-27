@@ -1,6 +1,6 @@
 import donBociLogo from "./assets/donbociLogo.jpg";
 import donPipiLogo from "./assets/don_pipi_logo_hatter_nelkul_szines (2).png";
-import { ArrowLeftRight, Clock, Facebook, MapPin } from "lucide-react";
+import { ArrowLeftRight, Clock, Facebook, MapPin, Phone } from "lucide-react";
 import StarRating from "./components/starRating";
 
 type Restaurant = {
@@ -47,7 +47,7 @@ const links: Restaurant[] = [
 
 export default function App() {
   return (
-    <div className="min-h-screen bg-[#0a0a0a] px-4 py-16 sm:px-6 lg:px-8">
+    <div className="min-h-screen bg-[#0a0a0a] px-4 py-16 sm:px-6 lg:px-8 ">
       <div className="mx-auto mb-16 max-w-2xl text-center">
         <p className="mb-3 text-xs font-semibold uppercase tracking-[0.25em] text-white/40">
           Online rendelés · Baja
@@ -108,6 +108,11 @@ export default function App() {
                 <p className="mt-1 flex items-center gap-1.5 text-sm text-white/50">
                   <Clock /> {r.openingHours}
                 </p>
+                {r.tel && (
+                  <div className="mt-1 flex items-center gap-1.5 text-sm text-white/50">
+                    <Phone /> <a href="tel:+36703500777">+36703500777 </a>
+                  </div>
+                )}
                 {r.rating && (
                   <div className="mt-2">
                     <StarRating rating={r.rating} />
