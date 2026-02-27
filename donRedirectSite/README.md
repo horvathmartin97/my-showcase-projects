@@ -8,7 +8,7 @@ built to direct customers to the online ordering platforms of two restaurants:
 
 ## 🍔 Live Demo
 
-[https://donboci.hu](https://donboci.hu)
+ComingSoon!
 
 ---
 
