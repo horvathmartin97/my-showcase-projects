@@ -1,5 +1,7 @@
 import donBociLogo from "./assets/donbociLogo.jpg";
 import donPipiLogo from "./assets/don_pipi_logo_hatter_nelkul_szines (2).png";
+import { ArrowLeftRight, Clock, Facebook, MapPin } from "lucide-react";
+import StarRating from "./components/starRating";
 
 type Restaurant = {
   id: number;
@@ -10,6 +12,9 @@ type Restaurant = {
   color: string;
   badge: string;
   facebook: string;
+  tel?: string;
+  rating?: number;
+  openingHours: string;
 };
 
 const links: Restaurant[] = [
@@ -22,6 +27,8 @@ const links: Restaurant[] = [
     color: "from-orange-500 to-red-600",
     badge: "Burger & Döner",
     facebook: "https://www.facebook.com/profile.php?id=61568852720058",
+    rating: 4.9,
+    openingHours: "Hé-Szo, 10:30-20:00",
   },
   {
     id: 2,
@@ -32,6 +39,9 @@ const links: Restaurant[] = [
     color: "from-yellow-400 to-orange-500",
     badge: "Csirke specialitások",
     facebook: "https://www.facebook.com/Donpipibaja",
+    tel: "+36703500777",
+    rating: 4.8,
+    openingHours: "Ke-Szo, 11:00 - 20:00",
   },
 ];
 
@@ -85,21 +95,24 @@ export default function App() {
                   {r.name}
                 </h2>
                 <p className="mt-1 flex items-center gap-1.5 text-sm text-white/50">
-                  <svg
-                    className="h-3.5 w-3.5 shrink-0"
-                    fill="none"
-                    stroke="currentColor"
-                    viewBox="0 0 24 24"
-                  >
-                    <path
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                      strokeWidth={1.5}
-                      d="M15 10.5a3 3 0 1 1-6 0 3 3 0 0 1 6 0Z M19.5 10.5c0 7.142-7.5 11.25-7.5 11.25S4.5 17.642 4.5 10.5a7.5 7.5 0 1 1 15 0Z"
-                    />
-                  </svg>
+                  <MapPin className="" />
                   {r.address}
                 </p>
+                <a
+                  target="_blank"
+                  href={r.facebook}
+                  className="mt-1  flex items-center gap-1 text-sm text-red-400 underline font-bold "
+                >
+                  <Facebook /> Kövesd akcióinkat Facebookon !
+                </a>
+                <p className="mt-1 flex items-center gap-1.5 text-sm text-white/50">
+                  <Clock /> {r.openingHours}
+                </p>
+                {r.rating && (
+                  <div className="mt-2">
+                    <StarRating rating={r.rating} />
+                  </div>
+                )}
               </div>
 
               <div
@@ -108,19 +121,7 @@ export default function App() {
                 <span className="text-sm font-semibold text-white">
                   Rendelés indítása
                 </span>
-                <svg
-                  className="h-4 w-4 text-white transition-transform duration-200 group-hover:translate-x-1"
-                  fill="none"
-                  stroke="currentColor"
-                  viewBox="0 0 24 24"
-                >
-                  <path
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    strokeWidth={2}
-                    d="M17 8l4 4m0 0l-4 4m4-4H3"
-                  />
-                </svg>
+                <ArrowLeftRight className="text-white" />
               </div>
             </div>
           </a>
