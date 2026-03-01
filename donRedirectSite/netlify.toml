@@ -1,7 +1,7 @@
 [build]
-  base = "donRedirectSite"
+  base = "."
   command = "npm run build"
-  publish = "donRedirectSite/dist"
+  publish = "dist"
 
 [[redirects]]
   from = "/*"
