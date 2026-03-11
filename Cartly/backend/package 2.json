@@ -1,0 +1,13 @@
+{
+  "dependencies": {
+    "express": "^5.2.1"
+  },
+  "devDependencies": {
+    "concurrently": "^9.2.1",
+    "nodemon": "^3.1.14",
+    "typescript": "file:types/node@types/express"
+  },
+  "scripts": {
+    "dev": "concurrently \"tsc --watch\" \"nodemon dist/index.js\""
+  }
+}
