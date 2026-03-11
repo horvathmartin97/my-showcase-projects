@@ -1,5 +1,5 @@
 import { json } from "zod";
-import { ApiResponse } from "../utils/global";
+import { ApiResponse } from "../types/global";
 import { LoginUserType, RegisterUserType } from "./authSchema";
 import authService from "./authService";
 import { LoginUserResponseData, UserResponse } from "./authTypes";

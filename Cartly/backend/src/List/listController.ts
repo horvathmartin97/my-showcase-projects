@@ -1,6 +1,6 @@
 import { NextFunction, Response, Request } from "express";
 import { List } from "../../generated/prisma";
-import { ApiResponse } from "../utils/global";
+import { ApiResponse } from "../types/global";
 import HttpError from "../utils/HttpError";
 import { addNewList } from "./listSchema";
 import listService from "./listService";
@@ -42,6 +42,39 @@ const listController = {
         throw new HttpError("List not found", 404);
       }
       res.json({ ok: true, message: "List found", data: result });
+    } catch (error) {
+      next(error);
+    }
+  },
+  deleteListById: async (
+    req: AuthorizedRequest,
+    res: Response<ApiResponse<List>>,
+    next: NextFunction,
+  ): Promise<void> => {
+    try {
+      if (!req.user) {
+        throw new HttpError("Unauthorized", 401);
+      }
+      const listId = req.params.listId as string;
+      const list = await listService.deleteList(listId);
+      res
+        .status(200)
+        .json({ ok: true, message: "List is deleted", data: list });
+    } catch (error) {
+      next(error);
+    }
+  },
+  getLists: async (
+    req: AuthorizedRequest,
+    res: Response<ApiResponse<List[]>>,
+    next: NextFunction,
+  ): Promise<void> => {
+    try {
+      if (!req.user) {
+        throw new HttpError("You must be logged in", 401);
+      }
+      const lists = await listService.getLists(req.user.id);
+      res.json({ ok: true, message: "Lists fetched", data: lists });
     } catch (error) {
       next(error);
     }
