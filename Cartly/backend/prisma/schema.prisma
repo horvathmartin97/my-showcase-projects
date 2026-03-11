@@ -9,31 +9,31 @@ datasource db {
 }
 
 model User {
-  id        String   @id @default(cuid())
-  email     String   @unique
-  name      String
-  password  String
-  createdAt DateTime @default(now())
-  updatedAt DateTime @updatedAt
-  ownedLists List[]   @relation("OwnedLists")
-  memberLists List[]  @relation("ListMembers")
+  id          String   @id @default(cuid())
+  email       String   @unique
+  name        String
+  password    String
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+  ownedLists  List[]   @relation("OwnedLists")
+  memberLists List[]   @relation("ListMembers")
 }
 
 model List {
   id        String   @id @default(cuid())
   name      String
   createdAt DateTime @default(now())
-  owner     User     @relation("OwnedLists", fields: [ownerId], references: [id])
+  owner     User     @relation("OwnedLists", fields: [ownerId], references: [id], onDelete: Cascade)
   ownerId   String
   members   User[]   @relation("ListMembers")
   items     Item[]
 }
 
 model Item {
-  id        String  @id @default(cuid())
-  name      String
-  quantity  String?
-  checked   Boolean @default(false)
-  list      List    @relation(fields: [listId], references: [id])
-  listId    String
+  id       String  @id @default(cuid())
+  name     String
+  quantity String?
+  checked  Boolean @default(false)
+  list     List    @relation(fields: [listId], references: [id], onDelete: Cascade)
+  listId   String
 }

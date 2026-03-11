@@ -1,0 +1,53 @@
+import { connect } from "node:http2";
+import { List, Prisma } from "../../generated/prisma";
+import prisma from "../utils/prisma";
+import { AddNewListType } from "./listSchema";
+import { id } from "zod/v4/locales";
+import HttpError from "../utils/HttpError";
+import { promises } from "node:dns";
+
+const listService = {
+  addNewList: async (data: AddNewListType, userId: string) => {
+    const newList = await prisma.list.create({
+      data: { ...data, owner: { connect: { id: userId } } },
+    });
+    return newList;
+  },
+  getLists: async (userId: string) => {
+    const lists = await prisma.list.findMany({
+      where: {
+        OR: [{ ownerId: userId }, { members: { some: { id: userId } } }],
+      },
+      include: {
+        items: true,
+        owner: {
+          select: { id: true, name: true, email: true },
+        },
+        members: {
+          select: { id: true, name: true, email: true },
+        },
+      },
+      orderBy: { createdAt: "desc" },
+    });
+    return lists;
+  },
+  deleteList: async (listId: string): Promise<List> => {
+    const isListExist = await prisma.list.findUnique({
+      where: { id: listId },
+    });
+    if (!isListExist) {
+      throw new HttpError("List is not exists", 404);
+    }
+    return await prisma.list.delete({ where: { id: listId } });
+  },
+  getListById: async (listId: string): Promise<List> => {
+    const doesListExist = await prisma.list.findUnique({
+      where: { id: listId },
+    });
+    if (!doesListExist) {
+      throw new HttpError("List is not exist", 404);
+    }
+    return doesListExist;
+  },
+};
+export default listService;
