@@ -5,6 +5,7 @@ import { Item } from "../../generated/prisma";
 import HttpError from "../utils/HttpError";
 import { itemSchema } from "./itemSchema";
 import itemService from "./itemService";
+import { updateItem } from "./itemSchema";
 
 const itemController = {
   postItem: async (
@@ -38,6 +39,25 @@ const itemController = {
       res
         .status(200)
         .json({ ok: true, message: "Item is deleted", data: item });
+    } catch (error) {
+      next(error);
+    }
+  },
+  updateItemById: async (
+    req: AuthorizedRequest,
+    res: Response<ApiResponse<Item>>,
+    next: NextFunction,
+  ): Promise<void> => {
+    try {
+      if (!req.user) {
+        throw new HttpError("Unauthorized", 401);
+      }
+      const itemId = req.params.itemId as string;
+      const newItemData = updateItem.parse(req.body);
+      const newItem = await itemService.updateItem(itemId, newItemData);
+      res
+        .status(200)
+        .json({ ok: true, message: "Updated successfully", data: newItem });
     } catch (error) {
       next(error);
     }
