@@ -32,7 +32,7 @@ model List {
 model Item {
   id       String  @id @default(cuid())
   name     String
-  quantity String?
+  quantity Int
   checked  Boolean @default(false)
   list     List    @relation(fields: [listId], references: [id], onDelete: Cascade)
   listId   String

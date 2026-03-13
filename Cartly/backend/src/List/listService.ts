@@ -1,10 +1,8 @@
-import { connect } from "node:http2";
-import { List, Prisma } from "../../generated/prisma";
+import { List } from "../../generated/prisma";
 import prisma from "../utils/prisma";
 import { AddNewListType } from "./listSchema";
-import { id } from "zod/v4/locales";
+
 import HttpError from "../utils/HttpError";
-import { promises } from "node:dns";
 
 const listService = {
   addNewList: async (data: AddNewListType, userId: string) => {
