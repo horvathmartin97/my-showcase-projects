@@ -1,0 +1,105 @@
+{
+  "paths": {
+    "/items/{listId}": {
+      "post": {
+        "summary": "Create a new item in a list",
+        "tags": ["Items"],
+        "security": [{ "bearerAuth": [] }],
+        "parameters": [
+          {
+            "in": "path",
+            "name": "listId",
+            "required": true,
+            "schema": { "type": "string" }
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "name": { "type": "string" },
+                  "quantity": { "type": "integer" }
+                },
+                "required": ["name"]
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": { "description": "Item created" }
+        }
+      }
+    },
+    "/items/{itemId}": {
+      "get": {
+        "summary": "Get item by ID",
+        "tags": ["Items"],
+        "security": [{ "bearerAuth": [] }],
+        "parameters": [
+          {
+            "in": "path",
+            "name": "itemId",
+            "required": true,
+            "schema": { "type": "string" }
+          }
+        ],
+        "responses": {
+          "200": { "description": "A single item" },
+          "404": { "description": "Item not found" }
+        }
+      },
+      "patch": {
+        "summary": "Update item by ID",
+        "tags": ["Items"],
+        "security": [{ "bearerAuth": [] }],
+        "parameters": [
+          {
+            "in": "path",
+            "name": "itemId",
+            "required": true,
+            "schema": { "type": "string" }
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "name": { "type": "string" },
+                  "quantity": { "type": "integer" },
+                  "checked": { "type": "boolean" }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": { "description": "Item updated" },
+          "404": { "description": "Item not found" }
+        }
+      },
+      "delete": {
+        "summary": "Delete item by ID",
+        "tags": ["Items"],
+        "security": [{ "bearerAuth": [] }],
+        "parameters": [
+          {
+            "in": "path",
+            "name": "itemId",
+            "required": true,
+            "schema": { "type": "string" }
+          }
+        ],
+        "responses": {
+          "200": { "description": "Item deleted" },
+          "404": { "description": "Item not found" }
+        }
+      }
+    }
+  }
+}

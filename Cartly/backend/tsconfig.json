@@ -4,6 +4,7 @@
     // File Layout
     "rootDir": ".",
     "outDir": "./dist",
+    "resolveJsonModule": true,
 
     // Environment Settings
     // See also https://aka.ms/tsconfig/module

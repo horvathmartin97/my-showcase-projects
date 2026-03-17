@@ -1,0 +1,72 @@
+{
+  "paths": {
+    "/lists": {
+      "get": {
+        "summary": "Get all lists",
+        "tags": ["Lists"],
+        "security": [{ "bearerAuth": [] }],
+        "responses": {
+          "200": {
+            "description": "List of all shopping lists"
+          }
+        }
+      },
+      "post": {
+        "summary": "Create a new list",
+        "tags": ["Lists"],
+        "security": [{ "bearerAuth": [] }],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "name": { "type": "string" }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": { "description": "List created" }
+        }
+      }
+    },
+    "/lists/{listId}": {
+      "get": {
+        "summary": "Get list by ID",
+        "tags": ["Lists"],
+        "security": [{ "bearerAuth": [] }],
+        "parameters": [
+          {
+            "in": "path",
+            "name": "listId",
+            "required": true,
+            "schema": { "type": "integer" }
+          }
+        ],
+        "responses": {
+          "200": { "description": "A single shopping list" },
+          "404": { "description": "List not found" }
+        }
+      },
+      "delete": {
+        "summary": "Delete list by ID",
+        "tags": ["Lists"],
+        "security": [{ "bearerAuth": [] }],
+        "parameters": [
+          {
+            "in": "path",
+            "name": "listId",
+            "required": true,
+            "schema": { "type": "integer" }
+          }
+        ],
+        "responses": {
+          "200": { "description": "List deleted" }
+        }
+      }
+    }
+  }
+}
