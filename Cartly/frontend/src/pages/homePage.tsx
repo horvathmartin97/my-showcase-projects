@@ -1,4 +1,4 @@
-import { useNavigate } from "react-router";
+import { Link } from "react-router";
 const features = [
   {
     icon: "📋",
@@ -24,8 +24,6 @@ const features = [
 ];
 
 export default function HomePage() {
-  const navigate = useNavigate();
-
   return (
     <div className="flex flex-col min-h-screen">
       <main className="flex-1 flex flex-col items-center justify-center text-center px-6 py-20">
@@ -46,18 +44,18 @@ export default function HomePage() {
         </p>
 
         <div className="flex flex-col sm:flex-row gap-4">
-          <button
-            onClick={() => navigate("/register")}
+          <Link
+            to={"/register"}
             className="px-8 py-3 bg-linear-to-r from-lime-400 to-emerald-500 text-gray-900 text-lg rounded-2xl font-bold hover:opacity-90 transition shadow-lg shadow-lime-400/20"
           >
             Get started free ✨
-          </button>
-          <button
-            onClick={() => navigate("/login")}
+          </Link>
+          <Link
+            to={"/login"}
             className="px-8 py-3 border-2 border-indigo-500 text-indigo-200 text-lg rounded-2xl font-semibold hover:bg-indigo-800/40 transition"
           >
             Login
-          </button>
+          </Link>
         </div>
       </main>
 
