@@ -34,3 +34,4 @@ itemRouter.delete(
   validatedParams(idParamsSchema),
   itemController.deleteItemById,
 );
+export default itemRouter;
