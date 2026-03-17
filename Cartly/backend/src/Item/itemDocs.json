@@ -1,6 +1,6 @@
 {
   "paths": {
-    "/items/{listId}": {
+    "/api/item/{listId}": {
       "post": {
         "summary": "Create a new item in a list",
         "tags": ["Items"],
@@ -29,11 +29,11 @@
           }
         },
         "responses": {
-          "201": { "description": "Item created" }
+          "201": { "description": "Item created successfully" }
         }
       }
     },
-    "/items/{itemId}": {
+    "/api/item/{itemId}": {
       "get": {
         "summary": "Get item by ID",
         "tags": ["Items"],
@@ -43,7 +43,8 @@
             "in": "path",
             "name": "itemId",
             "required": true,
-            "schema": { "type": "string" }
+            "schema": { "type": "string" },
+            "example": "cmmuhdidg0000mrs751lnj88h"
           }
         ],
         "responses": {
@@ -60,7 +61,8 @@
             "in": "path",
             "name": "itemId",
             "required": true,
-            "schema": { "type": "string" }
+            "schema": { "type": "string" },
+            "example": "cmmuhdidg0000mrs751lnj88h"
           }
         ],
         "requestBody": {
@@ -79,7 +81,7 @@
           }
         },
         "responses": {
-          "200": { "description": "Item updated" },
+          "200": { "description": "Item updated successfully" },
           "404": { "description": "Item not found" }
         }
       },
@@ -92,11 +94,12 @@
             "in": "path",
             "name": "itemId",
             "required": true,
-            "schema": { "type": "string" }
+            "schema": { "type": "string" },
+            "example": "cmmuhdidg0000mrs751lnj88h"
           }
         ],
         "responses": {
-          "200": { "description": "Item deleted" },
+          "200": { "description": "Item deleted successfully" },
           "404": { "description": "Item not found" }
         }
       }
