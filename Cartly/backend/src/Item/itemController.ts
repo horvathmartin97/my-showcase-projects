@@ -15,7 +15,7 @@ const itemController = {
   ): Promise<void> => {
     try {
       if (!req.user) {
-        throw new HttpError("Unathorized", 401);
+        throw new HttpError("Unauthorized", 401);
       }
       const listId = req.params.listId as string;
       const parsedBody = itemSchema.parse(req.body);

@@ -12,6 +12,7 @@ const itemRouter: Router = Router();
 itemRouter.post(
   "/:listId",
   authorize,
+  validatedParams(idParamsSchema),
   validateRequestBody(itemSchema),
   itemController.postItem,
 );

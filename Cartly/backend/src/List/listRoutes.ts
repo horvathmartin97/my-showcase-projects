@@ -10,6 +10,7 @@ const listRouter: Router = Router();
 listRouter.get("/", authorize, listController.getLists);
 listRouter.get(
   "/:listId",
+  authorize,
   validatedParams(idParamsSchema),
   listController.getListById,
 );
