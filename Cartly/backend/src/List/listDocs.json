@@ -1,6 +1,6 @@
 {
   "paths": {
-    "/list": {
+    "/api/list": {
       "get": {
         "summary": "Get all lists for current user",
         "description": "Returns lists where the user is the owner or a member, ordered by creation date",
@@ -81,7 +81,7 @@
         }
       }
     },
-    "/lists/{listId}": {
+    "/api/list/{listId}": {
       "get": {
         "summary": "Get list by ID",
         "description": "Returns a single list with its items",

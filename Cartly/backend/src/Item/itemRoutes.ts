@@ -2,7 +2,7 @@ import { Router } from "express";
 import authorize from "../middlewares/authorize";
 import itemService from "./itemService";
 import validateRequestBody from "../middlewares/validateReqBody";
-import { itemSchema, updateItem } from "./itemSchema";
+import { itemIdParamsSchema, itemSchema, updateItem } from "./itemSchema";
 import itemController from "./itemController";
 import validatedParams from "../middlewares/validatedParams";
 import { idParamsSchema } from "../List/listSchema";
@@ -19,20 +19,20 @@ itemRouter.post(
 itemRouter.get(
   "/:itemId",
   authorize,
-  validatedParams(idParamsSchema),
+  validatedParams(itemIdParamsSchema),
   itemController.getItemById,
 );
 itemRouter.patch(
   "/:itemId",
   authorize,
-  validatedParams(idParamsSchema),
+  validatedParams(itemIdParamsSchema),
   validateRequestBody(updateItem),
   itemController.updateItemById,
 );
 itemRouter.delete(
   "/:itemId",
   authorize,
-  validatedParams(idParamsSchema),
+  validatedParams(itemIdParamsSchema),
   itemController.deleteItemById,
 );
 export default itemRouter;

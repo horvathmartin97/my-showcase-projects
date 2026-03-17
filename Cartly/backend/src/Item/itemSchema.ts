@@ -13,3 +13,8 @@ export const updateItem = itemSchema
   });
 
 export type UpdateItemSchema = z.infer<typeof updateItem>;
+export const itemIdParamsSchema = z.object({
+  itemId: z.string().cuid({
+    message: "ID must be a string",
+  }),
+});
