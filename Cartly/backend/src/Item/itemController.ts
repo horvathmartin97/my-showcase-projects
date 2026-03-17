@@ -62,5 +62,21 @@ const itemController = {
       next(error);
     }
   },
+  getItemById: async (
+    req: AuthorizedRequest,
+    res: Response<ApiResponse<Item>>,
+    next: NextFunction,
+  ): Promise<void> => {
+    try {
+      if (!req.user) throw new HttpError("Unauthorized", 401);
+      const itemId = req.params.itemId as string;
+      const item = await itemService.getItemById(itemId);
+      res
+        .status(200)
+        .json({ ok: true, message: "Item loaded successfully", data: item });
+    } catch (error) {
+      next(error);
+    }
+  },
 };
 export default itemController;
