@@ -27,9 +27,7 @@ export default function LoginPage() {
       setLoading(true);
       setError("");
       if (!auth) {
-        console.log("előtte");
         setError("Validation error, please try again later");
-        console.log("utána");
         setLoading(false);
         return;
       }
