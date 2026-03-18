@@ -54,7 +54,6 @@ export default function RegisterPage() {
   return (
     <div className="min-h-screen flex items-center justify-center px-4">
       <div className="w-full max-w-md bg-indigo-900/50 border border-indigo-700 rounded-3xl p-8 shadow-xl">
-        {/* Header */}
         <div className="text-center mb-8">
           <span className="text-4xl">🛒</span>
           <h1 className="text-3xl font-extrabold text-white mt-2">
@@ -65,7 +64,6 @@ export default function RegisterPage() {
           </p>
         </div>
 
-        {/* Global error */}
         {error && (
           <div className="mb-4 px-4 py-3 bg-pink-500/20 border border-pink-500/40 rounded-xl text-pink-300 text-sm text-center">
             {error}
@@ -73,7 +71,6 @@ export default function RegisterPage() {
         )}
 
         <form onSubmit={handleSubmit(onSubmit)} className="space-y-5">
-          {/* Name */}
           <div className="flex flex-col gap-1">
             <label
               htmlFor="name"
@@ -96,7 +93,6 @@ export default function RegisterPage() {
             )}
           </div>
 
-          {/* Email */}
           <div className="flex flex-col gap-1">
             <label
               htmlFor="email"
@@ -119,7 +115,6 @@ export default function RegisterPage() {
             )}
           </div>
 
-          {/* Password */}
           <div className="flex flex-col gap-1">
             <label
               htmlFor="password"
@@ -142,17 +137,15 @@ export default function RegisterPage() {
             )}
           </div>
 
-          {/* Submit */}
           <button
             type="submit"
             disabled={loading}
-            className="w-full py-3 bg-gradient-to-r from-lime-400 to-emerald-500 text-gray-900 font-bold rounded-2xl hover:opacity-90 transition shadow-lg shadow-lime-400/20 disabled:opacity-50 mt-2"
+            className="w-full py-3 bg-linear-to-r from-lime-400 to-emerald-500 text-gray-900 font-bold rounded-2xl hover:opacity-90 transition shadow-lg shadow-lime-400/20 disabled:opacity-50 mt-2"
           >
             {loading ? "Creating account..." : "Register"}
           </button>
         </form>
 
-        {/* Login link */}
         <p className="text-center text-indigo-300 text-sm mt-6">
           Already have an account?{" "}
           <button
