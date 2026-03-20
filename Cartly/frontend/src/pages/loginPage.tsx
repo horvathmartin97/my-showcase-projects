@@ -35,7 +35,7 @@ export default function LoginPage() {
       if (!loginResult.ok) {
         setError(loginResult.message);
       } else {
-        navigate("/myLists");
+        navigate("/");
       }
       setLoading(false);
     },
@@ -44,7 +44,7 @@ export default function LoginPage() {
 
   useEffect(() => {
     if (auth?.user) {
-      navigate("/");
+      navigate("/myLists");
     }
   }, [auth?.user, navigate]);
 
