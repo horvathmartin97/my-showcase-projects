@@ -12,3 +12,16 @@ export default async function getAllLists(
   });
   return response.json();
 }
+export async function getMyDetailedList(
+  listId: string,
+  token: string,
+): Promise<ApiResponse<ListType>> {
+  const response = await fetch(`${API_URL}/api/list/${listId}`, {
+    headers: { Authorization: `Bearer ${token}` },
+  });
+  if (!response.ok) {
+    const errorText = await response.text();
+    throw new Error(`Backend error ${errorText}`);
+  }
+  return response.json();
+}

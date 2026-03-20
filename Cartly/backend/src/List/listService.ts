@@ -41,7 +41,7 @@ const listService = {
   getListById: async (listId: string): Promise<List> => {
     const doesListExist = await prisma.list.findUnique({
       where: { id: listId },
-      include: { items: true },
+      include: { items: true, members: true },
     });
     if (!doesListExist) {
       throw new HttpError("List is not exist", 404);
