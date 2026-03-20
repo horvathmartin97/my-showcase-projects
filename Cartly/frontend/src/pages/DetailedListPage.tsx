@@ -3,6 +3,7 @@ import { AuthContext } from "../contexts/AuthContext";
 import type { ListType } from "../types/listTypes";
 import { getMyDetailedList, toggleItem } from "../services/listService";
 import { useParams } from "react-router";
+import AddItemModal from "../components/AddItemModal";
 
 export default function DetailedListPage() {
   const auth = useContext(AuthContext);
@@ -12,6 +13,7 @@ export default function DetailedListPage() {
   const [data, setData] = useState<ListType | null>(null);
   const [error, setError] = useState("");
   const [loading, setLoading] = useState(false);
+  const [isModalOpen, setIsModalOpen] = useState(false);
 
   useEffect(() => {
     if (!token) {
@@ -85,11 +87,25 @@ export default function DetailedListPage() {
     <div className="max-w-2xl mx-auto px-4 py-8">
       <div className="flex justify-between items-center mb-6">
         <h1 className="text-2xl font-bold text-white">{data.name}</h1>
-        <button className="bg-blue-600 hover:bg-blue-700 text-white text-sm font-medium px-4 py-2 rounded-lg transition">
+        <button
+          onClick={() => setIsModalOpen(true)}
+          className="bg-blue-600 hover:bg-blue-700 text-white text-sm font-medium px-4 py-2 rounded-lg transition"
+        >
           + Add Item
         </button>
       </div>
-
+      {isModalOpen && (
+        <AddItemModal
+          listId={listId!}
+          token={token!}
+          onClose={() => setIsModalOpen(false)}
+          onSuccess={(newItem) =>
+            setData((prev) =>
+              prev ? { ...prev, items: [...prev.items, newItem] } : prev,
+            )
+          }
+        />
+      )}
       <div className="bg-gray-800 rounded-xl px-5 py-4 mb-4">
         <h2 className="text-gray-400 text-sm font-semibold uppercase mb-3">
           Shared with
