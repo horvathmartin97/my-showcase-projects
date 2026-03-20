@@ -1,7 +1,7 @@
 import { useContext, useEffect, useMemo, useState } from "react";
 import { AuthContext } from "../contexts/AuthContext";
 import type { ListType } from "../types/listTypes";
-import { getMyDetailedList } from "../services/listService";
+import { getMyDetailedList, toggleItem } from "../services/listService";
 import { useParams } from "react-router";
 
 export default function DetailedListPage() {
@@ -36,6 +36,34 @@ export default function DetailedListPage() {
     };
     fetchDetailedList();
   }, [token, listId]);
+
+  const handleToggleItem = async (itemId: string, checked: boolean) => {
+    setData((prev) =>
+      prev
+        ? {
+            ...prev,
+            items: prev.items.map((item) =>
+              item.id === itemId ? { ...item, checked } : item,
+            ),
+          }
+        : prev,
+    );
+
+    try {
+      await toggleItem(itemId, checked, token!);
+    } catch {
+      setData((prev) =>
+        prev
+          ? {
+              ...prev,
+              items: prev.items.map((item) =>
+                item.id === itemId ? { ...item, checked: !checked } : item,
+              ),
+            }
+          : prev,
+      );
+    }
+  };
 
   if (loading)
     return (
@@ -95,10 +123,48 @@ export default function DetailedListPage() {
             {data.items.map((item) => (
               <li
                 key={item.id}
-                className="flex justify-between items-center bg-gray-700 rounded-lg px-4 py-3"
+                className={`flex justify-between items-center rounded-lg px-4 py-3 transition ${
+                  item.checked ? "bg-gray-800" : "bg-gray-700"
+                }`}
               >
-                <span className="text-white">{item.name}</span>
-                <span className="text-gray-400 text-sm">x{item.quantity}</span>
+                <div className="flex items-center gap-3">
+                  <button
+                    onClick={() => handleToggleItem(item.id, !item.checked)}
+                    className={`w-6 h-6 rounded-full border-2 flex items-center justify-center transition ${
+                      item.checked
+                        ? "bg-blue-500 border-blue-500"
+                        : "border-gray-500 hover:border-blue-400"
+                    }`}
+                  >
+                    {item.checked && (
+                      <svg
+                        className="w-3 h-3 text-white"
+                        fill="none"
+                        viewBox="0 0 24 24"
+                        stroke="currentColor"
+                        strokeWidth={3}
+                      >
+                        <path
+                          strokeLinecap="round"
+                          strokeLinejoin="round"
+                          d="M5 13l4 4L19 7"
+                        />
+                      </svg>
+                    )}
+                  </button>
+
+                  <span
+                    className={`transition ${item.checked ? "line-through text-gray-500" : "text-white"}`}
+                  >
+                    {item.name}
+                  </span>
+                </div>
+
+                <span
+                  className={`text-sm transition ${item.checked ? "text-gray-600" : "text-gray-400"}`}
+                >
+                  x{item.quantity}
+                </span>
               </li>
             ))}
           </ul>
