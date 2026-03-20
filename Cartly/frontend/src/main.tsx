@@ -7,6 +7,8 @@ import HomePage from "./pages/HomePage";
 import LoginPage from "./pages/LoginPage";
 import RegsiterPage from "./pages/RegisterPage";
 import { AuthContextProvider } from "./contexts/AuthContext";
+import ProtectedRoute from "./components/ProtectedRoute";
+import MyLists from "./pages/MyLists";
 
 createRoot(document.getElementById("root")!).render(
   <StrictMode>
@@ -17,6 +19,14 @@ createRoot(document.getElementById("root")!).render(
             <Route path="/" element={<HomePage />} />
             <Route path="/login" element={<LoginPage />} />
             <Route path="/register" element={<RegsiterPage />} />
+            <Route
+              path="/myLists"
+              element={
+                <ProtectedRoute>
+                  <MyLists />
+                </ProtectedRoute>
+              }
+            />
           </Route>
         </Routes>
       </AuthContextProvider>

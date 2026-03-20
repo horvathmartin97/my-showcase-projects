@@ -35,7 +35,7 @@ export default function LoginPage() {
       if (!loginResult.ok) {
         setError(loginResult.message);
       } else {
-        navigate("/");
+        navigate("/myLists");
       }
       setLoading(false);
     },
