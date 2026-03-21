@@ -1,7 +1,11 @@
 import { useCallback, useContext, useEffect, useMemo, useState } from "react";
 import { AuthContext } from "../contexts/AuthContext";
 import type { ListType } from "../types/listTypes";
-import { getMyDetailedList, toggleItem } from "../services/listService";
+import {
+  getMyDetailedList,
+  renameList,
+  toggleItem,
+} from "../services/listService";
 import { useParams } from "react-router";
 import AddItemModal from "../components/AddItemModal";
 import { deleteItem } from "../services/itemService";
@@ -18,6 +22,8 @@ export default function DetailedListPage() {
   const [confirmDeleteItemId, setConfirmDeleteItemId] = useState<string | null>(
     null,
   );
+  const [editingListId, setEditingListId] = useState<string | null>(null);
+  const [editingName, setEditingName] = useState("");
 
   useEffect(() => {
     if (!token) {
@@ -102,6 +108,24 @@ export default function DetailedListPage() {
     [token],
   );
 
+  const handleRename = async () => {
+    setEditingListId(null);
+    if (!editingName.trim()) return;
+
+    const original = data?.name ?? "";
+    if (editingName === original) return;
+
+    setData((prev) => (prev ? { ...prev, name: editingName } : prev));
+
+    try {
+      await renameList(data!.id, editingName, token!);
+    } catch {
+      setError("Failed to rename list");
+
+      setData((prev) => (prev ? { ...prev, name: original } : prev));
+    }
+  };
+
   if (loading)
     return (
       <div className="flex justify-center items-center h-40">
@@ -121,7 +145,29 @@ export default function DetailedListPage() {
   return (
     <div className="max-w-2xl mx-auto px-4 py-8">
       <div className="flex justify-between items-center mb-6">
-        <h1 className="text-2xl font-bold text-white">{data.name}</h1>
+        {editingListId === data.id ? (
+          <input
+            autoFocus
+            value={editingName}
+            onChange={(e) => setEditingName(e.target.value)}
+            onBlur={handleRename}
+            onKeyDown={(e) => {
+              if (e.key === "Enter") handleRename();
+              if (e.key === "Escape") setEditingListId(null);
+            }}
+            className="bg-gray-700 text-white font-bold text-2xl rounded-lg px-3 py-1 outline-none w-40 border border-indigo-500"
+          />
+        ) : (
+          <h1
+            className="text-2xl font-bold text-white cursor-pointer hover:text-indigo-300 transition"
+            onClick={() => {
+              setEditingListId(data.id);
+              setEditingName(data.name);
+            }}
+          >
+            {data.name} ✏️
+          </h1>
+        )}
         <button
           onClick={() => setIsModalOpen(true)}
           className="bg-blue-600 hover:bg-blue-700 text-white text-sm font-medium px-4 py-2 rounded-lg transition"
@@ -129,6 +175,7 @@ export default function DetailedListPage() {
           + Add Item
         </button>
       </div>
+
       {isModalOpen && (
         <AddItemModal
           listId={listId!}

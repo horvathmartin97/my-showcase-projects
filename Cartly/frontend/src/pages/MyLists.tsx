@@ -25,7 +25,7 @@ export default function MyLists() {
       try {
         const response = await getAllLists(token);
         setLists(response?.data ?? []);
-      } catch (err) {
+      } catch {
         setError("Failed to load lists");
       } finally {
         setLoading(false);
@@ -36,10 +36,6 @@ export default function MyLists() {
 
   const handleDeleteList = useCallback(
     async (listId: string) => {
-      if (!listId) {
-        setError("List is not found");
-        return;
-      }
       if (!token) {
         setError("Authentication is required");
         return;
@@ -96,8 +92,7 @@ export default function MyLists() {
       ) : (
         <ul className="flex flex-col gap-3">
           {lists.map((list) => (
-            <li key={list.id} className="relative flex items-center">
-              {" "}
+            <li key={list.id} className="flex items-center">
               <Link
                 to={`/list/${list.id}`}
                 className="flex flex-1 justify-between items-center bg-gray-800 hover:bg-gray-700 transition rounded-xl px-5 py-4 group"
@@ -118,7 +113,7 @@ export default function MyLists() {
               </Link>
               <button
                 onClick={() => setConfirmDeleteId(list.id)}
-                className="ml-3 text-red-600 cursor-pointer text-lg border rounded-md w-20"
+                className="ml-3 text-red-600 cursor-pointer text-lg border border-red-600/30 rounded-md w-20 py-1 hover:bg-red-600/10 transition"
               >
                 Delete
               </button>
@@ -126,6 +121,7 @@ export default function MyLists() {
           ))}
         </ul>
       )}
+
       {confirmDeleteId && (
         <div
           className="fixed inset-0 bg-black/60 flex items-center justify-center z-50"

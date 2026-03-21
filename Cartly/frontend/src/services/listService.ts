@@ -74,3 +74,20 @@ export async function deleteList(
   if (!response.ok) throw new Error("Failed to delete");
   return response.json();
 }
+
+export async function renameList(
+  listId: string,
+  name: string,
+  token: string,
+): Promise<ApiResponse<ListType>> {
+  const response = await fetch(`${API_URL}/api/list/${listId}`, {
+    method: "PATCH",
+    headers: {
+      Authorization: `Bearer ${token}`,
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify({ name }),
+  });
+  if (!response.ok) throw new Error("Failed to rename list");
+  return response.json();
+}

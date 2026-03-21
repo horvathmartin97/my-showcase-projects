@@ -30,7 +30,7 @@ listRouter.delete(
   validatedParams(idParamsSchema),
   listController.deleteListById,
 );
-listRouter.put(
+listRouter.patch(
   "/:listId",
   authorize,
   validatedParams(idParamsSchema),
