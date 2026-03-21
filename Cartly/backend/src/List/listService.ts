@@ -8,6 +8,7 @@ const listService = {
   addNewList: async (data: AddNewListType, userId: string) => {
     const newList = await prisma.list.create({
       data: { ...data, owner: { connect: { id: userId } } },
+      include: { items: true, members: true },
     });
     return newList;
   },

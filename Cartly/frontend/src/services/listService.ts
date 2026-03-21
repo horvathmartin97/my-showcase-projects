@@ -10,6 +10,7 @@ export default async function getAllLists(
       Authorization: `Bearer ${token}`,
     },
   });
+  if (!response.ok) throw new Error("Failed to fetch lists");
   return response.json();
 }
 export async function getMyDetailedList(
@@ -40,5 +41,21 @@ export async function toggleItem(
     body: JSON.stringify({ checked }),
   });
   if (!response.ok) throw new Error("Failed to update item");
+  return response.json();
+}
+
+export async function addList(
+  name: string,
+  token: string,
+): Promise<ApiResponse<ListType>> {
+  const response = await fetch(`${API_URL}/api/list`, {
+    method: "POST",
+    headers: {
+      Authorization: `Bearer ${token}`,
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify({ name }),
+  });
+  if (!response.ok) throw new Error("Failed to add list");
   return response.json();
 }

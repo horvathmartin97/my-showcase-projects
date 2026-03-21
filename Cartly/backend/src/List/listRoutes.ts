@@ -2,7 +2,7 @@ import { Router } from "express";
 import listController from "./listController";
 import authorize from "../middlewares/authorize";
 import validatedParams from "../middlewares/validatedParams";
-import { addNewList, idParamsSchema } from "./listSchema";
+import { addNewListSchema, idParamsSchema } from "./listSchema";
 import validateRequestBody from "../middlewares/validateReqBody";
 
 const listRouter: Router = Router();
@@ -17,7 +17,7 @@ listRouter.get(
 listRouter.post(
   "/",
   authorize,
-  validateRequestBody(addNewList),
+  validateRequestBody(addNewListSchema),
   listController.postList,
 );
 listRouter.delete(

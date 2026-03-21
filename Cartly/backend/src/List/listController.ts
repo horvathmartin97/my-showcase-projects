@@ -2,7 +2,7 @@ import { NextFunction, Response, Request } from "express";
 import { List } from "../../generated/prisma";
 import { ApiResponse } from "../types/global";
 import HttpError from "../utils/HttpError";
-import { addNewList } from "./listSchema";
+import { addNewListSchema } from "./listSchema";
 import listService from "./listService";
 
 export interface AuthorizedRequest extends Request {
@@ -21,7 +21,7 @@ const listController = {
       if (!req.user) {
         throw new HttpError("you must be logged in to add a new list", 401);
       }
-      const parsedBody = addNewList.parse(req.body);
+      const parsedBody = addNewListSchema.parse(req.body);
 
       const newList = await listService.addNewList(parsedBody, req.user.id);
       res.status(201).json({ ok: true, message: "list added", data: newList });
