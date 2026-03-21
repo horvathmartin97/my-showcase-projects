@@ -1,6 +1,6 @@
 import { List } from "../../generated/prisma";
 import prisma from "../utils/prisma";
-import { AddNewListType } from "./listSchema";
+import { AddNewListType, UpdateListInput } from "./listSchema";
 
 import HttpError from "../utils/HttpError";
 
@@ -48,6 +48,19 @@ const listService = {
       throw new HttpError("List is not exist", 404);
     }
     return doesListExist;
+  },
+  updateList: async (listId: string, data: UpdateListInput): Promise<List> => {
+    const isListExist = await prisma.list.findUnique({
+      where: { id: listId },
+    });
+    if (!isListExist) {
+      throw new HttpError("List is not exists", 404);
+    }
+    return await prisma.list.update({
+      where: { id: listId },
+      data,
+      include: { items: true, members: true },
+    });
   },
 };
 export default listService;

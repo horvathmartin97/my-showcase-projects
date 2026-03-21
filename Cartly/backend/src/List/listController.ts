@@ -79,5 +79,21 @@ const listController = {
       next(error);
     }
   },
+  updateListById: async (
+    req: AuthorizedRequest,
+    res: Response<ApiResponse<List>>,
+    next: NextFunction,
+  ): Promise<void> => {
+    try {
+      if (!req.user) {
+        throw new HttpError("Unauthorized", 401);
+      }
+      const listId = req.params.listId as string;
+      const updatedList = await listService.updateList(listId, req.body);
+      res.json({ ok: true, message: "List updated", data: updatedList });
+    } catch (error) {
+      next(error);
+    }
+  },
 };
 export default listController;

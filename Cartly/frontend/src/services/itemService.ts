@@ -19,3 +19,18 @@ export async function addItem(
   if (!response.ok) throw new Error("Failed to add item");
   return response.json();
 }
+
+export async function deleteItem(
+  itemId: string,
+  token: string,
+): Promise<ApiResponse<Item>> {
+  const response = await fetch(`${API_URL}/api/item/${itemId}`, {
+    method: "DELETE",
+    headers: {
+      Authorization: `Bearer ${token}`,
+      "Content-Type": "application/json",
+    },
+  });
+  if (!response.ok) throw new Error("Failed to delete item");
+  return response.json();
+}

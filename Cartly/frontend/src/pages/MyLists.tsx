@@ -118,7 +118,7 @@ export default function MyLists() {
               </Link>
               <button
                 onClick={() => setConfirmDeleteId(list.id)}
-                className="ml-3 text-gray-600 hover:text-red-400 transition text-lg border rounded-md w-20"
+                className="ml-3 text-red-600 cursor-pointer text-lg border rounded-md w-20"
               >
                 Delete
               </button>
@@ -136,9 +136,7 @@ export default function MyLists() {
             onClick={(e) => e.stopPropagation()}
           >
             <p className="text-2xl mb-3">🗑️</p>
-            <h2 className="text-white font-bold text-lg mb-2">
-              Delete List? `{lists.map((list) => list.name)}`
-            </h2>
+            <h2 className="text-white font-bold text-lg mb-2">Delete List?</h2>
             <p className="text-gray-400 text-sm mb-6">
               This action cannot be undone.
             </p>

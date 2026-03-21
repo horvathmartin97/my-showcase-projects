@@ -1,9 +1,10 @@
-import { useContext, useEffect, useMemo, useState } from "react";
+import { useCallback, useContext, useEffect, useMemo, useState } from "react";
 import { AuthContext } from "../contexts/AuthContext";
 import type { ListType } from "../types/listTypes";
 import { getMyDetailedList, toggleItem } from "../services/listService";
 import { useParams } from "react-router";
 import AddItemModal from "../components/AddItemModal";
+import { deleteItem } from "../services/itemService";
 
 export default function DetailedListPage() {
   const auth = useContext(AuthContext);
@@ -14,6 +15,9 @@ export default function DetailedListPage() {
   const [error, setError] = useState("");
   const [loading, setLoading] = useState(false);
   const [isModalOpen, setIsModalOpen] = useState(false);
+  const [confirmDeleteItemId, setConfirmDeleteItemId] = useState<string | null>(
+    null,
+  );
 
   useEffect(() => {
     if (!token) {
@@ -39,33 +43,64 @@ export default function DetailedListPage() {
     fetchDetailedList();
   }, [token, listId]);
 
-  const handleToggleItem = async (itemId: string, checked: boolean) => {
-    setData((prev) =>
-      prev
-        ? {
-            ...prev,
-            items: prev.items.map((item) =>
-              item.id === itemId ? { ...item, checked } : item,
-            ),
-          }
-        : prev,
-    );
+  const handleDelete = useCallback(
+    async (itemId: string) => {
+      if (!itemId) {
+        setError("Item is not found");
+        return;
+      }
+      if (!token) {
+        setError("Authentication is required");
+        return;
+      }
+      try {
+        await deleteItem(itemId, token);
+        setData((prev) =>
+          prev
+            ? {
+                ...prev,
+                items: prev.items.filter((item) => item.id !== itemId),
+              }
+            : prev,
+        );
+      } catch {
+        setError("Failed to delete item");
+      }
+    },
+    [token],
+  );
 
-    try {
-      await toggleItem(itemId, checked, token!);
-    } catch {
+  const handleToggleItem = useCallback(
+    async (itemId: string, checked: boolean) => {
+      if (!token) return;
       setData((prev) =>
         prev
           ? {
               ...prev,
               items: prev.items.map((item) =>
-                item.id === itemId ? { ...item, checked: !checked } : item,
+                item.id === itemId ? { ...item, checked } : item,
               ),
             }
           : prev,
       );
-    }
-  };
+
+      try {
+        await toggleItem(itemId, checked, token);
+      } catch {
+        setData((prev) =>
+          prev
+            ? {
+                ...prev,
+                items: prev.items.map((item) =>
+                  item.id === itemId ? { ...item, checked: !checked } : item,
+                ),
+              }
+            : prev,
+        );
+      }
+    },
+    [token],
+  );
 
   if (loading)
     return (
@@ -139,53 +174,97 @@ export default function DetailedListPage() {
             {data.items.map((item) => (
               <li
                 key={item.id}
-                className={`flex justify-between items-center rounded-lg px-4 py-3 transition ${
+                className={`flex items-center rounded-lg px-4 py-3 transition gap-3 ${
                   item.checked ? "bg-gray-800" : "bg-gray-700"
                 }`}
               >
-                <div className="flex items-center gap-3">
-                  <button
-                    onClick={() => handleToggleItem(item.id, !item.checked)}
-                    className={`w-6 h-6 rounded-full border-2 flex items-center justify-center transition ${
-                      item.checked
-                        ? "bg-blue-500 border-blue-500"
-                        : "border-gray-500 hover:border-blue-400"
-                    }`}
-                  >
-                    {item.checked && (
-                      <svg
-                        className="w-3 h-3 text-white"
-                        fill="none"
-                        viewBox="0 0 24 24"
-                        stroke="currentColor"
-                        strokeWidth={3}
-                      >
-                        <path
-                          strokeLinecap="round"
-                          strokeLinejoin="round"
-                          d="M5 13l4 4L19 7"
-                        />
-                      </svg>
-                    )}
-                  </button>
-
-                  <span
-                    className={`transition ${item.checked ? "line-through text-gray-500" : "text-white"}`}
-                  >
-                    {item.name}
-                  </span>
-                </div>
+                {/* Toggle gomb — fix méret */}
+                <button
+                  onClick={() => handleToggleItem(item.id, !item.checked)}
+                  className={`shrink-0 w-6 h-6 rounded-full border-2 flex items-center justify-center transition ${
+                    item.checked
+                      ? "bg-blue-500 border-blue-500"
+                      : "border-gray-500 hover:border-blue-400"
+                  }`}
+                >
+                  {item.checked && (
+                    <svg
+                      className="w-3 h-3 text-white"
+                      fill="none"
+                      viewBox="0 0 24 24"
+                      stroke="currentColor"
+                      strokeWidth={3}
+                    >
+                      <path
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                        d="M5 13l4 4L19 7"
+                      />
+                    </svg>
+                  )}
+                </button>
 
                 <span
-                  className={`text-sm transition ${item.checked ? "text-gray-600" : "text-gray-400"}`}
+                  className={`flex-1 min-w-0 truncate transition ${
+                    item.checked ? "line-through text-gray-500" : "text-white"
+                  }`}
+                >
+                  {item.name}
+                </span>
+
+                <span
+                  className={`shrink-0 w-12 font-bold text-right text-sm transition ${
+                    item.checked ? "text-indigo-900/50" : "text-indigo-300"
+                  }`}
                 >
                   x{item.quantity}
                 </span>
+
+                <button
+                  onClick={() => setConfirmDeleteItemId(item.id)}
+                  className="shrink-0 text-red-500 transition cursor-pointer"
+                >
+                  Delete
+                </button>
               </li>
             ))}
           </ul>
         )}
       </div>
+      {confirmDeleteItemId && (
+        <div
+          className="fixed inset-0 bg-black/60 flex items-center justify-center z-50"
+          onClick={() => setConfirmDeleteItemId(null)}
+        >
+          <div
+            className="bg-gray-800 rounded-xl p-6 w-full max-w-sm mx-4 text-center"
+            onClick={(e) => e.stopPropagation()}
+          >
+            <p className="text-2xl mb-3">🗑️</p>
+            <h2 className="text-white font-bold text-lg mb-2">Delete Item?</h2>
+            <p className="text-gray-400 text-sm mb-6">
+              This action cannot be undone.
+            </p>
+            <div className="flex gap-3">
+              <button
+                onClick={() => setConfirmDeleteItemId(null)}
+                className="flex-1 bg-gray-700 hover:bg-gray-600 text-white py-2.5 rounded-lg transition"
+              >
+                Cancel
+              </button>
+              <button
+                onClick={() => {
+                  handleDelete(confirmDeleteItemId);
+                  setConfirmDeleteItemId(null);
+                }}
+                className="flex-1 bg-red-600 hover:bg-red-700 text-white py-2.5 rounded-lg transition"
+              >
+                Delete
+              </button>
+            </div>
+          </div>
+        </div>
+      )}
     </div>
   );
 }
