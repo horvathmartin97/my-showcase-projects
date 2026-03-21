@@ -62,5 +62,10 @@ const listService = {
       include: { items: true, members: true },
     });
   },
+  addMember: async (
+    listId: string,
+    email: string,
+    ownerId: string,
+  ): Promise<List> => {},
 };
 export default listService;
