@@ -59,3 +59,18 @@ export async function addList(
   if (!response.ok) throw new Error("Failed to add list");
   return response.json();
 }
+
+export async function deleteList(
+  listId: string,
+  token: string,
+): Promise<ApiResponse<ListType>> {
+  const response = await fetch(`${API_URL}/api/list/${listId}`, {
+    method: "DELETE",
+    headers: {
+      Authorization: `Bearer ${token}`,
+      "Content-Type": "application/json",
+    },
+  });
+  if (!response.ok) throw new Error("Failed to delete");
+  return response.json();
+}

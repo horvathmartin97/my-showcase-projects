@@ -1,6 +1,6 @@
-import { useContext, useEffect, useMemo, useState } from "react";
+import { useCallback, useContext, useEffect, useMemo, useState } from "react";
 import { AuthContext } from "../contexts/AuthContext";
-import getAllLists from "../services/listService";
+import getAllLists, { deleteList } from "../services/listService";
 import type { ListType } from "../types/listTypes";
 import { Link } from "react-router";
 import AddListModal from "../components/AddListModal";
@@ -13,6 +13,7 @@ export default function MyLists() {
   const [error, setError] = useState("");
   const [loading, setLoading] = useState(false);
   const [isModalOpen, setIsModalOpen] = useState(false);
+  const [confirmDeleteId, setConfirmDeleteId] = useState<string | null>(null);
 
   useEffect(() => {
     if (!token) {
@@ -32,6 +33,26 @@ export default function MyLists() {
     };
     fetchLists();
   }, [token]);
+
+  const handleDeleteList = useCallback(
+    async (listId: string) => {
+      if (!listId) {
+        setError("List is not found");
+        return;
+      }
+      if (!token) {
+        setError("Authentication is required");
+        return;
+      }
+      try {
+        await deleteList(listId, token);
+        setLists((prev) => prev.filter((list) => list.id !== listId));
+      } catch {
+        setError("Failed to delete list");
+      }
+    },
+    [token],
+  );
 
   if (loading)
     return (
@@ -58,6 +79,7 @@ export default function MyLists() {
           + New List
         </button>
       </div>
+
       {isModalOpen && (
         <AddListModal
           token={token!}
@@ -65,6 +87,7 @@ export default function MyLists() {
           onSuccess={(newList) => setLists((prev) => [...prev, newList])}
         />
       )}
+
       {lists.length === 0 ? (
         <div className="text-center text-gray-500 mt-16">
           <p className="text-lg">No lists yet.</p>
@@ -73,10 +96,11 @@ export default function MyLists() {
       ) : (
         <ul className="flex flex-col gap-3">
           {lists.map((list) => (
-            <li key={list.id}>
+            <li key={list.id} className="relative flex items-center">
+              {" "}
               <Link
                 to={`/list/${list.id}`}
-                className="flex justify-between items-center bg-gray-800 hover:bg-gray-700 transition rounded-xl px-5 py-4 group"
+                className="flex flex-1 justify-between items-center bg-gray-800 hover:bg-gray-700 transition rounded-xl px-5 py-4 group"
               >
                 <div>
                   <p className="text-white font-semibold text-base group-hover:text-blue-400 transition">
@@ -92,9 +116,51 @@ export default function MyLists() {
                   →
                 </span>
               </Link>
+              <button
+                onClick={() => setConfirmDeleteId(list.id)}
+                className="ml-3 text-gray-600 hover:text-red-400 transition text-lg border rounded-md w-20"
+              >
+                Delete
+              </button>
             </li>
           ))}
         </ul>
+      )}
+      {confirmDeleteId && (
+        <div
+          className="fixed inset-0 bg-black/60 flex items-center justify-center z-50"
+          onClick={() => setConfirmDeleteId(null)}
+        >
+          <div
+            className="bg-gray-800 rounded-xl p-6 w-full max-w-sm mx-4 text-center"
+            onClick={(e) => e.stopPropagation()}
+          >
+            <p className="text-2xl mb-3">🗑️</p>
+            <h2 className="text-white font-bold text-lg mb-2">
+              Delete List? `{lists.map((list) => list.name)}`
+            </h2>
+            <p className="text-gray-400 text-sm mb-6">
+              This action cannot be undone.
+            </p>
+            <div className="flex gap-3">
+              <button
+                onClick={() => setConfirmDeleteId(null)}
+                className="flex-1 bg-gray-700 hover:bg-gray-600 text-white py-2.5 rounded-lg transition"
+              >
+                Cancel
+              </button>
+              <button
+                onClick={() => {
+                  handleDeleteList(confirmDeleteId);
+                  setConfirmDeleteId(null);
+                }}
+                className="flex-1 bg-red-600 hover:bg-red-700 text-white py-2.5 rounded-lg transition"
+              >
+                Delete
+              </button>
+            </div>
+          </div>
+        </div>
       )}
     </div>
   );
