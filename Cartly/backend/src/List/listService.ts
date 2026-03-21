@@ -66,6 +66,38 @@ const listService = {
     listId: string,
     email: string,
     ownerId: string,
-  ): Promise<List> => {},
+  ): Promise<List> => {
+    const list = await prisma.list.findUnique({ where: { id: listId } });
+    if (!list || list.ownerId !== ownerId) {
+      throw new HttpError("Forbidden", 403);
+    }
+    const userToAdd = await prisma.user.findUnique({ where: { email } });
+    if (!userToAdd) {
+      throw new HttpError("User not found", 404);
+    }
+    if (userToAdd.id === ownerId) {
+      throw new HttpError("You are already the owner of the list", 400);
+    }
+    return prisma.list.update({
+      where: { id: listId },
+      data: { members: { connect: { id: userToAdd.id } } },
+      include: { members: { select: { id: true, name: true, email: true } } },
+    });
+  },
+  removeMember: async (
+    listId: string,
+    memberId: string,
+    ownerId: string,
+  ): Promise<List> => {
+    const list = await prisma.list.findUnique({ where: { id: listId } });
+    if (!list || list.ownerId !== ownerId) {
+      throw new HttpError("Forbidden", 403);
+    }
+    return prisma.list.update({
+      where: { id: listId },
+      data: { members: { disconnect: { id: memberId } } },
+      include: { members: { select: { id: true, name: true, email: true } } },
+    });
+  },
 };
 export default listService;
