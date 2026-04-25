@@ -3,6 +3,7 @@ import listController from "./listController";
 import authorize from "../middlewares/authorize";
 import validatedParams from "../middlewares/validatedParams";
 import {
+  addMemberSchema,
   addNewListSchema,
   idParamsSchema,
   updateListSchema,
@@ -36,6 +37,13 @@ listRouter.patch(
   validatedParams(idParamsSchema),
   validateRequestBody(updateListSchema),
   listController.updateListById,
+);
+listRouter.post(
+  "/:listId/members",
+  authorize,
+  validatedParams(idParamsSchema),
+  validateRequestBody(addMemberSchema),
+  listController.addMember,
 );
 
 export default listRouter;

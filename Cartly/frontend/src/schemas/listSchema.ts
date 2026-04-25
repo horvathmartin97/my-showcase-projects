@@ -9,3 +9,8 @@ export const idParamsSchema = z.object({
     message: "ID must be a string",
   }),
 });
+
+export const addNewMemberSchema = z.object({
+  email: z.string().email(),
+});
+export type AddNewMember = z.infer<typeof addNewMemberSchema>;

@@ -168,11 +168,15 @@ export default function DetailedListPage() {
             {data.name} ✏️
           </h1>
         )}
+
         <button
           onClick={() => setIsModalOpen(true)}
           className="bg-blue-600 hover:bg-blue-700 text-white text-sm font-medium px-4 py-2 rounded-lg transition"
         >
           + Add Item
+        </button>
+        <button className="bg-green-600 hover:bg-green-700 text-white text-sm font-medium px-4 py-2 rounded-lg transition">
+          + Add Member
         </button>
       </div>
 
@@ -210,7 +214,7 @@ export default function DetailedListPage() {
 
       <div className="bg-gray-800 rounded-xl px-5 py-4">
         <h2 className="text-gray-400 text-sm font-semibold uppercase mb-3">
-          Items ({data.items.length})
+          Items ({data.items.length}) - owner: {data.owner.name}
         </h2>
         {data.items.length === 0 ? (
           <p className="text-gray-500 text-sm">
@@ -225,7 +229,6 @@ export default function DetailedListPage() {
                   item.checked ? "bg-gray-800" : "bg-gray-700"
                 }`}
               >
-                {/* Toggle gomb — fix méret */}
                 <button
                   onClick={() => handleToggleItem(item.id, !item.checked)}
                   className={`shrink-0 w-6 h-6 rounded-full border-2 flex items-center justify-center transition ${

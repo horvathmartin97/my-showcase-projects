@@ -1,4 +1,4 @@
-import { z } from "zod";
+import { email, z } from "zod";
 
 export const addNewListSchema = z.object({
   name: z.string().min(5, "Name must be at least 5 chars long"),
@@ -20,3 +20,8 @@ export const idParamsSchema = z.object({
     message: "ID must be a string",
   }),
 });
+
+export const addMemberSchema = z.object({
+  email: z.string().email(),
+});
+export type AddMemberSchema = z.infer<typeof addMemberSchema>;

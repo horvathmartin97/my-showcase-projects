@@ -1,4 +1,4 @@
-import { NextFunction, Response, Request } from "express";
+import e, { NextFunction, Response, Request } from "express";
 import { List } from "../../generated/prisma";
 import { ApiResponse } from "../types/global";
 import HttpError from "../utils/HttpError";
@@ -10,6 +10,9 @@ export interface AuthorizedRequest extends Request {
     id: string;
     email?: string;
   };
+}
+export interface AddMember {
+  email: string;
 }
 const listController = {
   postList: async (
@@ -91,6 +94,24 @@ const listController = {
       const listId = req.params.listId as string;
       const updatedList = await listService.updateList(listId, req.body);
       res.json({ ok: true, message: "List updated", data: updatedList });
+    } catch (error) {
+      next(error);
+    }
+  },
+  addMember: async (
+    req: AuthorizedRequest,
+    res: Response<ApiResponse<List>>,
+    next: NextFunction,
+  ): Promise<void> => {
+    try {
+      if (!req.user) {
+        throw new HttpError("Unatuhorized", 401);
+      }
+      const listId = req.params.listId as string;
+      const ownerId = req.user.id;
+      const { email } = req.body as AddMember;
+      const addMember = await listService.addMember(listId, email, ownerId);
+      res.json({ ok: true, message: "Member was added", data: addMember });
     } catch (error) {
       next(error);
     }

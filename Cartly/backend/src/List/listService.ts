@@ -42,7 +42,11 @@ const listService = {
   getListById: async (listId: string): Promise<List> => {
     const doesListExist = await prisma.list.findUnique({
       where: { id: listId },
-      include: { items: true, members: true },
+      include: {
+        items: true,
+        owner: { select: { id: true, name: true } },
+        members: { select: { id: true, name: true, email: true } },
+      },
     });
     if (!doesListExist) {
       throw new HttpError("List is not exist", 404);
@@ -78,10 +82,20 @@ const listService = {
     if (userToAdd.id === ownerId) {
       throw new HttpError("You are already the owner of the list", 400);
     }
+    const isAlreadyMember = await prisma.list.findFirst({
+      where: { id: listId, members: { some: { id: userToAdd.id } } },
+    });
+    if (isAlreadyMember) {
+      throw new HttpError("User is already a member of this list", 409);
+    }
     return prisma.list.update({
       where: { id: listId },
       data: { members: { connect: { id: userToAdd.id } } },
-      include: { members: { select: { id: true, name: true, email: true } } },
+      include: {
+        members: {
+          select: { id: true, name: true, email: true, password: false },
+        },
+      },
     });
   },
   removeMember: async (
