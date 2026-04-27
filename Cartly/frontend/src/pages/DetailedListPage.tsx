@@ -2,6 +2,7 @@ import { useCallback, useContext, useEffect, useMemo, useState } from "react";
 import { AuthContext } from "../contexts/AuthContext";
 import type { ListType } from "../types/listTypes";
 import {
+  addMember,
   getMyDetailedList,
   renameList,
   toggleItem,
@@ -9,6 +10,7 @@ import {
 import { useParams } from "react-router";
 import AddItemModal from "../components/AddItemModal";
 import { deleteItem } from "../services/itemService";
+import AddMemberModal from "../components/AddMemberModal";
 
 export default function DetailedListPage() {
   const auth = useContext(AuthContext);
@@ -24,6 +26,7 @@ export default function DetailedListPage() {
   );
   const [editingListId, setEditingListId] = useState<string | null>(null);
   const [editingName, setEditingName] = useState("");
+  const [isAddMemberModal, setIsAddMemberModal] = useState(false);
 
   useEffect(() => {
     if (!token) {
@@ -175,7 +178,10 @@ export default function DetailedListPage() {
         >
           + Add Item
         </button>
-        <button className="bg-green-600 hover:bg-green-700 text-white text-sm font-medium px-4 py-2 rounded-lg transition">
+        <button
+          onClick={() => setIsAddMemberModal(true)}
+          className="bg-green-600 hover:bg-green-700 text-white text-sm font-medium px-4 py-2 rounded-lg transition"
+        >
           + Add Member
         </button>
       </div>
@@ -190,6 +196,16 @@ export default function DetailedListPage() {
               prev ? { ...prev, items: [...prev.items, newItem] } : prev,
             )
           }
+        />
+      )}
+      {isAddMemberModal && (
+        <AddMemberModal
+          onClose={() => setIsAddMemberModal(false)}
+          onSuccess={(updatedList) => {
+            setData(updatedList);
+            setIsAddMemberModal(false);
+          }}
+          token={token!}
         />
       )}
       <div className="bg-gray-800 rounded-xl px-5 py-4 mb-4">
@@ -214,7 +230,7 @@ export default function DetailedListPage() {
 
       <div className="bg-gray-800 rounded-xl px-5 py-4">
         <h2 className="text-gray-400 text-sm font-semibold uppercase mb-3">
-          Items ({data.items.length}) - owner: {data.owner.name}
+          Items {data.items.length} - owner: {data.owner.name}
         </h2>
         {data.items.length === 0 ? (
           <p className="text-gray-500 text-sm">

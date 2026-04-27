@@ -92,9 +92,9 @@ const listService = {
       where: { id: listId },
       data: { members: { connect: { id: userToAdd.id } } },
       include: {
-        members: {
-          select: { id: true, name: true, email: true, password: false },
-        },
+        members: { select: { id: true, name: true, email: true } },
+        items: true,
+        owner: { select: { id: true, name: true, email: true } },
       },
     });
   },

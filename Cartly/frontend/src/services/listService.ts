@@ -91,3 +91,23 @@ export async function renameList(
   if (!response.ok) throw new Error("Failed to rename list");
   return response.json();
 }
+
+export async function addMember(
+  listId: string,
+  email: string,
+  token: string,
+): Promise<ApiResponse<ListType>> {
+  const response = await fetch(`${API_URL}/api/list/${listId}/members`, {
+    method: "POST",
+    headers: {
+      Authorization: `Bearer ${token}`,
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify({ email }),
+  });
+  if (!response.ok) {
+    const errorData = await response.json();
+    throw new Error(errorData.message ?? "Failed to add member");
+  }
+  return response.json();
+}
