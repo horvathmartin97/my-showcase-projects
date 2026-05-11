@@ -2,7 +2,6 @@ import { useCallback, useContext, useEffect, useMemo, useState } from "react";
 import { AuthContext } from "../contexts/AuthContext";
 import type { ListType } from "../types/listTypes";
 import {
-  addMember,
   getMyDetailedList,
   renameList,
   toggleItem,
@@ -11,6 +10,7 @@ import { useParams } from "react-router";
 import AddItemModal from "../components/AddItemModal";
 import { deleteItem } from "../services/itemService";
 import AddMemberModal from "../components/AddMemberModal";
+import RemoveMemberModal from "../components/RemoveMemberModal";
 
 export default function DetailedListPage() {
   const auth = useContext(AuthContext);
@@ -27,6 +27,10 @@ export default function DetailedListPage() {
   const [editingListId, setEditingListId] = useState<string | null>(null);
   const [editingName, setEditingName] = useState("");
   const [isAddMemberModal, setIsAddMemberModal] = useState(false);
+  const [confirmDeleteMemberId, setConfirmDeleteMemberId] = useState<
+    string | null
+  >(null);
+  const [confirmDeleteMemberName, setConfirmDeleteMemberName] = useState("");
 
   useEffect(() => {
     if (!token) {
@@ -222,8 +226,40 @@ export default function DetailedListPage() {
                 className="bg-gray-700 text-gray-200 text-sm px-3 py-1 rounded-full"
               >
                 {member.name}
+                <button
+                  onClick={() => {
+                    setConfirmDeleteMemberId(member.id);
+                    setConfirmDeleteMemberName(member.name);
+                  }}
+                  className="ml-1 hover:text-red-400 transition-colors"
+                  aria-label={`Remove ${member.name}`}
+                >
+                  x
+                </button>
               </span>
             ))}
+            {confirmDeleteMemberId && (
+              <RemoveMemberModal
+                listId={listId!}
+                token={token!}
+                memberId={confirmDeleteMemberId}
+                memberName={confirmDeleteMemberName}
+                onClose={() => setConfirmDeleteMemberId(null)}
+                onSuccess={() => {
+                  setData((prev) =>
+                    prev
+                      ? {
+                          ...prev,
+                          members: prev.members.filter(
+                            (member) => member.id !== confirmDeleteMemberId,
+                          ),
+                        }
+                      : prev,
+                  );
+                  setConfirmDeleteMemberId(null);
+                }}
+              />
+            )}
           </div>
         )}
       </div>

@@ -111,3 +111,24 @@ export async function addMember(
   }
   return response.json();
 }
+export async function removeMember(
+  listId: string,
+  memberId: string,
+  token: string,
+): Promise<ApiResponse<ListType>> {
+  const response = await fetch(
+    `${API_URL}/api/list/${listId}/members/${memberId}`,
+    {
+      method: "DELETE",
+      headers: {
+        Authorization: `Bearer ${token}`,
+        "Content-Type": "application/json",
+      },
+    },
+  );
+  if (!response.ok) {
+    const errorData = await response.json();
+    throw new Error(errorData.message ?? "Failed to add member");
+  }
+  return response.json();
+}

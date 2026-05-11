@@ -45,5 +45,11 @@ listRouter.post(
   validateRequestBody(addMemberSchema),
   listController.addMember,
 );
+listRouter.delete(
+  "/:listId/members/:memberId",
+  authorize,
+  validatedParams(idParamsSchema),
+  listController.deleteMember,
+);
 
 export default listRouter;

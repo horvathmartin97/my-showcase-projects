@@ -1,5 +1,11 @@
 {
   "watch": ["src"],
   "ext": "ts",
-  "exec": "tsx src/index.ts"
+  "exec": "tsx src/index.ts",
+  "ignore": [
+    "src/**/*.generated.ts",
+    "src/**/__generated__/**",
+    "**/.prisma/**",
+    "**/prisma/generated/**"
+  ]
 }

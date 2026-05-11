@@ -116,5 +116,29 @@ const listController = {
       next(error);
     }
   },
+  deleteMember: async (
+    req: AuthorizedRequest,
+    res: Response<ApiResponse<List>>,
+    next: NextFunction,
+  ): Promise<void> => {
+    try {
+      if (!req.user) {
+        throw new HttpError("Unauthorized", 401);
+      }
+      const listId = req.params.listId as string;
+      const ownerId = req.user.id;
+      const memberId = req.params.memberId as string;
+      const removeMember = await listService.removeMember(
+        listId,
+        memberId,
+        ownerId,
+      );
+      res
+        .status(200)
+        .json({ ok: true, message: "Member deleted!", data: removeMember });
+    } catch (error) {
+      next(error);
+    }
+  },
 };
 export default listController;
