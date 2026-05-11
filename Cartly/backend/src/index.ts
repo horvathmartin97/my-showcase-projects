@@ -8,7 +8,14 @@ import setupSwagger from "./swagger";
 
 const app = express();
 app.use(express.json());
-app.use(cors());
+app.use(
+  cors({
+    origin: [
+      "http://localhost:5173",
+      "https://shiny-llama-27a20d.netlify.app/",
+    ],
+  }),
+);
 
 app.use("/auth", authRouter);
 app.use("/api", apiRouter);
