@@ -10,10 +10,7 @@ const app = express();
 app.use(express.json());
 app.use(
   cors({
-    origin: [
-      "http://localhost:5173",
-      "https://shiny-llama-27a20d.netlify.app/",
-    ],
+    origin: ["http://localhost:5173", "https://shiny-llama-27a20d.netlify.app"],
   }),
 );
 
