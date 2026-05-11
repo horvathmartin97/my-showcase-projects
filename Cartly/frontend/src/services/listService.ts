@@ -128,7 +128,7 @@ export async function removeMember(
   );
   if (!response.ok) {
     const errorData = await response.json();
-    throw new Error(errorData.message ?? "Failed to add member");
+    throw new Error(errorData.message ?? "Failed to remove member");
   }
   return response.json();
 }
