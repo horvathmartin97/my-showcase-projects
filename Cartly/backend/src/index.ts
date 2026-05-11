@@ -10,11 +10,21 @@ const app = express();
 app.use(express.json());
 app.use(
   cors({
-    origin: ["http://localhost:5173", "https://cartlyy.netlify.app/"],
+    origin: (origin, callback) => {
+      const allowed = [
+        "http://localhost:5173",
+        "https://shiny-llama-27a20d.netlify.app",
+        "https://cartlyy.netlify.app",
+      ];
+      if (!origin || allowed.includes(origin)) {
+        callback(null, true);
+      } else {
+        callback(new Error("Not allowed by CORS"));
+      }
+    },
     credentials: true,
   }),
 );
-
 app.use("/auth", authRouter);
 app.use("/api", apiRouter);
 
