@@ -11,8 +11,10 @@ app.use(express.json());
 app.use(
   cors({
     origin: ["http://localhost:5173", "https://shiny-llama-27a20d.netlify.app"],
+    credentials: true,
   }),
 );
+app.options("*", cors());
 
 app.use("/auth", authRouter);
 app.use("/api", apiRouter);
