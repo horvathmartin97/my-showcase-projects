@@ -18,7 +18,6 @@ export default function Header() {
           Cartly.
         </Link>
 
-        {/* Desktop nav */}
         <div className="hidden sm:flex items-center gap-4">
           {auth?.user ? (
             <>
@@ -50,7 +49,6 @@ export default function Header() {
           )}
         </div>
 
-        {/* Mobile hamburger */}
         <button
           className="sm:hidden text-indigo-200 hover:text-white transition"
           onClick={() => setMenuOpen(!menuOpen)}
@@ -90,7 +88,6 @@ export default function Header() {
         </button>
       </div>
 
-      {/* Mobile dropdown */}
       {menuOpen && (
         <div className="sm:hidden mt-4 flex flex-col gap-3 pb-2">
           {auth?.user ? (
