@@ -110,7 +110,11 @@ const listService = {
     return prisma.list.update({
       where: { id: listId },
       data: { members: { disconnect: { id: memberId } } },
-      include: { members: { select: { id: true, name: true, email: true } } },
+      include: {
+        members: { select: { id: true, name: true, email: true } },
+        items: true,
+        owner: { select: { id: true, name: true } },
+      },
     });
   },
 };

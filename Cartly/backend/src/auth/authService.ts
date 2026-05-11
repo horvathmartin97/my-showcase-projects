@@ -1,4 +1,3 @@
-import { email } from "zod";
 import HttpError from "../utils/HttpError";
 import prisma from "../utils/prisma";
 import { LoginUserType, RegisterUserType } from "./authSchema";
