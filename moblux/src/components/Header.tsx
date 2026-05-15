@@ -33,7 +33,6 @@ const Header = () => {
     >
       <nav className="max-w-7xl mx-auto px-6 lg:px-8">
         <div className="flex justify-between items-center h-24">
-          {/* Logo */}
           <Link
             to="/"
             className="flex items-center space-x-4 group relative z-10"
@@ -45,7 +44,6 @@ const Header = () => {
             >
               <div className="absolute inset-0 bg-linear-to-br from-yellow-400 to-yellow-600 rounded-xl blur-lg opacity-30 group-hover:opacity-50 transition-opacity duration-300" />
 
-              {/* Logo doboz */}
               <div className="relative w-14 h-14 bg-linear-to-br from-yellow-500 via-yellow-600 to-yellow-700 rounded-xl flex items-center justify-center shadow-xl border border-yellow-400/30">
                 <div className="text-black font-black text-2xl tracking-tighter">
                   ML

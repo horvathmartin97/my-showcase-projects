@@ -17,7 +17,6 @@ const HomePage = () => {
     null,
   );
 
-  // Modellek adatai
   const models: ContainerModel[] = [
     {
       id: "1",
@@ -390,7 +389,7 @@ const HomePage = () => {
               href="mailto:info@example.com"
               className="hover:text-yellow-400 transition-colors"
             >
-              info@containerhomes.hu
+              -------
             </a>
             <span>|</span>
             <a
@@ -483,7 +482,7 @@ const HomePage = () => {
               }}
               className="mt-6 w-full py-3 bg-linear-to-r from-yellow-500 to-yellow-600 text-black font-bold rounded-lg hover:shadow-lg hover:shadow-yellow-500/50 transition-shadow"
             >
-              Árajánlat kérése ehhez a modellhez
+              Árajánlat kérése ehhez a modellhez!
             </button>
           </motion.div>
         </motion.div>
