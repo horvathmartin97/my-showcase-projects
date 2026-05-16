@@ -58,7 +58,7 @@ const Header = () => {
                 transition={{ delay: 0.2 }}
               >
                 <span className="text-2xl font-black tracking-tight bg-linear-to-r from-yellow-400 via-yellow-300 to-gray-200 bg-clip-text text-transparent">
-                  MOBLUX
+                  MOBLUXx
                 </span>
                 <p className="text-xs font-light text-gray-400 tracking-[0.25em] uppercase -mt-1">
                   Containers
