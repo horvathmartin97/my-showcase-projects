@@ -61,7 +61,7 @@ const Header = () => {
                   MOBLUXx
                 </span>
                 <p className="text-xs font-light text-gray-400 tracking-[0.25em] uppercase -mt-1">
-                  Containers
+                  Containerss
                 </p>
               </motion.div>
             </div>
