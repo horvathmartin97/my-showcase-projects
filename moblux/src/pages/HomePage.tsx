@@ -46,21 +46,21 @@ const HomePage = () => {
   return (
     <div className="min-h-screen overflow-x-hidden bg-[#f7f5ef] text-[#24382b]">
       <main>
-        <section className="relative min-h-[780px] overflow-hidden pt-20">
+        <section className="relative min-h-195 overflow-hidden pt-20">
           <img
             src={bgPic}
             alt={t("home.hero.imageAlt")}
             className="absolute inset-0 h-full w-full object-cover"
           />
 
-          <div className="absolute inset-0 bg-gradient-to-r from-[#1e3025]/85 via-[#1e3025]/50 to-transparent" />
-          <div className="absolute inset-0 bg-gradient-to-t from-[#1e3025]/45 via-transparent to-transparent" />
+          <div className="absolute inset-0 bg-linear-to-r from-[#1e3025]/85 via-[#1e3025]/50 to-transparent" />
+          <div className="absolute inset-0 bg-linear-to-t from-[#1e3025]/45 via-transparent to-transparent" />
 
           <motion.div
             initial={{ opacity: 0, y: 28 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.65 }}
-            className="relative z-10 mx-auto flex min-h-[700px] max-w-7xl items-end px-6 pb-24 lg:px-8"
+            className="relative z-10 mx-auto flex min-h-175 max-w-7xl items-end px-6 pb-24 lg:px-8"
           >
             <div className="max-w-3xl">
               <p className="text-sm font-semibold uppercase tracking-[0.22em] text-[#dce8cf]">
@@ -329,7 +329,7 @@ const HomePage = () => {
                 viewport={{ once: true }}
                 variants={fadeInUp}
                 transition={{ duration: 0.5 }}
-                className="h-[500px] overflow-hidden md:row-span-2"
+                className="h-125 overflow-hidden md:row-span-2"
               >
                 <img
                   src={galleryImages[0]}
@@ -435,7 +435,7 @@ const HomePage = () => {
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
             onClick={() => setSelectedModel(null)}
-            className="fixed inset-0 z-[100] flex items-center justify-center bg-[#24382b]/70 p-4 backdrop-blur-sm"
+            className="fixed inset-0 z-100 flex items-center justify-center bg-[#24382b]/70 p-4 backdrop-blur-sm"
           >
             <motion.div
               initial={{ opacity: 0, scale: 0.97, y: 16 }}
