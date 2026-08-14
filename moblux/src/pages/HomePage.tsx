@@ -44,7 +44,7 @@ const HomePage = () => {
   return (
     <div className="min-h-screen overflow-x-hidden bg-[#f7f5ef] text-[#24382b]">
       <main>
-        <section className="relative min-h-195 overflow-hidden pt-20">
+        <section className="relative min-h-230 overflow-hidden pt-20">
           <img
             src={bgPic}
             alt={t("home.hero.imageAlt")}
