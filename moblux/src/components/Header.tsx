@@ -5,21 +5,31 @@ import {
   useScroll,
 } from "framer-motion";
 import { useEffect, useState } from "react";
+import { useTranslation } from "react-i18next";
 import { Link, useLocation } from "react-router";
+
+const languages = [
+  { code: "hu", label: "HU" },
+  { code: "en", label: "EN" },
+  { code: "de", label: "DE" },
+];
 
 const Header = () => {
   const [isOpen, setIsOpen] = useState(false);
   const [isScrolled, setIsScrolled] = useState(false);
 
+  const { t, i18n } = useTranslation();
   const location = useLocation();
   const { scrollY } = useScroll();
 
+  const currentLanguage = i18n.language.split("-")[0];
+
   const navLinks = [
-    { name: "Főoldal", path: "/" },
-    { name: "Modellek", path: "/modellek" },
-    { name: "Galéria", path: "/galeria" },
-    { name: "Rólunk", path: "/rolunk" },
-    { name: "Kapcsolat", path: "/kapcsolat" },
+    { name: t("header.home"), path: "/" },
+    { name: t("header.models"), path: "/modellek" },
+    { name: t("header.gallery"), path: "/galeria" },
+    { name: t("header.about"), path: "/rolunk" },
+    { name: t("header.contact"), path: "/kapcsolat" },
   ];
 
   useMotionValueEvent(scrollY, "change", (latest) => {
@@ -33,6 +43,43 @@ const Header = () => {
   const closeMenu = () => {
     setIsOpen(false);
   };
+
+  const changeLanguage = (language: string) => {
+    i18n.changeLanguage(language);
+    localStorage.setItem("moblux-language", language);
+  };
+
+  const LanguageSwitcher = ({ mobile = false }: { mobile?: boolean }) => (
+    <div
+      className={
+        mobile
+          ? "flex w-full items-center justify-between rounded-xl bg-[#e5e9df] p-2"
+          : "flex items-center rounded-full border border-[#2d4736]/15 bg-white/50 p-1"
+      }
+      aria-label={t("header.changeLanguage")}
+    >
+      {languages.map((language) => {
+        const isActive = currentLanguage === language.code;
+
+        return (
+          <button
+            key={language.code}
+            type="button"
+            onClick={() => changeLanguage(language.code)}
+            className={`rounded-full px-3 py-2 text-xs font-bold tracking-wide transition ${
+              isActive
+                ? "bg-[#2d4736] text-white shadow-sm"
+                : "text-[#6d7e70] hover:text-[#2d4736]"
+            }`}
+            aria-label={`${t("header.changeLanguage")}: ${language.label}`}
+            aria-pressed={isActive}
+          >
+            {language.label}
+          </button>
+        );
+      })}
+    </div>
+  );
 
   return (
     <motion.header
@@ -51,21 +98,21 @@ const Header = () => {
             to="/"
             onClick={closeMenu}
             className="group flex items-center gap-3"
-            aria-label="NATURA HOME főoldal"
+            aria-label="Moblux"
           >
             <div className="flex h-11 w-11 items-center justify-center rounded-full bg-[#2d4736] transition-transform duration-300 group-hover:scale-105">
               <span className="text-sm font-bold tracking-tight text-[#f7f5ef]">
-                NH
+                MH
               </span>
             </div>
 
             <div>
               <p className="text-lg font-semibold leading-none tracking-tight text-[#24382b]">
-                NATURA HOME
+                Moblux
               </p>
 
               <p className="mt-1 text-[10px] font-medium uppercase tracking-[0.2em] text-[#6d7e70]">
-                Moduláris otthonok
+                {t("header.brandSubtitle")}
               </p>
             </div>
           </Link>
@@ -102,7 +149,9 @@ const Header = () => {
             })}
           </div>
 
-          <div className="hidden items-center gap-5 lg:flex">
+          <div className="hidden items-center gap-4 lg:flex">
+            <LanguageSwitcher />
+
             <a
               href="tel:+36301234567"
               className="text-sm font-medium text-[#526357] transition hover:text-[#2d4736]"
@@ -116,7 +165,8 @@ const Header = () => {
                 whileTap={{ scale: 0.98 }}
                 className="flex cursor-pointer items-center gap-2 rounded-full bg-[#2d4736] px-5 py-3 text-sm font-semibold text-white transition hover:bg-[#3c5b46]"
               >
-                Konzultáció kérése
+                {t("header.requestConsultation")}
+
                 <svg
                   className="h-4 w-4"
                   fill="none"
@@ -139,7 +189,7 @@ const Header = () => {
             type="button"
             onClick={() => setIsOpen((current) => !current)}
             className="flex h-11 w-11 items-center justify-center lg:hidden"
-            aria-label={isOpen ? "Menü bezárása" : "Menü megnyitása"}
+            aria-label={isOpen ? t("header.closeMenu") : t("header.openMenu")}
             aria-expanded={isOpen}
           >
             <div className="flex w-6 flex-col">
@@ -228,9 +278,15 @@ const Header = () => {
                 transition={{ delay: 0.25, duration: 0.2 }}
                 className="mt-6 border-t border-[#24382b]/10 pt-5"
               >
+                <p className="mb-3 text-center text-xs font-semibold uppercase tracking-[0.16em] text-[#6d7e70]">
+                  {t("header.changeLanguage")}
+                </p>
+
+                <LanguageSwitcher mobile />
+
                 <a
                   href="tel:+36301234567"
-                  className="block py-3 text-center text-sm font-medium text-[#526357]"
+                  className="mt-4 block py-3 text-center text-sm font-medium text-[#526357]"
                 >
                   +36 30 123 4567
                 </a>
@@ -240,7 +296,8 @@ const Header = () => {
                     whileTap={{ scale: 0.98 }}
                     className="mt-2 flex cursor-pointer items-center justify-center gap-2 rounded-xl bg-[#2d4736] px-5 py-4 font-semibold text-white"
                   >
-                    Konzultáció kérése
+                    {t("header.requestConsultation")}
+
                     <svg
                       className="h-5 w-5"
                       fill="none"

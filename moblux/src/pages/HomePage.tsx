@@ -1,6 +1,11 @@
 import { AnimatePresence, motion } from "framer-motion";
 import { useState } from "react";
 import { Link } from "react-router";
+import bgPic from "../images/bg.jpg";
+import { useTranslation } from "react-i18next";
+import gallery1 from "../images/135.JPG";
+import gallery2 from "../images/136.JPG";
+import gallery3 from "../images/137.JPG";
 
 interface ContainerModel {
   id: string;
@@ -14,75 +19,24 @@ interface ContainerModel {
 }
 
 const HomePage = () => {
+  const { t } = useTranslation();
   const [selectedModel, setSelectedModel] = useState<ContainerModel | null>(
     null,
   );
 
-  const models: ContainerModel[] = [
-    {
-      id: "1",
-      name: "Studio 20",
-      size: "20 m²",
-      rooms: "1 szoba",
-      containers: 1,
-      image:
-        "https://images.unsplash.com/photo-1576941089067-2de3c901e126?w=1200",
-      price: "8,5 M Ft-tól",
-      description:
-        "Kompakt és átgondolt otthon egy személy vagy pár számára. Ideális hétvégi háznak, vendégháznak vagy első önálló otthonnak.",
-    },
-    {
-      id: "2",
-      name: "Family 40",
-      size: "40 m²",
-      rooms: "2 szoba",
-      containers: 2,
-      image:
-        "https://images.unsplash.com/photo-1600585154340-be6161a56a0c?w=1200",
-      price: "14,9 M Ft-tól",
-      description:
-        "Praktikus alaprajz kényelmes közös terekkel és elkülönített hálószobával. Jó kiindulópont a mindennapi élethez.",
-    },
-    {
-      id: "3",
-      name: "Duo 60",
-      size: "60 m²",
-      rooms: "3 szoba",
-      containers: 2,
-      image:
-        "https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?w=1200",
-      price: "22,5 M Ft-tól",
-      description:
-        "Tágasabb, családok számára tervezett modell. Világos belső terek, rugalmas kialakítás és prémium komfortérzet.",
-    },
-  ];
+  const models = t("home.modelsSection.items", {
+    returnObjects: true,
+  }) as ContainerModel[];
 
-  const features = [
-    {
-      number: "01",
-      title: "Egyszerű folyamat",
-      description:
-        "Az első egyeztetéstől a megvalósításig átlátható és jól követhető lépésekben haladunk.",
-    },
-    {
-      number: "02",
-      title: "Rugalmas terek",
-      description:
-        "Az alaprajz, a belső kialakítás és a felszereltség a te életviteledhez igazítható.",
-    },
-    {
-      number: "03",
-      title: "Természetközeli szemlélet",
-      description:
-        "Olyan otthonokban gondolkodunk, amelyek illeszkednek a telekhez és a környezetükhöz.",
-    },
-  ];
+  const features = t("home.featuresSection.items", {
+    returnObjects: true,
+  }) as {
+    number: string;
+    title: string;
+    description: string;
+  }[];
 
-  const galleryImages = [
-    "https://images.unsplash.com/photo-1600607687644-c7171b42498f?w=1400",
-    "https://images.unsplash.com/photo-1600566753086-00f18fb6b3ea?w=1200",
-    "https://images.unsplash.com/photo-1600585154363-67eb9e2e2099?w=1200",
-  ];
+  const galleryImages = [gallery1, gallery2, gallery3];
 
   const fadeInUp = {
     hidden: { opacity: 0, y: 24 },
@@ -94,8 +48,8 @@ const HomePage = () => {
       <main>
         <section className="relative min-h-[780px] overflow-hidden pt-20">
           <img
-            src="https://images.unsplash.com/photo-1600585154526-990dced4db0d?w=2200"
-            alt="Modern, természetközeli otthon"
+            src={bgPic}
+            alt={t("home.hero.imageAlt")}
             className="absolute inset-0 h-full w-full object-cover"
           />
 
@@ -110,17 +64,18 @@ const HomePage = () => {
           >
             <div className="max-w-3xl">
               <p className="text-sm font-semibold uppercase tracking-[0.22em] text-[#dce8cf]">
-                Moduláris otthonok
+                {t("home.hero.eyebrow")}
               </p>
 
               <h1 className="mt-6 text-5xl font-semibold leading-[1.03] tracking-[-0.045em] text-white md:text-7xl">
-                Otthon, amely
-                <span className="block text-[#dce8cf]">együtt él veled.</span>
+                {t("home.hero.title")}
+                <span className="block text-[#dce8cf]">
+                  {t("home.hero.titleAccent")}
+                </span>
               </h1>
 
               <p className="mt-7 max-w-2xl text-lg leading-8 text-white/80 md:text-xl">
-                Letisztult terek, átgondolt részletek és természetes
-                anyaghasználat. Ismerd meg a NATURA HOME moduláris otthonait.
+                {t("home.hero.description")}
               </p>
 
               <div className="mt-10 flex flex-col gap-3 sm:flex-row">
@@ -130,7 +85,7 @@ const HomePage = () => {
                     whileTap={{ scale: 0.98 }}
                     className="inline-flex cursor-pointer items-center justify-center rounded-full bg-[#f7f5ef] px-7 py-4 font-semibold text-[#2d4736] transition hover:bg-white"
                   >
-                    Modellek felfedezése
+                    {t("home.hero.exploreModels")}
                   </motion.span>
                 </Link>
 
@@ -140,7 +95,7 @@ const HomePage = () => {
                     whileTap={{ scale: 0.98 }}
                     className="inline-flex cursor-pointer items-center justify-center rounded-full border border-white/50 px-7 py-4 font-semibold text-white transition hover:bg-white/10"
                   >
-                    Konzultáció kérése
+                    {t("home.hero.requestConsultation")}
                   </motion.span>
                 </Link>
               </div>
@@ -148,8 +103,8 @@ const HomePage = () => {
           </motion.div>
 
           <div className="absolute bottom-8 right-6 z-10 hidden text-right text-sm text-white/65 lg:right-8 lg:block">
-            <p>Természetes formák.</p>
-            <p>Átgondolt otthonok.</p>
+            <p>{t("home.hero.sideTextOne")}</p>
+            <p>{t("home.hero.sideTextTwo")}</p>
           </div>
         </section>
 
@@ -163,11 +118,11 @@ const HomePage = () => {
               transition={{ duration: 0.5 }}
             >
               <p className="text-sm font-semibold uppercase tracking-[0.18em] text-[#bb7050]">
-                NATURA HOME szemlélet
+                {t("home.vision.eyebrow")}
               </p>
 
               <h2 className="mt-5 text-4xl font-semibold leading-tight tracking-[-0.035em] text-[#24382b] md:text-5xl">
-                A kisebb alapterület is lehet teljes értékű otthon.
+                {t("home.vision.title")}
               </h2>
             </motion.div>
 
@@ -180,16 +135,14 @@ const HomePage = () => {
               className="flex flex-col justify-end"
             >
               <p className="max-w-2xl text-xl leading-9 text-[#526357]">
-                Hiszünk abban, hogy az otthon minőségét nem csak a mérete
-                határozza meg. A jól átgondolt tér, a természetes fény és a
-                valódi igényekhez igazodó kialakítás sokkal többet számít.
+                {t("home.vision.description")}
               </p>
 
               <Link
                 to="/rolunk"
                 className="mt-8 inline-flex w-fit items-center gap-2 border-b border-[#2d4736] pb-1 text-sm font-semibold text-[#2d4736] transition hover:border-[#bb7050] hover:text-[#bb7050]"
               >
-                Ismerd meg a szemléletünket
+                {t("home.vision.link")}
                 <span>→</span>
               </Link>
             </motion.div>
@@ -207,11 +160,11 @@ const HomePage = () => {
               className="max-w-2xl"
             >
               <p className="text-sm font-semibold uppercase tracking-[0.18em] text-[#bb7050]">
-                Miért NATURA HOME?
+                {t("home.featuresSection.eyebrow")}
               </p>
 
               <h2 className="mt-5 text-4xl font-semibold tracking-[-0.035em] text-[#24382b] md:text-5xl">
-                Egyszerűbb út egy jól működő otthonhoz.
+                {t("home.featuresSection.title")}
               </h2>
             </motion.div>
 
@@ -255,16 +208,16 @@ const HomePage = () => {
             >
               <div>
                 <p className="text-sm font-semibold uppercase tracking-[0.18em] text-[#bb7050]">
-                  Modellválaszték
+                  {t("home.modelsSection.eyebrow")}
                 </p>
 
                 <h2 className="mt-5 text-4xl font-semibold tracking-[-0.035em] text-[#24382b] md:text-5xl">
-                  Találd meg a megfelelő kiindulópontot.
+                  {t("home.modelsSection.title")}
                 </h2>
               </div>
 
               <p className="max-w-sm leading-7 text-[#526357]">
-                Alapmodellek, amelyekből a saját otthonod formálható.
+                {t("home.modelsSection.description")}
               </p>
             </motion.div>
 
@@ -282,7 +235,7 @@ const HomePage = () => {
                   <div className="h-44 overflow-hidden bg-[#2d4736] md:h-32">
                     <img
                       src={model.image}
-                      alt={`${model.name} konténerház`}
+                      alt={`${model.name} ${t("home.modelsSection.containerHome")}`}
                       className="h-full w-full object-cover transition duration-500 group-hover:scale-105"
                     />
                   </div>
@@ -294,7 +247,9 @@ const HomePage = () => {
                       </span>
 
                       <span className="text-sm text-[#6d7e70]">
-                        {model.containers} konténeres kialakítás
+                        {t("home.modelsSection.containerLayout", {
+                          count: model.containers,
+                        })}
                       </span>
                     </div>
 
@@ -313,10 +268,11 @@ const HomePage = () => {
                     </p>
 
                     <button
+                      type="button"
                       onClick={() => setSelectedModel(model)}
                       className="border-b border-[#2d4736] pb-1 text-sm font-semibold text-[#2d4736] transition hover:border-[#bb7050] hover:text-[#bb7050]"
                     >
-                      Modell részletei →
+                      {t("home.modelsSection.details")}
                     </button>
                   </div>
                 </motion.article>
@@ -325,16 +281,14 @@ const HomePage = () => {
 
             <div className="mt-10 flex flex-col justify-between gap-5 md:flex-row md:items-center">
               <p className="max-w-2xl text-sm leading-6 text-[#6d7e70]">
-                A feltüntetett árak tájékoztató jellegű induló árak. A végleges
-                ár a választott kialakítástól, műszaki tartalomtól és a telek
-                adottságaitól is függ.
+                {t("home.modelsSection.priceNote")}
               </p>
 
               <Link
                 to="/modellek"
                 className="w-fit rounded-full border border-[#2d4736]/20 px-5 py-3 text-sm font-semibold text-[#2d4736] transition hover:border-[#2d4736] hover:bg-[#2d4736] hover:text-white"
               >
-                Összes modell
+                {t("home.modelsSection.allModels")}
               </Link>
             </div>
           </div>
@@ -352,11 +306,11 @@ const HomePage = () => {
             >
               <div>
                 <p className="text-sm font-semibold uppercase tracking-[0.18em] text-[#dce8cf]">
-                  Inspiráció
+                  {t("home.gallery.eyebrow")}
                 </p>
 
                 <h2 className="mt-5 text-4xl font-semibold tracking-[-0.035em] md:text-5xl">
-                  Terek, amelyekhez jó hazatérni.
+                  {t("home.gallery.title")}
                 </h2>
               </div>
 
@@ -364,7 +318,7 @@ const HomePage = () => {
                 to="/galeria"
                 className="w-fit border-b border-[#dce8cf] pb-1 text-sm font-semibold text-[#dce8cf] transition hover:border-white hover:text-white"
               >
-                Galéria megtekintése →
+                {t("home.gallery.link")}
               </Link>
             </motion.div>
 
@@ -379,7 +333,7 @@ const HomePage = () => {
               >
                 <img
                   src={galleryImages[0]}
-                  alt="Világos, modern enteriőr"
+                  alt={t("home.gallery.imageAltOne")}
                   className="h-full w-full object-cover"
                 />
               </motion.div>
@@ -396,7 +350,7 @@ const HomePage = () => {
                 >
                   <img
                     src={image}
-                    alt={`NATURA HOME galéria ${index + 2}`}
+                    alt={`${t("home.gallery.imageAltOther")} ${index + 2}`}
                     className="h-full w-full object-cover"
                   />
                 </motion.div>
@@ -409,13 +363,13 @@ const HomePage = () => {
           <div className="mx-auto flex max-w-7xl flex-col justify-between gap-10 px-6 lg:flex-row lg:items-end lg:px-8">
             <div className="max-w-3xl">
               <p className="text-sm font-semibold uppercase tracking-[0.18em] text-white/70">
-                Az első lépés
+                {t("home.contact.eyebrow")}
               </p>
 
               <h2 className="mt-5 text-4xl font-semibold leading-tight tracking-[-0.035em] md:text-6xl">
-                Van egy telked vagy egy elképzelésed?
+                {t("home.contact.titleOne")}
                 <br />
-                Beszéljünk róla.
+                {t("home.contact.titleTwo")}
               </h2>
             </div>
 
@@ -431,7 +385,7 @@ const HomePage = () => {
                 to="/kapcsolat"
                 className="rounded-full border border-white/60 px-6 py-4 text-center font-semibold transition hover:bg-white/10"
               >
-                Kapcsolatfelvétel
+                {t("home.contact.link")}
               </Link>
             </div>
           </div>
@@ -442,32 +396,34 @@ const HomePage = () => {
         <div className="mx-auto flex max-w-7xl flex-col justify-between gap-8 px-6 md:flex-row md:items-end lg:px-8">
           <div>
             <p className="text-xl font-semibold tracking-tight text-white">
-              NATURA HOME
+              Moblux
             </p>
 
             <p className="mt-3 max-w-sm text-sm leading-6">
-              Moduláris otthonok, amelyek a természetesebb és egyszerűbb
-              mindennapokhoz igazodnak.
+              {t("home.footer.description")}
             </p>
           </div>
 
           <div className="text-sm md:text-right">
             <div className="flex flex-wrap gap-x-5 gap-y-2 md:justify-end">
               <Link to="/rolunk" className="transition hover:text-white">
-                Rólunk
+                {t("header.about")}
               </Link>
+
               <Link to="/galeria" className="transition hover:text-white">
-                Galéria
+                {t("header.gallery")}
               </Link>
+
               <Link to="/kapcsolat" className="transition hover:text-white">
-                Kapcsolat
+                {t("header.contact")}
               </Link>
+
               <a href="#" className="transition hover:text-white">
-                Adatvédelem
+                {t("home.footer.privacy")}
               </a>
             </div>
 
-            <p className="mt-4">© 2026 NATURA HOME. Minden jog fenntartva.</p>
+            <p className="mt-4">{t("home.footer.copyright")}</p>
           </div>
         </div>
       </footer>
@@ -492,13 +448,16 @@ const HomePage = () => {
               <div className="relative h-64 md:h-80">
                 <img
                   src={selectedModel.image}
-                  alt={`${selectedModel.name} konténerház`}
+                  alt={`${selectedModel.name} ${t(
+                    "home.modelsSection.containerHome",
+                  )}`}
                   className="h-full w-full object-cover"
                 />
 
                 <button
+                  type="button"
                   onClick={() => setSelectedModel(null)}
-                  aria-label="Bezárás"
+                  aria-label={t("home.modal.close")}
                   className="absolute right-5 top-5 flex h-10 w-10 items-center justify-center rounded-full bg-[#f7f5ef] text-2xl text-[#24382b] transition hover:bg-[#2d4736] hover:text-white"
                 >
                   ×
@@ -507,7 +466,7 @@ const HomePage = () => {
 
               <div className="p-7 md:p-9">
                 <p className="text-sm font-semibold uppercase tracking-[0.18em] text-[#bb7050]">
-                  NATURA HOME modell
+                  {t("home.modal.eyebrow")}
                 </p>
 
                 <div className="mt-3 flex flex-col justify-between gap-4 sm:flex-row">
@@ -529,8 +488,9 @@ const HomePage = () => {
                 <div className="mt-8 grid grid-cols-3 gap-4 border-y border-[#24382b]/15 py-6">
                   <div>
                     <p className="text-xs uppercase tracking-wide text-[#6d7e70]">
-                      Alapterület
+                      {t("home.modal.area")}
                     </p>
+
                     <p className="mt-2 font-semibold text-[#24382b]">
                       {selectedModel.size}
                     </p>
@@ -538,8 +498,9 @@ const HomePage = () => {
 
                   <div>
                     <p className="text-xs uppercase tracking-wide text-[#6d7e70]">
-                      Elrendezés
+                      {t("home.modal.layout")}
                     </p>
+
                     <p className="mt-2 font-semibold text-[#24382b]">
                       {selectedModel.rooms}
                     </p>
@@ -547,10 +508,13 @@ const HomePage = () => {
 
                   <div>
                     <p className="text-xs uppercase tracking-wide text-[#6d7e70]">
-                      Konténerek
+                      {t("home.modal.containers")}
                     </p>
+
                     <p className="mt-2 font-semibold text-[#24382b]">
-                      {selectedModel.containers} db
+                      {t("home.modal.pieces", {
+                        count: selectedModel.containers,
+                      })}
                     </p>
                   </div>
                 </div>
@@ -560,7 +524,7 @@ const HomePage = () => {
                     href="tel:+36301234567"
                     className="bg-[#2d4736] px-5 py-3.5 text-center font-semibold text-white transition hover:bg-[#3c5b46]"
                   >
-                    Telefonos egyeztetés
+                    {t("home.modal.phoneConsultation")}
                   </a>
 
                   <Link
@@ -568,7 +532,7 @@ const HomePage = () => {
                     onClick={() => setSelectedModel(null)}
                     className="border border-[#2d4736]/25 px-5 py-3.5 text-center font-semibold text-[#2d4736] transition hover:border-[#2d4736] hover:bg-[#e5e9df]"
                   >
-                    Konzultáció kérése
+                    {t("home.modal.requestConsultation")}
                   </Link>
                 </div>
               </div>

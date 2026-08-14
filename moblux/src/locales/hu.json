@@ -1,0 +1,120 @@
+{
+  "header": {
+    "home": "Főoldal",
+    "models": "Modellek",
+    "gallery": "Galéria",
+    "about": "Rólunk",
+    "contact": "Kapcsolat",
+    "brandSubtitle": "Moduláris otthonok",
+    "requestConsultation": "Konzultáció kérése",
+    "openMenu": "Menü megnyitása",
+    "closeMenu": "Menü bezárása",
+    "changeLanguage": "Nyelvváltás"
+  },
+  "home": {
+    "hero": {
+      "eyebrow": "Moduláris otthonok",
+      "title": "Otthon, amely",
+      "titleAccent": "együtt él veled.",
+      "description": "Letisztult terek, átgondolt részletek és természetes anyaghasználat. Ismerd meg a Moblux moduláris otthonait.",
+      "exploreModels": "Modellek felfedezése",
+      "requestConsultation": "Konzultáció kérése",
+      "sideTextOne": "Természetes formák.",
+      "sideTextTwo": "Átgondolt otthonok.",
+      "imageAlt": "Modern, természetközeli otthon"
+    },
+    "vision": {
+      "eyebrow": "Moblux szemlélet",
+      "title": "A kisebb alapterület is lehet teljes értékű otthon.",
+      "description": "Hiszünk abban, hogy az otthon minőségét nem csak a mérete határozza meg. A jól átgondolt tér, a természetes fény és a valódi igényekhez igazodó kialakítás sokkal többet számít.",
+      "link": "Ismerd meg a szemléletünket"
+    },
+    "featuresSection": {
+      "eyebrow": "Miért Moblux?",
+      "title": "Egyszerűbb út egy jól működő otthonhoz.",
+      "items": [
+        {
+          "number": "01",
+          "title": "Egyszerű folyamat",
+          "description": "Az első egyeztetéstől a megvalósításig átlátható és jól követhető lépésekben haladunk."
+        },
+        {
+          "number": "02",
+          "title": "Rugalmas terek",
+          "description": "Az alaprajz, a belső kialakítás és a felszereltség a te életviteledhez igazítható."
+        },
+        {
+          "number": "03",
+          "title": "Természetközeli szemlélet",
+          "description": "Olyan otthonokban gondolkodunk, amelyek illeszkednek a telekhez és a környezetükhöz."
+        }
+      ]
+    },
+    "modelsSection": {
+      "eyebrow": "Modellválaszték",
+      "title": "Találd meg a megfelelő kiindulópontot.",
+      "description": "Alapmodellek, amelyekből a saját otthonod formálható.",
+      "containerLayout": "{{count}} konténeres kialakítás",
+      "details": "Modell részletei →",
+      "allModels": "Összes modell",
+      "priceNote": "A feltüntetett árak tájékoztató jellegű induló árak. A végleges ár a választott kialakítástól, műszaki tartalomtól és a telek adottságaitól is függ.",
+      "items": [
+        {
+          "id": "1",
+          "name": "Studio 20",
+          "size": "20 m²",
+          "rooms": "1 szoba",
+          "containers": 1,
+          "price": "8,5 M Ft-tól",
+          "description": "Kompakt és átgondolt otthon egy személy vagy pár számára. Ideális hétvégi háznak, vendégháznak vagy első önálló otthonnak."
+        },
+        {
+          "id": "2",
+          "name": "Family 40",
+          "size": "40 m²",
+          "rooms": "2 szoba",
+          "containers": 2,
+          "price": "14,9 M Ft-tól",
+          "description": "Praktikus alaprajz kényelmes közös terekkel és elkülönített hálószobával. Jó kiindulópont a mindennapi élethez."
+        },
+        {
+          "id": "3",
+          "name": "Duo 60",
+          "size": "60 m²",
+          "rooms": "3 szoba",
+          "containers": 2,
+          "price": "22,5 M Ft-tól",
+          "description": "Tágasabb, családok számára tervezett modell. Világos belső terek, rugalmas kialakítás és prémium komfortérzet."
+        }
+      ]
+    },
+    "gallery": {
+      "eyebrow": "Inspiráció",
+      "title": "Terek, amelyekhez jó hazatérni.",
+      "link": "Galéria megtekintése →",
+      "imageAltOne": "Világos, modern enteriőr",
+      "imageAltOther": "Moblux galéria"
+    },
+    "contact": {
+      "eyebrow": "Az első lépés",
+      "titleOne": "Van egy telked vagy egy elképzelésed?",
+      "titleTwo": "Beszéljünk róla.",
+      "link": "Kapcsolatfelvétel"
+    },
+    "footer": {
+      "description": "Moduláris otthonok, amelyek a természetesebb és egyszerűbb mindennapokhoz igazodnak.",
+      "privacy": "Adatvédelem",
+      "copyright": "© 2026 Moblux. Minden jog fenntartva."
+    },
+    "modal": {
+      "eyebrow": "Moblux modell",
+      "close": "Bezárás",
+      "area": "Alapterület",
+      "layout": "Elrendezés",
+      "containers": "Konténerek",
+      "pieces": "{{count}} db",
+      "phoneConsultation": "Telefonos egyeztetés",
+      "requestConsultation": "Konzultáció kérése"
+    }
+  }
+}

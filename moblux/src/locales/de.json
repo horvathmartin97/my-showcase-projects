@@ -1,0 +1,120 @@
+{
+  "header": {
+    "home": "Startseite",
+    "models": "Modelle",
+    "gallery": "Galerie",
+    "about": "Über uns",
+    "contact": "Kontakt",
+    "brandSubtitle": "Modulare Häuser",
+    "requestConsultation": "Beratung anfragen",
+    "openMenu": "Menü öffnen",
+    "closeMenu": "Menü schließen",
+    "changeLanguage": "Sprache ändern"
+  },
+  "home": {
+    "hero": {
+      "eyebrow": "Modulare Häuser",
+      "title": "Ein Zuhause, das",
+      "titleAccent": "mit dir lebt.",
+      "description": "Klare Räume, durchdachte Details und natürliche Materialien. Entdecke die modularen Häuser von Moblux.",
+      "exploreModels": "Modelle entdecken",
+      "requestConsultation": "Beratung anfragen",
+      "sideTextOne": "Natürliche Formen.",
+      "sideTextTwo": "Durchdachte Häuser.",
+      "imageAlt": "Modernes, naturnahes Zuhause"
+    },
+    "vision": {
+      "eyebrow": "Die Moblux Philosophie",
+      "title": "Auch eine kleinere Wohnfläche kann ein vollwertiges Zuhause sein.",
+      "description": "Wir glauben, dass die Qualität eines Zuhauses nicht allein von seiner Größe bestimmt wird. Ein gut durchdachter Raum, natürliches Licht und eine Gestaltung nach echten Bedürfnissen zählen deutlich mehr.",
+      "link": "Unsere Philosophie kennenlernen"
+    },
+    "featuresSection": {
+      "eyebrow": "Warum Moblux?",
+      "title": "Einfacher zum Zuhause, das wirklich funktioniert.",
+      "items": [
+        {
+          "number": "01",
+          "title": "Einfacher Prozess",
+          "description": "Vom ersten Gespräch bis zur Umsetzung gehen wir in transparenten und nachvollziehbaren Schritten vor."
+        },
+        {
+          "number": "02",
+          "title": "Flexible Räume",
+          "description": "Grundriss, Innenraumgestaltung und Ausstattung lassen sich an deinen Alltag anpassen."
+        },
+        {
+          "number": "03",
+          "title": "Naturnahe Denkweise",
+          "description": "Wir planen Häuser, die sich harmonisch an das Grundstück und ihre Umgebung anpassen."
+        }
+      ]
+    },
+    "modelsSection": {
+      "eyebrow": "Modellübersicht",
+      "title": "Finde den passenden Ausgangspunkt.",
+      "description": "Grundmodelle, aus denen dein individuelles Zuhause entstehen kann.",
+      "containerLayout": "Ausführung mit {{count}} Containern",
+      "details": "Modelldetails →",
+      "allModels": "Alle Modelle",
+      "priceNote": "Die angegebenen Preise sind unverbindliche Einstiegspreise. Der endgültige Preis hängt von der gewählten Ausführung, dem technischen Umfang und den Eigenschaften des Grundstücks ab.",
+      "items": [
+        {
+          "id": "1",
+          "name": "Studio 20",
+          "size": "20 m²",
+          "rooms": "1 Zimmer",
+          "containers": 1,
+          "price": "Ab 8,5 Mio. HUF",
+          "description": "Ein kompaktes und durchdachtes Zuhause für eine Person oder ein Paar. Ideal als Wochenendhaus, Gästehaus oder erstes eigenes Zuhause."
+        },
+        {
+          "id": "2",
+          "name": "Family 40",
+          "size": "40 m²",
+          "rooms": "2 Zimmer",
+          "containers": 2,
+          "price": "Ab 14,9 Mio. HUF",
+          "description": "Ein praktischer Grundriss mit komfortablen Gemeinschaftsbereichen und einem separaten Schlafzimmer. Ein guter Ausgangspunkt für den Alltag."
+        },
+        {
+          "id": "3",
+          "name": "Duo 60",
+          "size": "60 m²",
+          "rooms": "3 Zimmer",
+          "containers": 2,
+          "price": "Ab 22,5 Mio. HUF",
+          "description": "Ein geräumigeres Modell für Familien. Helle Innenräume, flexible Gestaltung und ein hoher Wohnkomfort."
+        }
+      ]
+    },
+    "gallery": {
+      "eyebrow": "Inspiration",
+      "title": "Räume, in die man gerne nach Hause kommt.",
+      "link": "Galerie ansehen →",
+      "imageAltOne": "Helles, modernes Interieur",
+      "imageAltOther": "Moblux Galerie"
+    },
+    "contact": {
+      "eyebrow": "Der erste Schritt",
+      "titleOne": "Hast du ein Grundstück oder eine Idee?",
+      "titleTwo": "Lass uns darüber sprechen.",
+      "link": "Kontakt aufnehmen"
+    },
+    "footer": {
+      "description": "Modulare Häuser für einen natürlicheren und einfacheren Alltag.",
+      "privacy": "Datenschutz",
+      "copyright": "© 2026 Moblux. Alle Rechte vorbehalten."
+    },
+    "modal": {
+      "eyebrow": "Moblux Modell",
+      "close": "Schließen",
+      "area": "Wohnfläche",
+      "layout": "Aufteilung",
+      "containers": "Container",
+      "pieces": "{{count}} Stk.",
+      "phoneConsultation": "Telefonische Beratung",
+      "requestConsultation": "Beratung anfragen"
+    }
+  }
+}

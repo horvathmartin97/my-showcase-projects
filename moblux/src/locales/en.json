@@ -1,0 +1,120 @@
+{
+  "header": {
+    "home": "Home",
+    "models": "Models",
+    "gallery": "Gallery",
+    "about": "About us",
+    "contact": "Contact",
+    "brandSubtitle": "Modular homes",
+    "requestConsultation": "Request a consultation",
+    "openMenu": "Open menu",
+    "closeMenu": "Close menu",
+    "changeLanguage": "Change language"
+  },
+  "home": {
+    "hero": {
+      "eyebrow": "Modular homes",
+      "title": "A home that",
+      "titleAccent": "grows with you.",
+      "description": "Clean spaces, thoughtful details and natural materials. Discover Moblux modular homes.",
+      "exploreModels": "Explore models",
+      "requestConsultation": "Request a consultation",
+      "sideTextOne": "Natural forms.",
+      "sideTextTwo": "Thoughtful homes.",
+      "imageAlt": "Modern home close to nature"
+    },
+    "vision": {
+      "eyebrow": "The Moblux approach",
+      "title": "A smaller footprint can still be a complete home.",
+      "description": "We believe the quality of a home is not determined only by its size. Thoughtful space planning, natural light and a layout tailored to real needs matter much more.",
+      "link": "Discover our approach"
+    },
+    "featuresSection": {
+      "eyebrow": "Why Moblux?",
+      "title": "A simpler path to a home that works.",
+      "items": [
+        {
+          "number": "01",
+          "title": "A simple process",
+          "description": "From the first conversation to completion, we move through clear and easy-to-follow steps."
+        },
+        {
+          "number": "02",
+          "title": "Flexible spaces",
+          "description": "The floor plan, interior layout and equipment can be adapted to your lifestyle."
+        },
+        {
+          "number": "03",
+          "title": "A nature-focused approach",
+          "description": "We design homes that fit naturally with the plot and their surroundings."
+        }
+      ]
+    },
+    "modelsSection": {
+      "eyebrow": "Model range",
+      "title": "Find the right starting point.",
+      "description": "Base models that can be shaped into your own home.",
+      "containerLayout": "{{count}}-container layout",
+      "details": "Model details →",
+      "allModels": "All models",
+      "priceNote": "The displayed prices are indicative starting prices. The final price depends on the chosen configuration, technical specifications and the characteristics of the plot.",
+      "items": [
+        {
+          "id": "1",
+          "name": "Studio 20",
+          "size": "20 m²",
+          "rooms": "1 room",
+          "containers": 1,
+          "price": "From HUF 8.5M",
+          "description": "A compact and thoughtfully designed home for one person or a couple. Ideal as a weekend house, guest house or first independent home."
+        },
+        {
+          "id": "2",
+          "name": "Family 40",
+          "size": "40 m²",
+          "rooms": "2 rooms",
+          "containers": 2,
+          "price": "From HUF 14.9M",
+          "description": "A practical layout with comfortable shared spaces and a separate bedroom. A strong starting point for everyday life."
+        },
+        {
+          "id": "3",
+          "name": "Duo 60",
+          "size": "60 m²",
+          "rooms": "3 rooms",
+          "containers": 2,
+          "price": "From HUF 22.5M",
+          "description": "A more spacious model designed for families. Bright interiors, flexible planning and premium comfort."
+        }
+      ]
+    },
+    "gallery": {
+      "eyebrow": "Inspiration",
+      "title": "Spaces you will love coming home to.",
+      "link": "View gallery →",
+      "imageAltOne": "Bright, modern interior",
+      "imageAltOther": "Moblux gallery"
+    },
+    "contact": {
+      "eyebrow": "The first step",
+      "titleOne": "Do you have a plot or an idea?",
+      "titleTwo": "Let’s talk about it.",
+      "link": "Get in touch"
+    },
+    "footer": {
+      "description": "Modular homes designed for simpler, more natural everyday living.",
+      "privacy": "Privacy policy",
+      "copyright": "© 2026 Moblux. All rights reserved."
+    },
+    "modal": {
+      "eyebrow": "Moblux model",
+      "close": "Close",
+      "area": "Floor area",
+      "layout": "Layout",
+      "containers": "Containers",
+      "pieces": "{{count}} pcs",
+      "phoneConsultation": "Phone consultation",
+      "requestConsultation": "Request a consultation"
+    }
+  }
+}
