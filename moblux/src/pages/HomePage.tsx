@@ -1,7 +1,7 @@
 import { AnimatePresence, motion } from "framer-motion";
 import { useState } from "react";
 import { Link } from "react-router";
-import bgPic from "../images/bg.jpg";
+import bgPic from "../images/background.jpg";
 import { useTranslation } from "react-i18next";
 import gallery1 from "../images/135.jpg";
 import gallery2 from "../images/136.jpg";
