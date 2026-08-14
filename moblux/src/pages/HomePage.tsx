@@ -3,9 +3,7 @@ import { useState } from "react";
 import { Link } from "react-router";
 import bgPic from "../images/background.jpg";
 import { useTranslation } from "react-i18next";
-import gallery1 from "../images/135.jpg";
-import gallery2 from "../images/136.jpg";
-import gallery3 from "../images/137.jpg";
+import gallery1 from "../images/frontIMG.jpg";
 
 interface ContainerModel {
   id: string;
@@ -36,7 +34,7 @@ const HomePage = () => {
     description: string;
   }[];
 
-  const galleryImages = [gallery1, gallery2, gallery3];
+  const galleryImages = [gallery1];
 
   const fadeInUp = {
     hidden: { opacity: 0, y: 24 },
