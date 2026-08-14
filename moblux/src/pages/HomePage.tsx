@@ -3,9 +3,9 @@ import { useState } from "react";
 import { Link } from "react-router";
 import bgPic from "../images/bg.jpg";
 import { useTranslation } from "react-i18next";
-import gallery1 from "../images/135.JPG";
-import gallery2 from "../images/136.JPG";
-import gallery3 from "../images/137.JPG";
+import gallery1 from "../images/135.jpg";
+import gallery2 from "../images/136.jpg";
+import gallery3 from "../images/137.jpg";
 
 interface ContainerModel {
   id: string;
