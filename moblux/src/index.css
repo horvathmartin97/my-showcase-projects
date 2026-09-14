@@ -1,0 +1,180 @@
+@import 'tailwindcss';
+
+/* ── Az eredeti MOBLUX design tokenek (styles.css :root) ───────────── */
+@theme {
+  --color-ink: #10110f;
+  --color-ink-soft: #171815;
+  --color-ink-panel: #11120f;
+  --color-paper: #f4f2ed;
+  --color-sand: #d6ccb6;
+  --color-clay: #ccbea0;
+  --color-gold: #c9a85b;
+  --color-gold-light: #dfc78d;
+  --color-gold-dark: #81672f;
+  --color-muted: #73746f;
+  --color-line: #d8d4ca;
+
+  --font-sans: Manrope, Arial, sans-serif;
+  --font-display: 'Playfair Display', Georgia, serif;
+}
+
+:root {
+  --max: 1380px;
+}
+
+@layer base {
+  html {
+    scroll-behavior: smooth;
+    scroll-padding-top: 100px;
+  }
+
+  body {
+    margin: 0;
+    background: var(--color-paper);
+    color: var(--color-ink);
+    font: 16px/1.65 var(--font-sans);
+  }
+
+  h1,
+  h2 {
+    margin: 0;
+    font-weight: 500;
+    letter-spacing: -0.05em;
+    line-height: 1.02;
+  }
+
+  h2 {
+    font-size: clamp(42px, 5vw, 74px);
+  }
+
+  /* Az eredeti kiemelés: Playfair Display dőlt */
+  em {
+    font-family: var(--font-display);
+    font-style: italic;
+    font-weight: 500;
+  }
+
+  img {
+    display: block;
+    max-width: 100%;
+  }
+
+  :focus-visible {
+    outline: 2px solid var(--color-gold);
+    outline-offset: 3px;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    html {
+      scroll-behavior: auto;
+    }
+    *,
+    *::before,
+    *::after {
+      animation-duration: 0.01ms !important;
+      transition-duration: 0.01ms !important;
+    }
+  }
+}
+
+@keyframes heroZoom {
+  from {
+    transform: scale(1.05);
+  }
+  to {
+    transform: scale(1);
+  }
+}
+
+@layer components {
+  /* Egységes szekció-belsőmargó (.pad az eredetiben) */
+  .pad {
+    padding: 116px max(24px, calc((100vw - var(--max)) / 2));
+  }
+
+  .eyebrow {
+    margin: 0 0 17px;
+    color: var(--color-gold);
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 0.22em;
+  }
+
+  .eyebrow-dark {
+    color: var(--color-gold-dark);
+  }
+
+  .btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 15px 22px;
+    border: 0;
+    text-decoration: none;
+    cursor: pointer;
+    font-size: 12px;
+    font-weight: 700;
+    transition: background-color 0.3s;
+  }
+
+  .btn-gold {
+    background: var(--color-gold);
+    color: #111;
+  }
+
+  .btn-gold:hover {
+    background: var(--color-gold-light);
+  }
+
+  .btn-ink {
+    background: var(--color-ink);
+    color: #fff;
+  }
+
+  .btn-ink:hover {
+    background: #2b2c28;
+  }
+
+  .note {
+    margin: 16px 0 0;
+    color: #777;
+    font-size: 10px;
+  }
+
+  /* Fotógombok sarokfelirata */
+  .zoom-tag {
+    position: absolute;
+    left: 18px;
+    bottom: 16px;
+    padding: 7px 10px;
+    background: #111d;
+    color: #fff;
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+  }
+
+  .reveal {
+    opacity: 0;
+    transform: translateY(20px);
+    transition: 0.75s;
+  }
+
+  .reveal.visible {
+    opacity: 1;
+    transform: none;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .reveal {
+      opacity: 1;
+      transform: none;
+    }
+  }
+
+  @media (max-width: 650px) {
+    .pad {
+      padding: 75px 20px;
+    }
+  }
+}
