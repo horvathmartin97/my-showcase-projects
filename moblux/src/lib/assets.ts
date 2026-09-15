@@ -3,7 +3,7 @@
  * változtatás nélkül bemásolható a `public/` alá.
  * Amíg egy fájl hiányzik, a <ZoomImage>/<Img> jelölt helykitöltőt mutat.
  */
-const A = '/assets';
+const A = "/assets";
 
 export const IMAGES = {
   logo: `${A}/brand/moblux-logo-white.svg`,
@@ -73,7 +73,7 @@ export const IMAGES = {
 
   // Alaprajzok
   family40Plan: `${A}/plans/40ft-family-plan.png`,
-  expandable20: `${A}/plans/expandable-20.svg`,
+  expandable20: `${A}/plans/20-labas-alap.jpg`,
   expandable40: `${A}/plans/expandable-40.svg`,
   biWing30: `${A}/plans/huaying-30ft-bi-wing-floorplan.png`,
   singleLevel70: `${A}/plans/moblux-70-single-level-plan.jpg`,
@@ -81,4 +81,4 @@ export const IMAGES = {
   multifunction40: `${A}/plans/40ft-multifunction-plan.png`,
 } as const;
 
-export const CATALOG_PDF = '/MOBLUX_mobilhazak_es_valaszthato_opciok.pdf';
+export const CATALOG_PDF = "/MOBLUX_mobilhazak_es_valaszthato_opciok.pdf";
