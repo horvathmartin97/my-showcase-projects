@@ -37,7 +37,7 @@ export const IMAGES = {
   lumina35Terrace: `${A}/photos/lumina-35/lumina-35-terrace.jpg`,
 
   // Expand 30
-  expand30Hero: `${A}/photos/expandable-30/expandable-30-hero.webp`,
+  expand30Hero: `${A}/photos/expandable-30/Moblux-expand-54.png`,
   expand30Floorplan: `${A}/photos/expandable-30/expandable-30-floorplan.jpg`,
   expand30Exterior: `${A}/photos/expandable-30/expandable-30-exterior.jpg`,
   expand30Interior1: `${A}/photos/expandable-30/expandable-30-interior-1.jpg`,
