@@ -45,6 +45,7 @@ export const IMAGES = {
   expand30Kitchen1: `${A}/photos/expandable-30/expandable-30-kitchen-1.jpeg`,
   expand30Kitchen2: `${A}/photos/expandable-30/expandable-30-kitchen-2.jpeg`,
   expand30Bathroom: `${A}/photos/expandable-30/expandable-30-bathroom.jpeg`,
+  /*  expand30Floorplan2: `${A}/photos/expandable-30/expandable30FloorPlan2.pdf`, */
 
   // Grand 70 / kétszintes
   grand70Built: `${A}/photos/grand-70/grand-70-built-option.jpg`,
@@ -56,6 +57,7 @@ export const IMAGES = {
   twoStory05: `${A}/photos/two-story/two-story-05.webp`,
   twoStory06: `${A}/photos/two-story/two-story-06.webp`,
   twoStory08: `${A}/photos/two-story/two-story-08.webp`,
+  floorplan: `${A}/photos/two-story/2-szintes-alaprajz.jpg`,
 
   // Egyéb
   office: `${A}/photos/office/modular-office-building.jpg`,
