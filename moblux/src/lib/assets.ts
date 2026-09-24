@@ -45,7 +45,7 @@ export const IMAGES = {
   expand30Kitchen1: `${A}/photos/expandable-30/expandable-30-kitchen-1.jpeg`,
   expand30Kitchen2: `${A}/photos/expandable-30/expandable-30-kitchen-2.jpeg`,
   expand30Bathroom: `${A}/photos/expandable-30/expandable-30-bathroom.jpeg`,
-  /*  expand30Floorplan2: `${A}/photos/expandable-30/expandable30FloorPlan2.pdf`, */
+  expand30Floorplan2: `${A}/photos/expandable-30/expandable30FloorPlan2.png`,
 
   // Grand 70 / kétszintes
   grand70Built: `${A}/photos/grand-70/grand-70-built-option.jpg`,

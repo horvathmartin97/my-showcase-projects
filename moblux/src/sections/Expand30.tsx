@@ -59,7 +59,7 @@ const GALLERY = [
     alt: "MOBLUX Expand 30 komplett fürdőszobája",
     wide: true,
   },
-  /*  { src: IMAGES.expand30Floorplan2, alt: "Moblux Expand 30 floorplan 2" }, */
+  { src: IMAGES.expand30Floorplan2, alt: "Moblux Expand 30 floorplan 2" },
 ];
 
 export default function Expand30() {
